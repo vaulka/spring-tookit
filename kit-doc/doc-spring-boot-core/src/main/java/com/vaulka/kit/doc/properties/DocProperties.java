@@ -2,21 +2,20 @@ package com.vaulka.kit.doc.properties;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.models.security.SecurityScheme;
+import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import org.apache.commons.lang3.StringUtils;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springdoc.core.properties.SpringDocConfigProperties;
-import org.springdoc.core.utils.Constants;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 
 /**
@@ -26,6 +25,7 @@ import java.util.Objects;
  **/
 @Getter
 @Setter
+@Validated
 @ConfigurationProperties(DocProperties.PREFIX)
 public class DocProperties {
 
@@ -86,11 +86,13 @@ public class DocProperties {
         /**
          * The Display name.
          */
+        @NotBlank
         private String displayName;
 
         /**
          * The Group.
          */
+        @NotBlank
         private String group;
 
         /**
@@ -136,8 +138,8 @@ public class DocProperties {
          */
         public GroupedOpenApi build(boolean enabled) {
             GroupedOpenApi.Builder builder = GroupedOpenApi.builder()
-                    .displayName(StringUtils.defaultIfEmpty(displayName, group))
-                    .group(Objects.requireNonNull(group, Constants.GROUP_NAME_NOT_NULL));
+                    .displayName(displayName)
+                    .group(group);
             if (!enabled) {
                 return builder.addOpenApiMethodFilter(method -> false).build();
             }

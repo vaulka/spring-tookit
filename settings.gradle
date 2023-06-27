@@ -13,4 +13,7 @@ include 'kit-doc:doc-spring-boot-core'
 findProject(':kit-doc:doc-spring-boot-core')?.name = 'doc-spring-boot-core'
 include 'kit-doc:doc-spring-boot-starter-gateway'
 findProject(':kit-doc:doc-spring-boot-starter-gateway')?.name = 'doc-spring-boot-starter-gateway'
+include 'kit-ip'
+include 'kit-ip:ip-spring-boot-starter'
+findProject(':kit-ip:ip-spring-boot-starter')?.name = 'ip-spring-boot-starter'
 

@@ -8,6 +8,9 @@ ext {
     // Spring 相关依赖管理工具
     springDependencyManagementVersion = "1.1.0"
 
+    // IP 地址解析
+    ip2regionVersion = "2.7.0"
+
     // 接口文档
     swaggerVersion = "2.2.12"
     springdocVersion = "2.1.0"
