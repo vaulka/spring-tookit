@@ -1,7 +1,7 @@
 package com.vaulka.kit.ip.config;
 
 
-import com.vaulka.kit.ip.result.IpInfo;
+import com.vaulka.kit.ip.model.IpInfo;
 
 /**
  * IP 解析器

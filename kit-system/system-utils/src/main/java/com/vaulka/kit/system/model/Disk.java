@@ -1,4 +1,4 @@
-package com.vaulka.kit.system.result;
+package com.vaulka.kit.system.model;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,4 +1,4 @@
-package com.vaulka.kit.ip.result;
+package com.vaulka.kit.ip.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,12 +1,12 @@
 package com.vaulka.kit.system.utils;
 
-import com.vaulka.kit.system.result.Cpu;
-import com.vaulka.kit.system.result.Disk;
-import com.vaulka.kit.system.result.Jdk;
-import com.vaulka.kit.system.result.Jvm;
-import com.vaulka.kit.system.result.Mem;
-import com.vaulka.kit.system.result.Os;
-import com.vaulka.kit.system.result.SystemResource;
+import com.vaulka.kit.system.model.Cpu;
+import com.vaulka.kit.system.model.Disk;
+import com.vaulka.kit.system.model.Jdk;
+import com.vaulka.kit.system.model.Jvm;
+import com.vaulka.kit.system.model.Mem;
+import com.vaulka.kit.system.model.Os;
+import com.vaulka.kit.system.model.SystemResource;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.GlobalMemory;
@@ -24,7 +24,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 系统资源 工具类
+ * 系统资源工具
  *
  * @author Vaulka
  **/

@@ -1,36 +1,36 @@
-package com.vaulka.kit.system.result;
+package com.vaulka.kit.system.model;
 
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * JVM 指标信息
+ * MEM 指标信息
  *
  * @author Vaulka
  **/
 @Data
 @Builder
 @EqualsAndHashCode(callSuper = false)
-public class Jvm {
+public class Mem {
 
     /**
-     * JVM 内存容量
+     * 主机 容量
      */
     private String capacity;
 
     /**
-     * JVM 已使用容量
+     * 主机 已使用容量
      */
     private String usedCapacity;
 
     /**
-     * JVM 空闲容量
+     * 主机 空闲容量
      */
     private String freeCapacity;
 
     /**
-     * JVM 使用率
+     * 主机 使用率
      */
     private String usage;
 

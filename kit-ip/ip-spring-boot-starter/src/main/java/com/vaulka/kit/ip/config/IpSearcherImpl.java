@@ -1,7 +1,7 @@
 package com.vaulka.kit.ip.config;
 
 import com.vaulka.kit.ip.properties.IpProperties;
-import com.vaulka.kit.ip.result.IpInfo;
+import com.vaulka.kit.ip.model.IpInfo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.lionsoul.ip2region.xdb.Searcher;

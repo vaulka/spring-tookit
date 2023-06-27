@@ -19,4 +19,7 @@ findProject(':kit-ip:ip-spring-boot-starter')?.name = 'ip-spring-boot-starter'
 include 'kit-system'
 include 'kit-system:system-utils'
 findProject(':kit-system:system-utils')?.name = 'system-utils'
+include 'kit-tree'
+include 'kit-tree:tree-utils'
+findProject(':kit-tree:tree-utils')?.name = 'tree-utils'
 
