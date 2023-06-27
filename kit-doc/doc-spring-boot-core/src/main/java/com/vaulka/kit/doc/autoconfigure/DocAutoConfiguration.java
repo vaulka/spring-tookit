@@ -68,9 +68,7 @@ public class DocAutoConfiguration {
     /**
      * 默认分组
      */
-    private static final DocProperties.GroupOpenApi DEFAULT_GROUPED_OPEN_API = new DocProperties.GroupOpenApi()
-            .setDisplayName("default")
-            .setGroup("");
+    private static final DocProperties.GroupOpenApi DEFAULT_GROUPED_OPEN_API = new DocProperties.GroupOpenApi("default", "default");
 
     /**
      * 注入接口文档组别信息

@@ -1,8 +1,8 @@
 package com.vaulka.kit.system.result;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * JDK 信息
@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
  * @author Vaulka
  **/
 @Data
-@Accessors(chain = true)
+@Builder
 @EqualsAndHashCode(callSuper = false)
 public class Jdk {
 

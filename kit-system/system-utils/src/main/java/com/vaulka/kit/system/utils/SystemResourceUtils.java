@@ -42,13 +42,14 @@ public class SystemResourceUtils {
         Jdk jdk = SystemResourceUtils.readJdk();
         Jvm jvm = SystemResourceUtils.readJvm();
         List<Disk> disks = SystemResourceUtils.readDisks();
-        return new SystemResource()
-                .setOs(os)
-                .setCpu(cpu)
-                .setMem(mem)
-                .setJdk(jdk)
-                .setJvm(jvm)
-                .setDisks(disks);
+        return SystemResource.builder()
+                .os(os)
+                .cpu(cpu)
+                .mem(mem)
+                .jdk(jdk)
+                .jvm(jvm)
+                .disks(disks)
+                .build();
     }
 
     /**
@@ -74,11 +75,12 @@ public class SystemResourceUtils {
             hostName = null;
             hostAddress = null;
         }
-        return new Os()
-                .setName(name)
-                .setArch(arch)
-                .setHostName(hostName)
-                .setHostAddress(hostAddress);
+        return Os.builder()
+                .name(name)
+                .arch(arch)
+                .hostName(hostName)
+                .hostName(hostAddress)
+                .build();
     }
 
     /**
@@ -108,15 +110,16 @@ public class SystemResourceUtils {
         long ioWait = ticks[CentralProcessor.TickType.IOWAIT.getIndex()] - prevTicks[CentralProcessor.TickType.IOWAIT.getIndex()];
         long idle = ticks[CentralProcessor.TickType.IDLE.getIndex()] - prevTicks[CentralProcessor.TickType.IDLE.getIndex()];
         long totalCpu = user + nice + system + idle + ioWait + irq + softIrq + steal;
-        return new Cpu()
-                .setModel(processor.getProcessorIdentifier().getName())
-                .setMicroArchitecture(processor.getProcessorIdentifier().getMicroarchitecture())
-                .setPhysicalProcessorCount(processor.getPhysicalProcessorCount())
-                .setLogicalProcessorCount(processor.getLogicalProcessorCount())
-                .setSystemUsage(SystemResourceUtils.formatUsage(system * 1.0 / totalCpu))
-                .setUserUsage(SystemResourceUtils.formatUsage(user * 1.0 / totalCpu))
-                .setIoWaitUsage(SystemResourceUtils.formatUsage(ioWait * 1.0 / totalCpu))
-                .setTotalUsage(SystemResourceUtils.formatUsage(1.0 - (idle * 1.0 / totalCpu)));
+        return Cpu.builder()
+                .model(processor.getProcessorIdentifier().getName())
+                .microArchitecture(processor.getProcessorIdentifier().getMicroarchitecture())
+                .physicalProcessorCount(processor.getPhysicalProcessorCount())
+                .logicalProcessorCount(processor.getLogicalProcessorCount())
+                .systemUsage(SystemResourceUtils.formatUsage(system * 1.0 / totalCpu))
+                .userUsage(SystemResourceUtils.formatUsage(user * 1.0 / totalCpu))
+                .ioWaitUsage(SystemResourceUtils.formatUsage(ioWait * 1.0 / totalCpu))
+                .totalUsage(SystemResourceUtils.formatUsage(1.0 - (idle * 1.0 / totalCpu)))
+                .build();
     }
 
     /**
@@ -131,11 +134,12 @@ public class SystemResourceUtils {
         String capacity = SystemResourceUtils.formatByte(totalByte);
         String usedCapacity = SystemResourceUtils.formatByte(totalByte - availableByte);
         String freeCapacity = SystemResourceUtils.formatByte(availableByte);
-        return new Mem()
-                .setCapacity(capacity)
-                .setUsedCapacity(usedCapacity)
-                .setFreeCapacity(freeCapacity)
-                .setUsage(SystemResourceUtils.formatUsage((totalByte - availableByte) * 1.0 / totalByte));
+        return Mem.builder()
+                .capacity(capacity)
+                .usedCapacity(usedCapacity)
+                .freeCapacity(freeCapacity)
+                .usage(SystemResourceUtils.formatUsage((totalByte - availableByte) * 1.0 / totalByte))
+                .build();
     }
 
     /**
@@ -148,11 +152,12 @@ public class SystemResourceUtils {
         String version = PROPS.getProperty("java.version");
         String home = PROPS.getProperty("java.home");
         String runHome = PROPS.getProperty("user.dir");
-        return new Jdk()
-                .setName(name)
-                .setVersion(version)
-                .setHome(home)
-                .setRunHome(runHome);
+        return Jdk.builder()
+                .name(name)
+                .version(version)
+                .home(home)
+                .runHome(runHome)
+                .build();
     }
 
     /**
@@ -167,11 +172,12 @@ public class SystemResourceUtils {
         String capacity = SystemResourceUtils.formatByte(jvmTotalMemoryByte);
         String usedCapacity = SystemResourceUtils.formatByte(jvmTotalMemoryByte - jvmFreeMemoryByte);
         String freeCapacity = SystemResourceUtils.formatByte(jvmFreeMemoryByte);
-        return new Jvm()
-                .setCapacity(capacity)
-                .setUsedCapacity(usedCapacity)
-                .setFreeCapacity(freeCapacity)
-                .setUsage(SystemResourceUtils.formatUsage((jvmTotalMemoryByte - jvmFreeMemoryByte) * 1.0 / jvmTotalMemoryByte));
+        return Jvm.builder()
+                .capacity(capacity)
+                .usedCapacity(usedCapacity)
+                .freeCapacity(freeCapacity)
+                .usage(SystemResourceUtils.formatUsage((jvmTotalMemoryByte - jvmFreeMemoryByte) * 1.0 / jvmTotalMemoryByte))
+                .build();
     }
 
     /**
@@ -196,14 +202,15 @@ public class SystemResourceUtils {
             String capacity = SystemResourceUtils.formatByte(total);
             String usedCapacity = SystemResourceUtils.formatByte(used);
             String freeCapacity = SystemResourceUtils.formatByte(free);
-            Disk disk = new Disk()
-                    .setMount(mount)
-                    .setType(type)
-                    .setName(name)
-                    .setCapacity(capacity)
-                    .setUsedCapacity(usedCapacity)
-                    .setFreeCapacity(freeCapacity)
-                    .setUsage(SystemResourceUtils.formatUsage(used * 1.0 / total));
+            Disk disk = Disk.builder()
+                    .mount(mount)
+                    .type(type)
+                    .name(name)
+                    .capacity(capacity)
+                    .usedCapacity(usedCapacity)
+                    .freeCapacity(freeCapacity)
+                    .usage(SystemResourceUtils.formatUsage(used * 1.0 / total))
+                    .build();
             disks.add(disk);
         }
         return disks;

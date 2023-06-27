@@ -5,8 +5,8 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.experimental.Accessors;
 import org.springdoc.core.models.GroupedOpenApi;
 import org.springdoc.core.properties.SpringDocConfigProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -79,9 +79,14 @@ public class DocProperties {
      */
     @Getter
     @Setter
-    @Accessors(chain = true)
+    @NoArgsConstructor
     @EqualsAndHashCode(callSuper = false)
     public static class GroupOpenApi {
+
+        public GroupOpenApi(String displayName, String group) {
+            this.displayName = displayName;
+            this.group = group;
+        }
 
         /**
          * The Display name.

@@ -1,10 +1,9 @@
 package com.vaulka.kit.system.result;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ import java.util.List;
  * @author Vaulka
  **/
 @Data
-@Accessors(chain = true)
+@Builder
 @EqualsAndHashCode(callSuper = false)
 public class SystemResource {
 
@@ -45,6 +44,6 @@ public class SystemResource {
     /**
      * Disk 信息
      */
-    private List<Disk> disks = Collections.emptyList();
+    private List<Disk> disks;
 
 }
