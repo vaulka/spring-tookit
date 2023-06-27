@@ -6,4 +6,7 @@ include 'kit-captcha:captcha-utils'
 findProject(':kit-captcha:captcha-utils')?.name = 'captcha-utils'
 include 'kit-captcha:captcha-spring-boot-starter'
 findProject(':kit-captcha:captcha-spring-boot-starter')?.name = 'captcha-spring-boot-starter'
+include 'kit-doc'
+include 'kit-doc:doc-spring-boot-starter'
+findProject(':kit-doc:doc-spring-boot-starter')?.name = 'doc-spring-boot-starter'
 

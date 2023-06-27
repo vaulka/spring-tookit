@@ -6,6 +6,10 @@ ext {
     // Spring 相关依赖管理工具
     springDependencyManagementVersion = "1.1.0"
 
+    // 接口文档
+    springdocVersion = "2.1.0"
+    kinfe4jVersion = "4.1.0"
+
     // Apache commons lang3
     commonsLang3Version = "3.12.0"
 

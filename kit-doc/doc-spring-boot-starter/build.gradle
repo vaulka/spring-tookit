@@ -1,0 +1,7 @@
+dependencies {
+    api "org.springframework.boot:spring-boot-starter"
+    api "com.github.xiaoymin:knife4j-openapi3-ui:$kinfe4jVersion"
+    api "org.springdoc:springdoc-openapi-starter-webmvc-ui:$springdocVersion"
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
