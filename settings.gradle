@@ -9,4 +9,8 @@ findProject(':kit-captcha:captcha-spring-boot-starter')?.name = 'captcha-spring-
 include 'kit-doc'
 include 'kit-doc:doc-spring-boot-starter'
 findProject(':kit-doc:doc-spring-boot-starter')?.name = 'doc-spring-boot-starter'
+include 'kit-doc:doc-spring-boot-core'
+findProject(':kit-doc:doc-spring-boot-core')?.name = 'doc-spring-boot-core'
+include 'kit-doc:doc-spring-boot-starter-gateway'
+findProject(':kit-doc:doc-spring-boot-starter-gateway')?.name = 'doc-spring-boot-starter-gateway'
 

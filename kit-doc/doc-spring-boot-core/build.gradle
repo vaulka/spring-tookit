@@ -1,0 +1,7 @@
+dependencies {
+    api "org.springframework.boot:spring-boot-starter"
+    api "io.swagger.core.v3:swagger-models-jakarta:$swaggerVersion"
+    api "org.springdoc:springdoc-openapi-starter-common:$springdocVersion"
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+}
