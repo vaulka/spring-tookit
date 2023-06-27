@@ -1,0 +1,3 @@
+dependencies {
+    api "com.github.oshi:oshi-core:$oshiVersion"
+}

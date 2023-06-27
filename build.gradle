@@ -10,6 +10,8 @@ ext {
 
     // IP 地址解析
     ip2regionVersion = "2.7.0"
+    // 系统资源监控
+    oshiVersion = "6.4.3"
 
     // 接口文档
     swaggerVersion = "2.2.12"
