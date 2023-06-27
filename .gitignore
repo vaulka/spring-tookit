@@ -40,6 +40,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Other ###
 /.idea/.gitignore
 /.idea/encodings.xml
 /.idea/gradle.xml

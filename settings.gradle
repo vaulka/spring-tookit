@@ -1,0 +1,9 @@
+rootProject.name = 'spring-tookit'
+include 'kit-captcha'
+include 'kit-captcha:captcha-utils'
+findProject(':kit-captcha:captcha-utils')?.name = 'captcha-utils'
+include 'kit-captcha:captcha-utils'
+findProject(':kit-captcha:captcha-utils')?.name = 'captcha-utils'
+include 'kit-captcha:captcha-spring-boot-starter'
+findProject(':kit-captcha:captcha-spring-boot-starter')?.name = 'captcha-spring-boot-starter'
+
