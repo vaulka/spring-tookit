@@ -22,4 +22,7 @@ findProject(':kit-system:system-utils')?.name = 'system-utils'
 include 'kit-tree'
 include 'kit-tree:tree-utils'
 findProject(':kit-tree:tree-utils')?.name = 'tree-utils'
+include 'kit-validation'
+include 'kit-validation:validation-utils'
+findProject(':kit-validation:validation-utils')?.name = 'validation-utils'
 

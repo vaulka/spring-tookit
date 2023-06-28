@@ -3,6 +3,8 @@ ext {
 
     // Spring boot
     springBootVersion = "3.1.1"
+    // Spring
+    springVersion = "6.0.10"
     // Spring cloud
     springCloudVersion = "2022.0.3"
     // Spring 相关依赖管理工具
@@ -12,6 +14,9 @@ ext {
     ip2regionVersion = "2.7.0"
     // 系统资源监控
     oshiVersion = "6.4.3"
+    // 校验
+    // 需要兼容 org.springframework.boot:spring-boot-starter-validation 下的版本
+    hibernateValidatorVersion = "8.0.0.Final"
 
     // 接口文档
     swaggerVersion = "2.2.12"
@@ -88,7 +93,7 @@ subprojects {
         }
     }
 
-    if (name.contains("starter")) {
+    if (name.contains("utils")) {
         tasks.register('copyJars', Copy) {
             from configurations.runtimeClasspath
             into "$buildDir/libs"
