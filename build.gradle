@@ -10,18 +10,22 @@ ext {
     // Spring 相关依赖管理工具
     springDependencyManagementVersion = "1.1.0"
 
-    // IP 地址解析
-    ip2regionVersion = "2.7.0"
-    // 系统资源监控
-    oshiVersion = "6.4.3"
     // 校验
     // 需要兼容 org.springframework.boot:spring-boot-starter-validation 下的版本
     hibernateValidatorVersion = "8.0.0.Final"
+
+    // Jackson
+    jacksonVersion = "2.15.2"
 
     // 接口文档
     swaggerVersion = "2.2.12"
     springdocVersion = "2.1.0"
     kinfe4jVersion = "4.1.0"
+
+    // 系统资源监控
+    oshiVersion = "6.4.3"
+    // IP 地址解析
+    ip2regionVersion = "2.7.0"
 
     // Apache commons lang3
     commonsLang3Version = "3.12.0"

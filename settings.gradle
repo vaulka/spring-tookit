@@ -25,4 +25,7 @@ findProject(':kit-tree:tree-utils')?.name = 'tree-utils'
 include 'kit-validation'
 include 'kit-validation:validation-utils'
 findProject(':kit-validation:validation-utils')?.name = 'validation-utils'
+include 'kit-desensitization'
+include 'kit-desensitization:desensitization-utils'
+findProject(':kit-desensitization:desensitization-utils')?.name = 'desensitization-utils'
 
