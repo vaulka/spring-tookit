@@ -2,7 +2,6 @@ package com.vaulka.kit.captcha.autoconfigure;
 
 import com.vaulka.kit.captcha.properties.CaptchaProperties;
 import com.vaulka.kit.captcha.utils.CaptchaUtils;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,10 +13,6 @@ import org.springframework.context.annotation.Configuration;
  * @author Vaulka
  */
 @Configuration(proxyBeanMethods = false)
-@ConditionalOnProperty(
-        prefix = CaptchaProperties.PREFIX, name = "enabled",
-        havingValue = "true", matchIfMissing = true
-)
 @EnableConfigurationProperties({CaptchaProperties.class})
 public class CaptchaAutoConfiguration {
 

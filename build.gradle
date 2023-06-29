@@ -72,6 +72,7 @@ subprojects {
             compileOnly "org.projectlombok:lombok:$lombokVersion"
             annotationProcessor "org.projectlombok:lombok:$lombokVersion"
 
+            testImplementation "org.projectlombok:lombok:$lombokVersion"
             testImplementation "org.junit.jupiter:junit-jupiter:$junitJupiterVersion"
         }
 
@@ -94,6 +95,10 @@ subprojects {
                 mavenBom "org.springframework.boot:spring-boot-dependencies:$springBootVersion"
                 mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
             }
+        }
+
+        dependencies {
+            testImplementation "org.springframework.boot:spring-boot-starter-test"
         }
     }
 

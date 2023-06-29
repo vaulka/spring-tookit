@@ -21,13 +21,8 @@ public class CaptchaProperties {
     public static final String PREFIX = "kit.captcha";
 
     /**
-     * 是否启用
-     */
-    private boolean enabled = true;
-
-    /**
      * 验证码类型
      */
-    private CaptchaType type;
+    private CaptchaType type = CaptchaType.CHAR;
 
 }
