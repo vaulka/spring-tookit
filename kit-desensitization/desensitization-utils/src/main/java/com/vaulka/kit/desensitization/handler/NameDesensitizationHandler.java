@@ -7,9 +7,7 @@ import java.util.function.Function;
 /**
  * 名称脱敏
  * <p>
- * 示例：彭*
- * 示例：彭*豪
- * 示例：彭**豪
+ * 示例：V****a
  *
  * @author Vaulka
  */
