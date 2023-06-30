@@ -1,8 +1,9 @@
 package com.vaulka.kit.system.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * OS 信息
@@ -11,7 +12,8 @@ import lombok.EqualsAndHashCode;
  **/
 @Data
 @Builder
-@EqualsAndHashCode(callSuper = false)
+@NoArgsConstructor
+@AllArgsConstructor
 public class Os {
 
     /**

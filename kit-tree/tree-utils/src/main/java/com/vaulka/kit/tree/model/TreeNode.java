@@ -1,7 +1,6 @@
 package com.vaulka.kit.tree.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
@@ -13,7 +12,6 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-@EqualsAndHashCode(callSuper = false)
 public class TreeNode<T, R> {
 
     public TreeNode(R id, R parentId) {
