@@ -1,0 +1,17 @@
+kit:
+  doc:
+    author: Vaulka
+    title: Mihoyo API Docs
+    description: Mihoyo API Docs Desc
+    version: 1.3.1
+    request-parameters:
+      HEADER:
+        - Authorization
+        - Token
+      QUERY:
+        - userId
+    groups:
+      - display-name: dev name
+        group: dev group
+      - display-name: test name
+        group: test group

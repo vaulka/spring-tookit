@@ -1,4 +1,4 @@
-package com.vaulka.captcha;
+package com.vaulka.captcha.utils;
 
 import com.vaulka.kit.captcha.utils.MathCaptchaUtils;
 import org.junit.jupiter.api.Test;

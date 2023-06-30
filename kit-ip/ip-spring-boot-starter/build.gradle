@@ -1,8 +1,5 @@
 dependencies {
     api "org.lionsoul:ip2region:$ip2regionVersion"
 
-    api "org.springframework.boot:spring-boot-starter"
     api "org.springframework.boot:spring-boot-starter-validation"
-
-    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 }

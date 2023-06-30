@@ -13,9 +13,9 @@ import java.io.IOException;
 /**
  * @author Vaulka
  */
-@TestPropertySource("classpath:application-char.yml")
+@TestPropertySource("classpath:application-math.yml")
 @SpringBootTest(classes = CaptchaAutoConfiguration.class)
-public class CharCaptchaUtilsSpringTest {
+public class MathCaptchaSpringTest {
 
     @Autowired
     private CaptchaUtils captchaUtils;
@@ -25,7 +25,7 @@ public class CharCaptchaUtilsSpringTest {
      */
     @Test
     public void createImageByStream() throws IOException {
-        FileOutputStream inputCharOutputStream = new FileOutputStream("build/char.jpg");
+        FileOutputStream inputCharOutputStream = new FileOutputStream("build/math.jpg");
         captchaUtils.createImageByStream(captchaUtils.createCode(), inputCharOutputStream);
     }
 
@@ -36,7 +36,7 @@ public class CharCaptchaUtilsSpringTest {
      */
     @Test
     public void createImageByBase64() throws IOException {
-        System.out.println("char captcha image base64: " + captchaUtils.createImageByBase64(captchaUtils.createCode()));
+        System.out.println("math captcha image base64: " + captchaUtils.createImageByBase64(captchaUtils.createCode()));
     }
 
 
