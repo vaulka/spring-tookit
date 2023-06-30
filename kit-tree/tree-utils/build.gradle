@@ -1,0 +1,3 @@
+dependencies {
+    testImplementation "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+}
