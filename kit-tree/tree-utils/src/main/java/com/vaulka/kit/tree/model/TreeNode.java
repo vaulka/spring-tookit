@@ -3,6 +3,8 @@ package com.vaulka.kit.tree.model;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +14,10 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-public class TreeNode<T, R> {
+public class TreeNode<T, R> implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 5732775650276600108L;
 
     public TreeNode(R id, R parentId) {
         this.id = id;
