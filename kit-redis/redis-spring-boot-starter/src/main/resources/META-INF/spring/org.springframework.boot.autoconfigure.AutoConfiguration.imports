@@ -1,0 +1,2 @@
+com.vaulka.kit.redis.autoconfigure.RedisCacheAutoConfiguration
+com.vaulka.kit.redis.autoconfigure.RedisCacheManagerAutoConfiguration

@@ -27,8 +27,9 @@ ext {
     // IP 地址解析
     ip2regionVersion = "2.7.0"
 
-    // Apache commons lang3
+    // Apache 工具包
     commonsLang3Version = "3.12.0"
+    commonsCodecVersion = "1.16.0"
 
     // Junit
     junitJupiterVersion = "5.9.3"

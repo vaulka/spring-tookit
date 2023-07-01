@@ -28,4 +28,7 @@ findProject(':kit-validation:validation-utils')?.name = 'validation-utils'
 include 'kit-desensitization'
 include 'kit-desensitization:desensitization-utils'
 findProject(':kit-desensitization:desensitization-utils')?.name = 'desensitization-utils'
+include 'kit-redis'
+include 'kit-redis:redis-spring-boot-starter'
+findProject(':kit-redis:redis-spring-boot-starter')?.name = 'redis-spring-boot-starter'
 
