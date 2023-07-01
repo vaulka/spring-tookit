@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * CPU 指标信息
  *
@@ -14,7 +17,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cpu {
+public class Cpu implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 2818428853998678247L;
 
     /**
      * CPU 名称

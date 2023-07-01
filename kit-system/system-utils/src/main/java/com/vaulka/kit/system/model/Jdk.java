@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * JDK 信息
  *
@@ -14,7 +17,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Jdk {
+public class Jdk implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -4523758047688886431L;
 
     /**
      * JDK 名称

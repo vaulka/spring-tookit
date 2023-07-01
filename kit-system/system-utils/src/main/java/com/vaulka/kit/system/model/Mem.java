@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * MEM 指标信息
  *
@@ -14,7 +17,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Mem {
+public class Mem implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -2243071358066889765L;
 
     /**
      * 主机 容量

@@ -5,6 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 /**
  * JVM 指标信息
  *
@@ -14,7 +17,10 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Jvm {
+public class Jvm implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 5311099633608925741L;
 
     /**
      * JVM 内存容量
