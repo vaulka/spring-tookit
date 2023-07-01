@@ -84,7 +84,7 @@ subprojects {
 
     }
 
-    if (name.contains("spring-boot")) {
+    if (name.contains("spring-boot") && !name.contains("kit")) {
         apply plugin: "org.springframework.boot"
         apply plugin: "io.spring.dependency-management"
 

@@ -31,4 +31,6 @@ findProject(':kit-desensitization:desensitization-utils')?.name = 'desensitizati
 include 'kit-redis'
 include 'kit-redis:redis-spring-boot-starter'
 findProject(':kit-redis:redis-spring-boot-starter')?.name = 'redis-spring-boot-starter'
-
+include 'kit-spring-boot'
+include 'kit-spring-boot:spring-boot-common'
+findProject(':kit-spring-boot:spring-boot-common')?.name = 'spring-boot-common'
