@@ -1,106 +1,40 @@
 package com.vaulka.kit.validation;
 
 
-import com.pongsky.kit.validation.annotation.Property;
-import com.pongsky.kit.validation.annotation.validator.MinNumAndMaxNum;
-import com.pongsky.kit.validation.enums.ClassType;
 import com.pongsky.kit.validation.utils.ValidationUtils;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.Range;
+import com.vaulka.kit.validation.model.User;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
 
 /**
  * @author Vaulka
  */
 public class ValidationUtilsTest {
 
-    @MinNumAndMaxNum(
-            minNumFieldName = "minIntegral", minNumName = "积分最小值",
-            maxNumFieldName = "maxIntegral", maxNumName = "积分最大值"
-    )
-    public static class User {
-
-        @Property("姓名")
-        private String name;
-        @Property("年龄")
-        @Null
-        @Range(min = 1, max = 2)
-        private Integer age;
-        @Property("描述")
-        @Length(min = 100)
-        private String desc;
-
-        /**
-         * 积分最小值
-         */
-        @Property("积分最小值")
-        @NotNull
-        @Range
-        private Integer minIntegral;
-
-        /**
-         * 积分最大值
-         */
-        @NotNull
-        @Range
-        private Integer maxIntegral;
-
-        public Integer getMinIntegral() {
-            return minIntegral;
-        }
-
-        public void setMinIntegral(Integer minIntegral) {
-            this.minIntegral = minIntegral;
-        }
-
-        public Integer getMaxIntegral() {
-            return maxIntegral;
-        }
-
-        public void setMaxIntegral(Integer maxIntegral) {
-            this.maxIntegral = maxIntegral;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public Integer getAge() {
-            return age;
-        }
-
-        public void setAge(Integer age) {
-            this.age = age;
-        }
-
-        public String getDesc() {
-            return desc;
-        }
-
-        public void setDesc(String desc) {
-            this.desc = desc;
-        }
-    }
-
+    /**
+     * 测试校验器
+     */
     @Test
-    public void test() {
-        User user = new User();
-        user.setName("张杰");
-        user.setAge(18);
-        user.setDesc("张杰（Jason Zhang），1982年12月20日出生于四川省成都市，中国流行男歌手。2004年参加歌唱类选秀《我型我秀》，获得全国总冠军并出道。");
-        user.setMinIntegral(30);
-        user.setMaxIntegral(20);
+    public void validation() {
+        User user = User.builder()
+                .name("张杰")
+                .age(18)
+                .desc("张杰（Jason Zhang），1982年12月20日出生于四川省成都市，中国流行男歌手。2004年参加歌唱类选秀《我型我秀》，获得全国总冠军并出道。")
+                .minIntegral(30)
+                .maxIntegral(20)
+                .startTime(LocalDate.of(2023, 6, 13))
+                .endTime(LocalDate.of(2023, 6, 12))
+                .build();
         String message = ValidationUtils.validation(user);
-        System.out.println(message);
+//        assert message.equals("参数校验失败，一共有 5 处错误，详情如下： 开始时间不能大于结束时间; 描述长度需要在100和2147483647之间; 年龄必须为null; 积分最小值不能大于积分最大值; 年龄需要在1和2之间;");
 
-        ClassType classType = ClassType.parserType(user);
-        System.out.println(classType);
+        user.setMinIntegral(10);
+        user.setMaxIntegral(30);
+        user.setStartTime(LocalDate.of(2023, 6, 10));
+        user.setEndTime(LocalDate.of(2023, 6, 12));
+        message = ValidationUtils.validation(user);
+//        assert message.equals("参数校验失败，一共有 3 处错误，详情如下： 描述长度需要在100和2147483647之间; 年龄必须为null; 年龄需要在1和2之间;");
     }
 
 }

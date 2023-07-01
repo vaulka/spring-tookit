@@ -6,10 +6,17 @@ import lombok.Getter;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.DayOfWeek;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.MonthDay;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
+import java.time.Year;
+import java.time.YearMonth;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
@@ -27,19 +34,9 @@ import java.util.Set;
 public enum ClassType {
 
     /**
-     * String
-     */
-    STRING("String", 0) {
-        @Override
-        public boolean parser(Object obj) {
-            return obj instanceof String;
-        }
-    },
-
-    /**
      * Byte
      */
-    BYTE("Byte", 0) {
+    BYTE(Byte.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Byte;
@@ -49,7 +46,7 @@ public enum ClassType {
     /**
      * Short
      */
-    SHORT("Short", 0) {
+    SHORT(Short.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Short;
@@ -59,7 +56,7 @@ public enum ClassType {
     /**
      * Integer
      */
-    INTEGER("Integer", 0) {
+    INTEGER(Integer.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Integer;
@@ -69,7 +66,7 @@ public enum ClassType {
     /**
      * Long
      */
-    LONG("Long", 0) {
+    LONG(Long.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Long;
@@ -79,7 +76,7 @@ public enum ClassType {
     /**
      * Float
      */
-    FLOAT("Float", 0) {
+    FLOAT(Float.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Float;
@@ -89,7 +86,7 @@ public enum ClassType {
     /**
      * Double
      */
-    DOUBLE("Double", 0) {
+    DOUBLE(Double.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Double;
@@ -97,9 +94,39 @@ public enum ClassType {
     },
 
     /**
+     * BigInteger
+     */
+    BIG_INTEGER(BigInteger.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Object obj) {
+            return obj instanceof BigInteger;
+        }
+    },
+
+    /**
+     * BigDecimal
+     */
+    BIG_DECIMAL(BigDecimal.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Object obj) {
+            return obj instanceof BigDecimal;
+        }
+    },
+
+    /**
+     * Boolean
+     */
+    BOOLEAN(Boolean.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Object obj) {
+            return obj instanceof Boolean;
+        }
+    },
+
+    /**
      * Character
      */
-    CHARACTER("Character", 0) {
+    CHARACTER(Character.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Character;
@@ -107,12 +134,12 @@ public enum ClassType {
     },
 
     /**
-     * Boolean
+     * String
      */
-    BOOLEAN("Boolean", 0) {
+    STRING(String.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
-            return obj instanceof Boolean;
+            return obj instanceof String;
         }
     },
 
@@ -129,7 +156,7 @@ public enum ClassType {
     /**
      * List
      */
-    LIST("List", 0) {
+    LIST(List.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof List;
@@ -139,7 +166,7 @@ public enum ClassType {
     /**
      * Set
      */
-    SET("Set", 0) {
+    SET(Set.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Set;
@@ -149,7 +176,7 @@ public enum ClassType {
     /**
      * Map
      */
-    MAP("Map", 0) {
+    MAP(Map.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Map;
@@ -157,29 +184,9 @@ public enum ClassType {
     },
 
     /**
-     * BigInteger
-     */
-    BIG_INTEGER("BigInteger", 0) {
-        @Override
-        public boolean parser(Object obj) {
-            return obj instanceof BigInteger;
-        }
-    },
-
-    /**
-     * BigDecimal
-     */
-    BIG_DECIMAL("BigDecimal", 0) {
-        @Override
-        public boolean parser(Object obj) {
-            return obj instanceof BigDecimal;
-        }
-    },
-
-    /**
      * Date
      */
-    DATE("Date", 0) {
+    DATE(Date.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Date;
@@ -189,7 +196,7 @@ public enum ClassType {
     /**
      * LocalDate
      */
-    LOCAL_DATE("LocalDate", 0) {
+    LOCAL_DATE(LocalDate.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof LocalDate;
@@ -199,7 +206,7 @@ public enum ClassType {
     /**
      * LocalTime
      */
-    LOCAL_TIME("LocalTime", 0) {
+    LOCAL_TIME(LocalTime.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof LocalTime;
@@ -209,7 +216,7 @@ public enum ClassType {
     /**
      * LocalDateTime
      */
-    LOCAL_DATE_TIME("LocalDateTime", 0) {
+    LOCAL_DATE_TIME(LocalDateTime.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof LocalDateTime;
@@ -217,9 +224,79 @@ public enum ClassType {
     },
 
     /**
+     * MonthDay
+     */
+    MONTH_DAY(MonthDay.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Object obj) {
+            return obj instanceof MonthDay;
+        }
+    },
+
+    /**
+     * Instant
+     */
+    INSTANT(Instant.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Object obj) {
+            return obj instanceof Instant;
+        }
+    },
+
+    /**
+     * OffsetDateTime
+     */
+    OFFSET_DATE_TIME(OffsetDateTime.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Object obj) {
+            return obj instanceof OffsetDateTime;
+        }
+    },
+
+    /**
+     * OffsetTime
+     */
+    OFFSET_TIME(OffsetTime.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Object obj) {
+            return obj instanceof OffsetTime;
+        }
+    },
+
+    /**
+     * Year
+     */
+    YEAR(Year.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Object obj) {
+            return obj instanceof Year;
+        }
+    },
+
+    /**
+     * YearMonth
+     */
+    YEAR_MONTH(YearMonth.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Object obj) {
+            return obj instanceof YearMonth;
+        }
+    },
+
+    /**
+     * ZonedDateTime
+     */
+    ZONED_DATE_TIME(ZonedDateTime.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Object obj) {
+            return obj instanceof ZonedDateTime;
+        }
+    },
+
+    /**
      * DayOfWeek
      */
-    DAY_OF_WEEK("DayOfWeek", 0) {
+    DAY_OF_WEEK(DayOfWeek.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof DayOfWeek;
@@ -229,7 +306,7 @@ public enum ClassType {
     /**
      * Month
      */
-    MONTH("Month", 0) {
+    MONTH(Month.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Month;
@@ -239,7 +316,7 @@ public enum ClassType {
     /**
      * Enum
      */
-    ENUM("Enum", Integer.MAX_VALUE) {
+    ENUM(Enum.class.getSimpleName(), Integer.MAX_VALUE) {
         @Override
         public boolean parser(Object obj) {
             return obj instanceof Enum;

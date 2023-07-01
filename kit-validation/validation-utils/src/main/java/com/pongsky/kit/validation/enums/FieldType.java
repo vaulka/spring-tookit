@@ -7,10 +7,17 @@ import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.DayOfWeek;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
+import java.time.MonthDay;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
+import java.time.Year;
+import java.time.YearMonth;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
@@ -28,22 +35,9 @@ import java.util.Set;
 public enum FieldType {
 
     /**
-     * String
-     */
-    STRING("String", 0) {
-        @Override
-        public boolean parser(Field field) {
-            if (field == null) {
-                return false;
-            }
-            return field.getType() == String.class;
-        }
-    },
-
-    /**
      * Byte
      */
-    BYTE("Byte", 0) {
+    BYTE(Byte.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -56,7 +50,7 @@ public enum FieldType {
     /**
      * Short
      */
-    SHORT("Short", 0) {
+    SHORT(Short.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -69,7 +63,7 @@ public enum FieldType {
     /**
      * Integer
      */
-    INTEGER("Integer", 0) {
+    INTEGER(Integer.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -82,7 +76,7 @@ public enum FieldType {
     /**
      * Long
      */
-    LONG("Long", 0) {
+    LONG(Long.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -95,7 +89,7 @@ public enum FieldType {
     /**
      * Float
      */
-    FLOAT("Float", 0) {
+    FLOAT(Float.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -108,7 +102,7 @@ public enum FieldType {
     /**
      * Double
      */
-    DOUBLE("Double", 0) {
+    DOUBLE(Double.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -119,9 +113,48 @@ public enum FieldType {
     },
 
     /**
+     * BigInteger
+     */
+    BIG_INTEGER(BigInteger.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Field field) {
+            if (field == null) {
+                return false;
+            }
+            return field.getType() == BigInteger.class;
+        }
+    },
+
+    /**
+     * BigDecimal
+     */
+    BIG_DECIMAL(BigDecimal.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Field field) {
+            if (field == null) {
+                return false;
+            }
+            return field.getType() == BigDecimal.class;
+        }
+    },
+
+    /**
+     * Boolean
+     */
+    BOOLEAN(Boolean.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Field field) {
+            if (field == null) {
+                return false;
+            }
+            return field.getType() == boolean.class || field.getType() == Boolean.class;
+        }
+    },
+
+    /**
      * Character
      */
-    CHARACTER("Character", 0) {
+    CHARACTER(Character.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -132,15 +165,15 @@ public enum FieldType {
     },
 
     /**
-     * Boolean
+     * String
      */
-    BOOLEAN("Boolean", 0) {
+    STRING(String.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
                 return false;
             }
-            return field.getType() == boolean.class || field.getType() == Boolean.class;
+            return field.getType() == String.class;
         }
     },
 
@@ -160,7 +193,7 @@ public enum FieldType {
     /**
      * List
      */
-    LIST("List", 0) {
+    LIST(List.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -173,7 +206,7 @@ public enum FieldType {
     /**
      * Set
      */
-    SET("Set", 0) {
+    SET(Set.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -186,7 +219,7 @@ public enum FieldType {
     /**
      * Map
      */
-    MAP("Map", 0) {
+    MAP(Map.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -197,35 +230,9 @@ public enum FieldType {
     },
 
     /**
-     * BigInteger
-     */
-    BIG_INTEGER("BigInteger", 0) {
-        @Override
-        public boolean parser(Field field) {
-            if (field == null) {
-                return false;
-            }
-            return field.getType() == BigInteger.class;
-        }
-    },
-
-    /**
-     * BigDecimal
-     */
-    BIG_DECIMAL("BigDecimal", 0) {
-        @Override
-        public boolean parser(Field field) {
-            if (field == null) {
-                return false;
-            }
-            return field.getType() == BigDecimal.class;
-        }
-    },
-
-    /**
      * Date
      */
-    DATE("Date", 0) {
+    DATE(Date.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -238,7 +245,7 @@ public enum FieldType {
     /**
      * LocalDate
      */
-    LOCAL_DATE("LocalDate", 0) {
+    LOCAL_DATE(LocalDate.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -251,7 +258,7 @@ public enum FieldType {
     /**
      * LocalTime
      */
-    LOCAL_TIME("LocalTime", 0) {
+    LOCAL_TIME(LocalTime.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -264,7 +271,7 @@ public enum FieldType {
     /**
      * LocalDateTime
      */
-    LOCAL_DATE_TIME("LocalDateTime", 0) {
+    LOCAL_DATE_TIME(LocalDateTime.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -275,9 +282,100 @@ public enum FieldType {
     },
 
     /**
+     * * MonthDay
+     */
+    MONTH_DAY(MonthDay.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Field field) {
+            if (field == null) {
+                return false;
+            }
+            return field.getType() == MonthDay.class;
+        }
+    },
+
+    /**
+     * Instant
+     */
+    INSTANT(Instant.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Field field) {
+            if (field == null) {
+                return false;
+            }
+            return field.getType() == Instant.class;
+        }
+    },
+
+    /**
+     * OffsetDateTime
+     */
+    OFFSET_DATE_TIME(OffsetDateTime.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Field field) {
+            if (field == null) {
+                return false;
+            }
+            return field.getType() == OffsetDateTime.class;
+        }
+    },
+
+    /**
+     * OffsetTime
+     */
+    OFFSET_TIME(OffsetTime.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Field field) {
+            if (field == null) {
+                return false;
+            }
+            return field.getType() == OffsetTime.class;
+        }
+    },
+
+    /**
+     * Year
+     */
+    YEAR(Year.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Field field) {
+            if (field == null) {
+                return false;
+            }
+            return field.getType() == Year.class;
+        }
+    },
+
+    /**
+     * YearMonth
+     */
+    YEAR_MONTH(YearMonth.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Field field) {
+            if (field == null) {
+                return false;
+            }
+            return field.getType() == YearMonth.class;
+        }
+    },
+
+    /**
+     * ZonedDateTime
+     */
+    ZONED_DATE_TIME(ZonedDateTime.class.getSimpleName(), 0) {
+        @Override
+        public boolean parser(Field field) {
+            if (field == null) {
+                return false;
+            }
+            return field.getType() == ZonedDateTime.class;
+        }
+    },
+
+    /**
      * DayOfWeek
      */
-    DAY_OF_WEEK("DayOfWeek", 0) {
+    DAY_OF_WEEK(DayOfWeek.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -290,7 +388,7 @@ public enum FieldType {
     /**
      * Month
      */
-    MONTH("Month", 0) {
+    MONTH(Month.class.getSimpleName(), 0) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
@@ -303,23 +401,13 @@ public enum FieldType {
     /**
      * Enum
      */
-    ENUM("Enum", Integer.MAX_VALUE) {
+    ENUM(Enum.class.getSimpleName(), Integer.MAX_VALUE) {
         @Override
         public boolean parser(Field field) {
             if (field == null) {
                 return false;
             }
             return field.getType().isEnum();
-        }
-    },
-
-    /**
-     * Null
-     */
-    NULL("Null", Integer.MAX_VALUE) {
-        @Override
-        public boolean parser(Field field) {
-            return field == null;
         }
     },
 

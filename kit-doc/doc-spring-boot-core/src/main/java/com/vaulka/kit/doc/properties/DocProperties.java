@@ -3,7 +3,7 @@ package com.vaulka.kit.doc.properties;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 import jakarta.validation.constraints.NotBlank;
-import lombok.EqualsAndHashCode;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -77,10 +77,8 @@ public class DocProperties {
     /**
      * {@link SpringDocConfigProperties.GroupConfig}
      */
-    @Getter
-    @Setter
+    @Data
     @NoArgsConstructor
-    @EqualsAndHashCode(callSuper = false)
     public static class GroupOpenApi {
 
         public GroupOpenApi(String displayName, String group) {
