@@ -1,0 +1,9 @@
+dependencies {
+    api project(":kit-spring-boot:spring-boot-common")
+
+    api "org.jsoup:jsoup:$jsoupVersion"
+    api "org.apache.commons:commons-lang3:$commonsLang3Version"
+
+    api "org.springframework.boot:spring-boot-starter-web"
+    api "org.springframework.boot:spring-boot-starter-aop"
+}

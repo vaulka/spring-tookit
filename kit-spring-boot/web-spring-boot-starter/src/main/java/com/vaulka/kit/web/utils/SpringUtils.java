@@ -1,4 +1,4 @@
-package com.vaulka.kit.common.utils;
+package com.vaulka.kit.web.utils;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,7 +13,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
- * Spring 工具类
+ * Spring 工具
  *
  * @author Vaulka
  */
@@ -66,7 +66,7 @@ public class SpringUtils implements BeanFactoryPostProcessor, ApplicationContext
     public static HttpServletRequest getHttpServletRequest() {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes == null) {
-            return null;
+            throw new RuntimeException("attributes is null");
         }
         return attributes.getRequest();
     }
@@ -79,7 +79,7 @@ public class SpringUtils implements BeanFactoryPostProcessor, ApplicationContext
     public static HttpServletResponse getHttpServletResponse() {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes == null) {
-            return null;
+            throw new RuntimeException("attributes is null");
         }
         return attributes.getResponse();
     }

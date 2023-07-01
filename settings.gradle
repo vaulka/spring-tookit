@@ -34,3 +34,6 @@ findProject(':kit-redis:redis-spring-boot-starter')?.name = 'redis-spring-boot-s
 include 'kit-spring-boot'
 include 'kit-spring-boot:spring-boot-common'
 findProject(':kit-spring-boot:spring-boot-common')?.name = 'spring-boot-common'
+include 'kit-spring-boot:web-spring-boot-starter'
+findProject(':kit-spring-boot:web-spring-boot-starter')?.name = 'web-spring-boot-starter'
+

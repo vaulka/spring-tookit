@@ -84,7 +84,7 @@ public class SystemResourceUtils {
     }
 
     /**
-     * 查询系统信息类
+     * 查询系统信息
      */
     private static final SystemInfo SYSTEM_INFO = new SystemInfo();
 

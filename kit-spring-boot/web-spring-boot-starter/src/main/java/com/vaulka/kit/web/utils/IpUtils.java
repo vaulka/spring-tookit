@@ -1,4 +1,4 @@
-package com.vaulka.kit.common.utils;
+package com.vaulka.kit.web.utils;
 
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * IP 工具类
+ * IP 工具
  *
  * @author Vaulka
  **/
