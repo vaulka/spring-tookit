@@ -20,7 +20,7 @@ public enum Active {
     /**
      * 测试环境
      */
-    beta,
+    test,
 
     /**
      * 开发环境

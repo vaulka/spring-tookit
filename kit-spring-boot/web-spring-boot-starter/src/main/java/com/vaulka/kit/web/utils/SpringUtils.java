@@ -12,6 +12,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import java.util.Optional;
+
 /**
  * Spring 工具
  *
@@ -64,8 +66,21 @@ public class SpringUtils implements BeanFactoryPostProcessor, ApplicationContext
      * @return 获取 HttpServletRequest
      */
     public static HttpServletRequest getHttpServletRequest() {
+        return SpringUtils.getHttpServletRequest(false);
+    }
+
+    /**
+     * 获取 HttpServletRequest
+     *
+     * @param canBeNull 是否可以为空
+     * @return 获取 HttpServletRequest
+     */
+    public static HttpServletRequest getHttpServletRequest(boolean canBeNull) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes == null) {
+            if (canBeNull) {
+                return null;
+            }
             throw new RuntimeException("attributes is null");
         }
         return attributes.getRequest();
@@ -77,11 +92,43 @@ public class SpringUtils implements BeanFactoryPostProcessor, ApplicationContext
      * @return 获取 HttpServletResponse
      */
     public static HttpServletResponse getHttpServletResponse() {
+        return SpringUtils.getHttpServletResponse(false);
+    }
+
+    /**
+     * 获取 HttpServletResponse
+     *
+     * @param canBeNull 是否可以为空
+     * @return 获取 HttpServletResponse
+     */
+    public static HttpServletResponse getHttpServletResponse(boolean canBeNull) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         if (attributes == null) {
+            if (canBeNull) {
+                return null;
+            }
             throw new RuntimeException("attributes is null");
         }
         return attributes.getResponse();
+    }
+
+    /**
+     * 请求ID
+     */
+    public static final String REQ_ID = "reqID";
+
+    /**
+     * 获取请求ID
+     *
+     * @return 获取请求ID
+     */
+    public static String getReqId() {
+        HttpServletRequest request = SpringUtils.getHttpServletRequest(true);
+        if (request == null) {
+            return "";
+        }
+        return Optional.ofNullable(request.getAttribute(REQ_ID))
+                .map(Object::toString).orElse("");
     }
 
 }

@@ -25,7 +25,7 @@ ext {
     // 系统资源监控
     oshiVersion = "6.4.3"
     // HTML 解析
-    jsoupVersion = "1.14.3"
+    jsoupVersion = "1.16.1"
     // IP 地址解析
     ip2regionVersion = "2.7.0"
 

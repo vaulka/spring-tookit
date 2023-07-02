@@ -14,7 +14,7 @@ import java.util.List;
  **/
 @Data
 @ConfigurationProperties("kit.web.log")
-public class WebLogProperties {
+public class LogProperties {
 
     /**
      * URL 匹配规则列表

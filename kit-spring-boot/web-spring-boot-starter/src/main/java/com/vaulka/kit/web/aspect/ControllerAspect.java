@@ -2,7 +2,7 @@ package com.vaulka.kit.web.aspect;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.vaulka.kit.web.properties.WebLogProperties;
+import com.vaulka.kit.web.properties.LogProperties;
 import com.vaulka.kit.web.utils.HttpServletRequestUtils;
 import com.vaulka.kit.web.utils.IpUtils;
 import com.vaulka.kit.web.utils.SpringUtils;
@@ -35,7 +35,7 @@ import java.util.Optional;
 public class ControllerAspect {
 
     private final ObjectMapper jsonMapper;
-    private final WebLogProperties properties;
+    private final LogProperties properties;
 
     /**
      * Controller 切入点
@@ -51,18 +51,13 @@ public class ControllerAspect {
     }
 
     /**
-     * reqID
-     */
-    private static final String REQ_ID = "reqID";
-
-    /**
      * Controller 请求日志打印
      */
     @Before("com.vaulka.kit.web.aspect.ControllerAspect.point()")
     public void exec() {
         HttpServletRequest request = SpringUtils.getHttpServletRequest();
         long reqId = RandomUtils.nextLong();
-        request.setAttribute(REQ_ID, reqId);
+        request.setAttribute(SpringUtils.REQ_ID, reqId);
         boolean isLog = properties.getTypes().stream().anyMatch(m -> m.toString().equals(request.getMethod()));
         if (!isLog) {
             return;
@@ -86,8 +81,7 @@ public class ControllerAspect {
      */
     @Around("com.vaulka.kit.web.aspect.ControllerAspect.point()")
     public Object exec(ProceedingJoinPoint point) throws Throwable {
-        HttpServletRequest request = SpringUtils.getHttpServletRequest();
-        Object reqId = request.getAttribute(REQ_ID);
+        String reqId = SpringUtils.getReqId();
         long start = System.currentTimeMillis();
         try {
             return point.proceed();
@@ -103,8 +97,7 @@ public class ControllerAspect {
      */
     @AfterReturning(value = "com.vaulka.kit.web.aspect.ControllerAspect.point()", returning = "result")
     public void exec(Object result) {
-        HttpServletRequest request = SpringUtils.getHttpServletRequest();
-        Object reqId = request.getAttribute(REQ_ID);
+        String reqId = SpringUtils.getReqId();
         try {
             log.info("resp ID [{}] success [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(result).orElse("")));
         } catch (JsonProcessingException e) {
@@ -120,8 +113,7 @@ public class ControllerAspect {
      */
     @AfterThrowing(value = "com.vaulka.kit.web.aspect.ControllerAspect.point()", throwing = "exception")
     public void exec(Throwable exception) {
-        HttpServletRequest request = SpringUtils.getHttpServletRequest();
-        Object reqId = request.getAttribute(REQ_ID);
+        String reqId = SpringUtils.getReqId();
         log.error("resp ID [{}] fail [{}]", reqId, Optional.ofNullable(exception.getLocalizedMessage()).orElse(""));
     }
 
