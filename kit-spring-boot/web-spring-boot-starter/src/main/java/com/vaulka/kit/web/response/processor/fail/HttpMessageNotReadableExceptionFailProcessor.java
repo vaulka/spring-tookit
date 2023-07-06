@@ -26,7 +26,7 @@ public class HttpMessageNotReadableExceptionFailProcessor implements FailProcess
 
     @Override
     public Object exec(HttpMessageNotReadableException exception) {
-        return exec(exception, MESSAGE);
+        return this.buildResult(MESSAGE);
     }
 
 }

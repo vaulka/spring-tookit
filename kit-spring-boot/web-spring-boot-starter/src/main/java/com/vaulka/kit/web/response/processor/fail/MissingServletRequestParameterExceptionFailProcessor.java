@@ -24,7 +24,7 @@ public class MissingServletRequestParameterExceptionFailProcessor implements Fai
     @Override
     public Object exec(MissingServletRequestParameterException exception) {
         String message = MessageFormat.format("参数校验失败，一共有 1 处错误，详情如下： {0} 不能为 null", exception.getParameterName());
-        return exec(exception, message);
+        return this.buildResult(message);
     }
 
 }

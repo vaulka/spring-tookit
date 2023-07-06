@@ -25,7 +25,7 @@ public class BindExceptionFailProcessor implements FailProcessor<BindException> 
     @Override
     public Object exec(BindException exception) {
         String message = ValidationUtils.getErrorMessage(exception.getBindingResult());
-        return exec(exception, message);
+        return this.buildResult(message);
     }
 
 }

@@ -28,7 +28,7 @@ public class NoHandlerFoundExceptionFailProcessor implements FailProcessor<NoHan
     public Object exec(NoHandlerFoundException exception) {
         HttpServletRequest request = SpringUtils.getHttpServletRequest();
         String message = MessageFormat.format("{0} 接口不存在", request.getRequestURI());
-        return exec(exception, message);
+        return this.buildResult(message);
     }
 
 }

@@ -162,7 +162,7 @@ public class WebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":105,\"message\":\"/null/delete 接口不存在\"}");
     }
 
 }

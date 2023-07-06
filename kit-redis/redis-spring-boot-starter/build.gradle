@@ -1,5 +1,6 @@
 dependencies {
     api "org.apache.commons:commons-lang3:$commonsLang3Version"
+    api "com.google.code.findbugs:annotations:$googleAnnotationsVersion"
 
     api "org.springframework.boot:spring-boot-starter-json"
     api "org.springframework.boot:spring-boot-starter-data-redis"

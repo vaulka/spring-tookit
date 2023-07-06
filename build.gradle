@@ -33,6 +33,9 @@ ext {
     commonsLang3Version = "3.12.0"
     commonsCodecVersion = "1.16.0"
 
+    // Google 注解
+    googleAnnotationsVersion = "3.0.1"
+
     // Junit
     junitJupiterVersion = "5.9.3"
 }

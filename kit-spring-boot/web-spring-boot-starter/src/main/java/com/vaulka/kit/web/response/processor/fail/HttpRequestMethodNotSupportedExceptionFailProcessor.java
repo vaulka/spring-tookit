@@ -27,7 +27,7 @@ public class HttpRequestMethodNotSupportedExceptionFailProcessor implements Fail
     public Object exec(HttpRequestMethodNotSupportedException exception) {
         HttpServletRequest request = SpringUtils.getHttpServletRequest();
         String message = MessageFormat.format("{0} 方法不存在", request.getRequestURI());
-        return exec(exception, message);
+        return this.buildResult(message);
     }
 
 }

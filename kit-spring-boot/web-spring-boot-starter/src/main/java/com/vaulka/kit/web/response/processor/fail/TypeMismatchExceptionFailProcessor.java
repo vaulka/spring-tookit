@@ -27,7 +27,7 @@ public class TypeMismatchExceptionFailProcessor implements FailProcessor<TypeMis
         String message = MessageFormat.format("无法将 \"{0}\" 值从 \"{1}\" 类型 转换为 \"{2}\" 类型",
                 exception.getValue(), ClassUtils.getDescriptiveType(exception.getValue()),
                 ClassUtils.getDescriptiveType(exception.getRequiredType()));
-        return exec(exception, message);
+        return this.buildResult(message);
     }
 
 }
