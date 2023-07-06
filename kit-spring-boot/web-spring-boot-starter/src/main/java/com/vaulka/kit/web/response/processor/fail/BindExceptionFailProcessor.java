@@ -1,6 +1,6 @@
 package com.vaulka.kit.web.response.processor.fail;
 
-import com.pongsky.kit.validation.utils.ValidationUtils;
+import com.vaulka.kit.validation.utils.ValidationUtils;
 import org.springframework.validation.BindException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 

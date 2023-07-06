@@ -1,7 +1,7 @@
 package com.vaulka.kit.validation;
 
 
-import com.pongsky.kit.validation.utils.ArrayParserUtils;
+import com.vaulka.kit.validation.utils.ArrayParserUtils;
 import com.vaulka.kit.validation.model.FieldUser;
 import com.vaulka.kit.validation.model.User;
 import org.junit.jupiter.api.Test;

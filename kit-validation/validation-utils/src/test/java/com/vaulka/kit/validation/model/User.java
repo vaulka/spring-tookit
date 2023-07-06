@@ -1,8 +1,8 @@
 package com.vaulka.kit.validation.model;
 
-import com.pongsky.kit.validation.annotation.Property;
-import com.pongsky.kit.validation.annotation.validator.MinNumAndMaxNum;
-import com.pongsky.kit.validation.annotation.validator.StartTimeAndEndTime;
+import com.vaulka.kit.validation.annotation.Property;
+import com.vaulka.kit.validation.annotation.validator.MinNumAndMaxNum;
+import com.vaulka.kit.validation.annotation.validator.StartTimeAndEndTime;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;

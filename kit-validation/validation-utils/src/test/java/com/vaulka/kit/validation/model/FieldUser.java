@@ -1,6 +1,6 @@
 package com.vaulka.kit.validation.model;
 
-import com.pongsky.kit.validation.enums.ClassType;
+import com.vaulka.kit.validation.enums.ClassType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

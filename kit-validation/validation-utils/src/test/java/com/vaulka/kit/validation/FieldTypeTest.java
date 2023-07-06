@@ -1,7 +1,7 @@
 package com.vaulka.kit.validation;
 
 
-import com.pongsky.kit.validation.enums.FieldType;
+import com.vaulka.kit.validation.enums.FieldType;
 import com.vaulka.kit.validation.model.FieldUser;
 import org.junit.jupiter.api.Test;
 

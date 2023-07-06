@@ -1,7 +1,7 @@
 package com.vaulka.kit.validation;
 
 
-import com.pongsky.kit.validation.utils.ReflectUtils;
+import com.vaulka.kit.validation.utils.ReflectUtils;
 import com.vaulka.kit.validation.model.User;
 import org.junit.jupiter.api.Test;
 

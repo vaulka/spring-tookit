@@ -1,0 +1,10 @@
+dependencies {
+    api project(":kit-redis:redis-spring-boot-starter")
+    api project(":kit-spring-boot:web-spring-boot-starter")
+
+    api "commons-codec:commons-codec:$commonsCodecVersion"
+
+    api "org.springframework.boot:spring-boot-starter-cache"
+    api "org.springframework.boot:spring-boot-starter-integration"
+    api "org.springframework.integration:spring-integration-redis"
+}
