@@ -1,6 +1,6 @@
 dependencies {
     api project(":kit-validation:validation-utils")
-    api project(":kit-spring-boot:spring-boot-common")
+    api project(":kit-spring-boot:common-spring-boot")
 
     api "org.jsoup:jsoup:$jsoupVersion"
     api "org.apache.commons:commons-lang3:$commonsLang3Version"
