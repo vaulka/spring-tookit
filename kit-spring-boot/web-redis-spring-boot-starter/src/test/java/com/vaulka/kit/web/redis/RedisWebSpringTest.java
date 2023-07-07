@@ -51,7 +51,8 @@ public class RedisWebSpringTest {
                         .queryParam("message", "vaulka")
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"id\":\"11111\",\"date\":\"2023-06-12 11:11:11\",\"localDate\":\"2023-06-12\",\"localTime\":\"11:11:11\",\"localDateTime\":\"2023-06-12 11:11:11\",\"message\":\"vaulka\"}}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"id\":\"11111\",\"date\":\"2023-06-12 11:11:11\",\"localDate\":\"2023-06-12\",\"localTime\":\"11:11:11\",\"localDateTime\":\"2023-06-12 11:11:11\",\"message\":\"vaulka\"}}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/api/response/get")
                         .queryParam("id", "11111")
@@ -62,7 +63,8 @@ public class RedisWebSpringTest {
                         .queryParam("message", "vaulka")
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":301,\"message\":\"当前请求过于频繁，请稍后再试\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":301,\"message\":\"当前请求过于频繁，请稍后再试\"}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/api/response/post")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -78,7 +80,8 @@ public class RedisWebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"id\":\"11111\",\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"id\":\"11111\",\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
         assert Boolean.TRUE.equals(redisTemplate.hasKey("jd::11111:info"));
         assert Boolean.TRUE.equals(redisTemplate.hasKey("tb::11111:test"));
 
@@ -96,7 +99,8 @@ public class RedisWebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"id\":\"11111\",\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"id\":\"11111\",\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
         assert Boolean.FALSE.equals(redisTemplate.hasKey("jd::11111:info"));
         assert Boolean.FALSE.equals(redisTemplate.hasKey("tb::11111:test"));
 
@@ -114,7 +118,8 @@ public class RedisWebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"id\":\"11111\",\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"id\":\"11111\",\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
 
         // test response
         resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/api/get")
@@ -125,7 +130,8 @@ public class RedisWebSpringTest {
                         .queryParam("message", "vaulka")
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"date\":\"2023-06-12 11:11:11\",\"localDate\":\"2023-06-12\",\"localTime\":\"11:11:11\",\"localDateTime\":\"2023-06-12 11:11:11\",\"message\":\"vaulka\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"date\":\"2023-06-12 11:11:11\",\"localDate\":\"2023-06-12\",\"localTime\":\"11:11:11\",\"localDateTime\":\"2023-06-12 11:11:11\",\"message\":\"vaulka\"}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/api/post")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -140,7 +146,8 @@ public class RedisWebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.put("/api/put")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -155,7 +162,8 @@ public class RedisWebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.delete("/api/delete")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -170,7 +178,8 @@ public class RedisWebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.delete("/null/delete")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -185,7 +194,8 @@ public class RedisWebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":105,\"message\":\"/null/delete 接口不存在\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":105,\"message\":\"/null/delete 接口不存在\"}");
     }
 
 }

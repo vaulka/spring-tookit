@@ -14,6 +14,10 @@ ext {
     // 需要兼容 org.springframework.boot:spring-boot-starter-validation 下的版本
     hibernateValidatorVersion = "8.0.0.Final"
 
+    // 需要兼容 org.springframework.boot:spring-boot-starter-tomcat 下的版本
+    // org.apache.tomcat.embed:tomcat-embed-core
+    tomcatVersion = "10.1.10"
+
     // Jackson
     jacksonVersion = "2.15.2"
 
@@ -24,6 +28,8 @@ ext {
 
     // 系统资源监控
     oshiVersion = "6.4.3"
+    // 数据库连接池
+    druidVersion = "1.2.18"
     // HTML 解析
     jsoupVersion = "1.16.1"
     // IP 地址解析

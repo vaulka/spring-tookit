@@ -1,0 +1,36 @@
+spring:
+  web:
+    locale: zh_CN # 简体中文语言
+    resources:
+      add-mappings: false # 不要为资源文件建立映射
+  mvc:
+    log-resolved-exception: true # 开启日志解析异常
+    throw-exception-if-no-handler-found: true # 出现异常直接抛出错误
+    format:
+      time: HH:mm:ss # time 转换格式
+      date: yyyy-MM-dd # date 转换格式
+      date-time: yyyy-MM-dd HH:mm:ss # date-time 转换格式
+  thymeleaf:
+    check-template-location: false # 不检查模块位置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss # 设置时间默认序列化格式
+    time-zone: Asia/Shanghai # 设置序列化时区
+    default-property-inclusion: non_null # 只序列化非空字段
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3301/dynamic_datasource?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+kit:
+  dynamic-datasource:
+    master-1:
+      url: jdbc:mysql://localhost:3302/dynamic_datasource?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456
+    master-2:
+      url: jdbc:mysql://localhost:3303/dynamic_datasource?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+      username: root
+      password: 123456789
+    master-3:
+      url: jdbc:mysql://localhost:3304/dynamic_datasource?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+      password: 987654321

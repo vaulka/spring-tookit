@@ -46,7 +46,8 @@ public class WebSpringTest {
                         .queryParam("message", "vaulka")
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"date\":\"2023-06-12 11:11:11\",\"localDate\":\"2023-06-12\",\"localTime\":\"11:11:11\",\"localDateTime\":\"2023-06-12 11:11:11\",\"message\":\"vaulka\"}}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"date\":\"2023-06-12 11:11:11\",\"localDate\":\"2023-06-12\",\"localTime\":\"11:11:11\",\"localDateTime\":\"2023-06-12 11:11:11\",\"message\":\"vaulka\"}}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/api/response/post")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -61,7 +62,8 @@ public class WebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.put("/api/response/put")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -76,7 +78,8 @@ public class WebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.delete("/api/response/delete")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -91,7 +94,8 @@ public class WebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":0,\"message\":\"成功\",\"data\":{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}}");
 
         // test response
         resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/api/get")
@@ -102,7 +106,8 @@ public class WebSpringTest {
                         .queryParam("message", "vaulka")
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"date\":\"2023-06-12 11:11:11\",\"localDate\":\"2023-06-12\",\"localTime\":\"11:11:11\",\"localDateTime\":\"2023-06-12 11:11:11\",\"message\":\"vaulka\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"date\":\"2023-06-12 11:11:11\",\"localDate\":\"2023-06-12\",\"localTime\":\"11:11:11\",\"localDateTime\":\"2023-06-12 11:11:11\",\"message\":\"vaulka\"}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.post("/api/post")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -117,7 +122,8 @@ public class WebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.put("/api/put")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -132,7 +138,8 @@ public class WebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.delete("/api/delete")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -147,7 +154,8 @@ public class WebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"date\":\"2023-06-13 10:10:10\",\"localDate\":\"2023-06-13\",\"localTime\":\"10:10:10\",\"localDateTime\":\"2023-06-13 10:10:10\",\"message\":\"vaulka\"}");
 
         resultActions = mockMvc.perform(MockMvcRequestBuilders.delete("/null/delete")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -162,7 +170,8 @@ public class WebSpringTest {
                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
-        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8).equals("{\"code\":105,\"message\":\"/null/delete 接口不存在\"}");
+        assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
+                .equals("{\"code\":105,\"message\":\"/null/delete 接口不存在\"}");
     }
 
 }

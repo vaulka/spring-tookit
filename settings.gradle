@@ -37,3 +37,6 @@ include 'kit-spring-boot:web-redis-spring-boot-starter'
 findProject(':kit-spring-boot:web-redis-spring-boot-starter')?.name = 'web-redis-spring-boot-starter'
 include 'kit-spring-boot:redis-spring-boot-starter'
 findProject(':kit-spring-boot:redis-spring-boot-starter')?.name = 'redis-spring-boot-starter'
+include 'kit-spring-boot:dynamic-datasource-spring-boot-starter'
+findProject(':kit-spring-boot:dynamic-datasource-spring-boot-starter')?.name = 'dynamic-datasource-spring-boot-starter'
+

@@ -1,0 +1,14 @@
+dependencies {
+    runtimeOnly "com.mysql:mysql-connector-j"
+    api "org.apache.commons:commons-lang3:$commonsLang3Version"
+    compileOnly "org.apache.tomcat.embed:tomcat-embed-core:$tomcatVersion"
+
+    api "com.alibaba:druid-spring-boot-starter:$druidVersion"
+
+    api "org.springframework.boot:spring-boot-starter-aop"
+    api "org.springframework.boot:spring-boot-starter-jdbc"
+    api "org.springframework.boot:spring-boot-starter-validation"
+
+    testImplementation "org.springframework.boot:spring-boot-starter-web"
+    testImplementation "org.springframework.boot:spring-boot-starter-data-jdbc"
+}
