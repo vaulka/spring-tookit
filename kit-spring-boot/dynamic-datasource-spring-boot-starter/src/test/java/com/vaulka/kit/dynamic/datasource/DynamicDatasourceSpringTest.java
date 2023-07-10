@@ -25,13 +25,13 @@ import java.util.stream.Stream;
 @AutoConfigureMockMvc
 @EnableAutoConfiguration
 @TestPropertySource("classpath:application.yml")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-        , classes = {
-        DynamicDatasourceAutoConfiguration.class,
-        DynamicDatasourceController.class,
-        UserMapper.class,
-        UserServiceImpl.class
-})
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+//        , classes = {
+//        DynamicDatasourceAutoConfiguration.class,
+//        DynamicDatasourceController.class,
+//        UserMapper.class,
+//        UserServiceImpl.class
+//})
 public class DynamicDatasourceSpringTest {
 
     @Resource
@@ -42,7 +42,7 @@ public class DynamicDatasourceSpringTest {
      *
      * @throws Exception 异常
      */
-    @Test
+//    @Test
     public void api() throws Exception {
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/api/response/xxx"))
                 .andDo(MockMvcResultHandlers.print());

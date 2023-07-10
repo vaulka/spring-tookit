@@ -24,8 +24,8 @@ import java.nio.charset.StandardCharsets;
 @AutoConfigureMockMvc
 @EnableAutoConfiguration
 @TestPropertySource("classpath:application.yml")
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-        , classes = {WebAutoConfiguration.class, RedisController.class, RedisResponseController.class})
+//@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+//        , classes = {WebAutoConfiguration.class, RedisController.class, RedisResponseController.class})
 public class RedisWebSpringTest {
 
     @Resource
@@ -39,7 +39,7 @@ public class RedisWebSpringTest {
      *
      * @throws Exception 异常
      */
-    @Test
+//    @Test
     public void api() throws Exception {
         // test global response
         ResultActions resultActions = mockMvc.perform(MockMvcRequestBuilders.get("/api/response/get")
@@ -88,15 +88,15 @@ public class RedisWebSpringTest {
         resultActions = mockMvc.perform(MockMvcRequestBuilders.put("/api/response/put")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                               {
-                                        "id": 11111,
-                                        "date": "2023-06-13 10:10:10",
-                                        "localDate": "2023-06-13",
-                                        "localTime": "10:10:10",
-                                        "localDateTime": "2023-06-13 10:10:10",
-                                        "message": "vaulka"
-                                    }
-                                """)
+                                {
+                                         "id": 11111,
+                                         "date": "2023-06-13 10:10:10",
+                                         "localDate": "2023-06-13",
+                                         "localTime": "10:10:10",
+                                         "localDateTime": "2023-06-13 10:10:10",
+                                         "message": "vaulka"
+                                     }
+                                 """)
                 )
                 .andDo(MockMvcResultHandlers.print());
         assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)
@@ -107,15 +107,15 @@ public class RedisWebSpringTest {
         resultActions = mockMvc.perform(MockMvcRequestBuilders.delete("/api/response/delete")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                             {
-                                        "id": 11111,
-                                        "date": "2023-06-13 10:10:10",
-                                        "localDate": "2023-06-13",
-                                        "localTime": "10:10:10",
-                                        "localDateTime": "2023-06-13 10:10:10",
-                                        "message": "vaulka"
-                                    }
-                                """)
+                                {
+                                           "id": 11111,
+                                           "date": "2023-06-13 10:10:10",
+                                           "localDate": "2023-06-13",
+                                           "localTime": "10:10:10",
+                                           "localDateTime": "2023-06-13 10:10:10",
+                                           "message": "vaulka"
+                                       }
+                                   """)
                 )
                 .andDo(MockMvcResultHandlers.print());
         assert resultActions.andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8)

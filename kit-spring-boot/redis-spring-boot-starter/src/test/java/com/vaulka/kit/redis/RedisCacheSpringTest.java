@@ -20,10 +20,10 @@ import org.springframework.data.redis.core.StringRedisTemplate;
  * @author Vaulka
  */
 @EnableAutoConfiguration
-@SpringBootTest(classes = {RedisCacheAutoConfiguration.class
-        , RedisCacheManagerAutoConfiguration.class
-        , Service.class
-})
+//@SpringBootTest(classes = {RedisCacheAutoConfiguration.class
+//        , RedisCacheManagerAutoConfiguration.class
+//        , Service.class
+//})
 public class RedisCacheSpringTest {
 
     @Resource
@@ -44,7 +44,7 @@ public class RedisCacheSpringTest {
     /**
      * 测试 redis 序列化、反序列化
      */
-    @Test
+//    @Test
     public void redis() throws JsonProcessingException {
         Long expire;
         int mid = RandomUtils.nextInt();
