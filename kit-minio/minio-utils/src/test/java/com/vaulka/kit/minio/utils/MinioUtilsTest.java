@@ -1,5 +1,6 @@
 package com.vaulka.kit.minio.utils;
 
+import com.vaulka.kit.minio.enums.RenameType;
 import com.vaulka.kit.minio.model.UploadInfo;
 import io.minio.messages.Part;
 import org.junit.jupiter.api.Test;
@@ -47,9 +48,9 @@ public class MinioUtilsTest {
     /**
      * 是否随机文件名称
      */
-    private static final boolean isRandomFileName = false;
+    private static final RenameType renameType = RenameType.REMAIN;
 
-    MinioUtils utils = new MinioUtils(endpoint, bucket, accessKey, secretKey, filePrefix, isRandomFileName);
+    MinioUtils utils = new MinioUtils(endpoint, bucket, accessKey, secretKey, filePrefix, renameType);
 
     /**
      * 文件上传

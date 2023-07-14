@@ -2,6 +2,7 @@ package com.vaulka.kit.minio.utils;
 
 import com.google.common.collect.HashMultimap;
 import com.vaulka.kit.minio.client.CustomMinioClient;
+import com.vaulka.kit.minio.enums.RenameType;
 import com.vaulka.kit.minio.exception.MinioException;
 import com.vaulka.kit.minio.model.UploadInfo;
 import io.minio.BucketExistsArgs;
@@ -19,7 +20,6 @@ import io.minio.messages.Part;
 import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * MinIO 工具
@@ -54,9 +54,9 @@ public class MinioUtils {
     private final String filePrefix;
 
     /**
-     * 是否随机文件名称
+     * 重命名类型
      */
-    private final boolean isRandomFileName;
+    private final RenameType renameType;
 
     /**
      * MinIO client
@@ -65,13 +65,13 @@ public class MinioUtils {
 
     public MinioUtils(String endpoint, String bucket,
                       String accessKey, String secretKey,
-                      String filePrefix, boolean isRandomFileName) {
+                      String filePrefix, RenameType renameType) {
         this.endpoint = endpoint;
         this.bucket = bucket;
         this.accessKey = accessKey;
         this.secretKey = secretKey;
         this.filePrefix = filePrefix;
-        this.isRandomFileName = isRandomFileName;
+        this.renameType = renameType;
         client = this.getClient();
         this.createBucket();
     }
@@ -161,35 +161,6 @@ public class MinioUtils {
         }
     }
 
-    /**
-     * 以UUID重命名
-     *
-     * @param fileName 文件名
-     * @return UUID重命名
-     */
-    private String renameUUID(String fileName) {
-        String uuid = UUID.randomUUID().toString().toLowerCase().replace("-", "");
-        if (fileName.lastIndexOf(".") > -1) {
-            String extName = fileName.substring(fileName.lastIndexOf("."));
-            String path = fileName.substring(0, fileName.lastIndexOf("/") + 1);
-            return path + uuid + extName;
-        }
-        return uuid;
-    }
-
-    /**
-     * 构建文件路径
-     *
-     * @param fileName 文件名称
-     * @return 构建文件路径
-     */
-    private String buildFilePath(String fileName) {
-        if (isRandomFileName) {
-            fileName = renameUUID(fileName);
-        }
-        return filePrefix + fileName;
-    }
-
     public UploadInfo upload(String fileName, InputStream inputStream) {
         return this.upload(fileName, "application/octet-stream", inputStream);
     }
@@ -205,7 +176,7 @@ public class MinioUtils {
     public UploadInfo upload(String fileName, String contentType, InputStream inputStream) {
         UploadInfo info = new UploadInfo();
         info.setName(fileName);
-        String filePath = this.buildFilePath(fileName);
+        String filePath = filePrefix + renameType.rename(fileName);
         info.setPath(filePath);
         try (inputStream) {
             client.putObject(PutObjectArgs.builder()
@@ -234,7 +205,7 @@ public class MinioUtils {
     public UploadInfo initPartUpload(String fileName, String contentType) {
         UploadInfo info = new UploadInfo();
         info.setName(fileName);
-        String filePath = this.buildFilePath(fileName);
+        String filePath = filePrefix + renameType.rename(fileName);
         info.setPath(filePath);
         HashMultimap<String, String> headers = HashMultimap.create();
         headers.put("Content-Type", contentType);
