@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Data
 @NoArgsConstructor
-public class TreeNode<T, R> implements Serializable {
+public class TreeNode<T extends TreeNode<T, R>, R> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 5732775650276600108L;
