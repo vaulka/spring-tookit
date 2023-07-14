@@ -39,4 +39,7 @@ include 'kit-spring-boot:redis-spring-boot-starter'
 findProject(':kit-spring-boot:redis-spring-boot-starter')?.name = 'redis-spring-boot-starter'
 include 'kit-spring-boot:dynamic-datasource-spring-boot-starter'
 findProject(':kit-spring-boot:dynamic-datasource-spring-boot-starter')?.name = 'dynamic-datasource-spring-boot-starter'
+include 'kit-minio'
+include 'kit-minio:minio-utils'
+findProject(':kit-minio:minio-utils')?.name = 'minio-utils'
 

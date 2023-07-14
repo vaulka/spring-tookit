@@ -28,6 +28,8 @@ ext {
 
     // 系统资源监控
     oshiVersion = "6.4.3"
+    // MinIO 文件服务器
+    minioVersion = "8.2.1"
     // 数据库连接池
     druidVersion = "1.2.18"
     // HTML 解析
@@ -75,6 +77,10 @@ subprojects {
     if (!name.contains("kit")) {
         apply plugin: "java-library"
 
+        java {
+            sourceCompatibility = "17"
+        }
+
         jar {
             enabled = true
             archiveClassifier = ""
@@ -119,7 +125,7 @@ subprojects {
     }
 
     if (name.contains("utils")) {
-        tasks.register('copyJars', Copy) {
+        tasks.register("copyJars", Copy) {
             from configurations.runtimeClasspath
             into "$buildDir/libs"
         }

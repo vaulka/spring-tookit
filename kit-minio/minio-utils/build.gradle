@@ -1,0 +1,3 @@
+dependencies {
+    api "io.minio:minio:${minioVersion}"
+}
