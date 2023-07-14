@@ -42,4 +42,6 @@ findProject(':kit-spring-boot:dynamic-datasource-spring-boot-starter')?.name = '
 include 'kit-minio'
 include 'kit-minio:minio-utils'
 findProject(':kit-minio:minio-utils')?.name = 'minio-utils'
+include 'kit-minio:minio-spring-boot-starter'
+findProject(':kit-minio:minio-spring-boot-starter')?.name = 'minio-spring-boot-starter'
 
