@@ -66,7 +66,8 @@ public class MinioUtilsTest {
                     .version(HttpClient.Version.HTTP_2)
                     .build();
             URI uri = URI.create(endpoint + "/" + bucket + info.getPath());
-            client.send(HttpRequest.newBuilder().GET().uri(uri).build(), HttpResponse.BodyHandlers.ofString());
+            HttpResponse<String> response = client.send(HttpRequest.newBuilder().GET().uri(uri).build(), HttpResponse.BodyHandlers.ofString());
+            assert response.statusCode() == 200;
         }
     }
 
@@ -103,7 +104,8 @@ public class MinioUtilsTest {
                 .version(HttpClient.Version.HTTP_2)
                 .build();
         URI uri = URI.create(endpoint + "/" + bucket + info.getPath());
-        client.send(HttpRequest.newBuilder().GET().uri(uri).build(), HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(HttpRequest.newBuilder().GET().uri(uri).build(), HttpResponse.BodyHandlers.ofString());
+        assert response.statusCode() == 200;
     }
 
 }

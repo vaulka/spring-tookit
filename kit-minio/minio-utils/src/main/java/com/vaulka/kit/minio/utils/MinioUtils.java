@@ -1,7 +1,7 @@
 package com.vaulka.kit.minio.utils;
 
 import com.google.common.collect.HashMultimap;
-import com.vaulka.kit.minio.client.CustomMinioClient;
+import com.vaulka.kit.minio.client.CustomMinioAsyncClient;
 import com.vaulka.kit.minio.enums.RenameType;
 import com.vaulka.kit.minio.exception.MinioException;
 import com.vaulka.kit.minio.model.UploadInfo;
@@ -10,11 +10,10 @@ import io.minio.CreateMultipartUploadResponse;
 import io.minio.GetObjectArgs;
 import io.minio.ListPartsResponse;
 import io.minio.MakeBucketArgs;
-import io.minio.MinioClient;
+import io.minio.MinioAsyncClient;
 import io.minio.PutObjectArgs;
 import io.minio.SetBucketPolicyArgs;
 import io.minio.UploadPartResponse;
-import io.minio.errors.ErrorResponseException;
 import io.minio.messages.Part;
 
 import java.io.BufferedInputStream;
@@ -61,7 +60,7 @@ public class MinioUtils {
     /**
      * MinIO client
      */
-    private final CustomMinioClient client;
+    private final CustomMinioAsyncClient client;
 
     public MinioUtils(String endpoint, String bucket,
                       String accessKey, String secretKey,
@@ -81,8 +80,8 @@ public class MinioUtils {
      *
      * @return 创建 client
      */
-    private CustomMinioClient getClient() {
-        return new CustomMinioClient(MinioClient.builder()
+    private CustomMinioAsyncClient getClient() {
+        return new CustomMinioAsyncClient(MinioAsyncClient.builder()
                 .endpoint(endpoint)
                 .credentials(accessKey, secretKey)
                 .build());
@@ -135,7 +134,7 @@ public class MinioUtils {
         try {
             isExists = client.bucketExists(BucketExistsArgs.builder()
                     .bucket(bucket)
-                    .build());
+                    .build()).get();
         } catch (Exception e) {
             throw new MinioException(e.getLocalizedMessage(), e);
         }
@@ -146,7 +145,7 @@ public class MinioUtils {
         try {
             client.makeBucket(MakeBucketArgs.builder()
                     .bucket(bucket)
-                    .build());
+                    .build()).get();
         } catch (Exception e) {
             throw new MinioException(e.getLocalizedMessage(), e);
         }
@@ -155,7 +154,7 @@ public class MinioUtils {
             client.setBucketPolicy(SetBucketPolicyArgs.builder()
                     .bucket(bucket)
                     .config(BUCKET_POLICY_BY_PUBLIC_READ.replace(BUCKET_PLACEHOLDER, bucket))
-                    .build());
+                    .build()).get();
         } catch (Exception e) {
             throw new MinioException(e.getLocalizedMessage(), e);
         }
@@ -184,7 +183,7 @@ public class MinioUtils {
                     .object(filePath)
                     .stream(inputStream, inputStream.available(), -1)
                     .contentType(contentType)
-                    .build());
+                    .build()).get();
         } catch (Exception e) {
             throw new MinioException(e.getLocalizedMessage(), e);
         }
@@ -211,7 +210,7 @@ public class MinioUtils {
         headers.put("Content-Type", contentType);
         CreateMultipartUploadResponse response;
         try {
-            response = client.initPartUpload(bucket, null, filePath, headers, null);
+            response = client.initPartUpload(bucket, null, filePath, headers, null).get();
         } catch (Exception e) {
             throw new MinioException(e.getLocalizedMessage(), e);
         }
@@ -241,7 +240,7 @@ public class MinioUtils {
     public Part partUpload(String uploadId, int partNumber, int partSize, String filePath, BufferedInputStream inputStream) {
         UploadPartResponse response;
         try (inputStream) {
-            response = client.partUpload(bucket, null, filePath, inputStream, partSize, uploadId, partNumber, null, null);
+            response = client.partUpload(bucket, null, filePath, inputStream, partSize, uploadId, partNumber, null, null).get();
         } catch (Exception e) {
             throw new MinioException(e.getLocalizedMessage(), e);
         }
@@ -258,8 +257,7 @@ public class MinioUtils {
     public List<Part> listPart(String uploadId, String filePath) {
         ListPartsResponse response;
         try {
-            response = client.listPart(bucket, null, filePath, null, null, uploadId,
-                    null, null);
+            response = client.listPart(bucket, null, filePath, null, null, uploadId, null, null).get();
         } catch (Exception e) {
             throw new MinioException(e.getLocalizedMessage(), e);
         }
@@ -287,28 +285,19 @@ public class MinioUtils {
     }
 
     /**
-     * 文件不存在
-     */
-    private static final String FILE_NOT_EXIST = "The specified key does not exist.";
-
-    /**
      * 下载文件
      *
      * @param filePath 文件路径
      * @return inputStream
-     * @throws Exception 异常
      */
-    public InputStream download(String filePath) throws Exception {
+    public InputStream download(String filePath) {
         try {
             return client.getObject(GetObjectArgs.builder()
                     .bucket(bucket)
                     .object(filePath)
-                    .build());
-        } catch (ErrorResponseException e) {
-            if (e.getLocalizedMessage().equals(FILE_NOT_EXIST)) {
-                throw new MinioException(filePath + "文件不存在", e);
-            }
-            throw new MinioException(e.getLocalizedMessage());
+                    .build()).get();
+        } catch (Exception e) {
+            throw new MinioException(e.getLocalizedMessage(), e);
         }
     }
 
