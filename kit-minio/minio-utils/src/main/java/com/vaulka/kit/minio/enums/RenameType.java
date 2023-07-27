@@ -40,7 +40,7 @@ public enum RenameType {
     },
 
     /**
-     * 时间戳
+     * UUID
      */
     UUID() {
         @Override
