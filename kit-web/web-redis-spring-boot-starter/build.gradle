@@ -1,6 +1,6 @@
 dependencies {
-    api project(":kit-spring-boot:web-spring-boot-starter")
-    api project(":kit-spring-boot:redis-spring-boot-starter")
+    api project(":kit-web:web-spring-boot-starter")
+    api project(":kit-redis:redis-spring-boot-starter")
 
     api "commons-codec:commons-codec:$commonsCodecVersion"
 

@@ -1,5 +1,0 @@
-dependencies {
-    api "io.swagger.core.v3:swagger-annotations:$swaggerVersion"
-    compileOnly "org.springframework.boot:spring-boot-starter-web"
-    compileOnly "org.springframework.boot:spring-boot-starter-validation"
-}
