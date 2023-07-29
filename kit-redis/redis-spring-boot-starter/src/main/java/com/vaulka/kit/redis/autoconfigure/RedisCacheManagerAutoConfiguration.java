@@ -1,7 +1,6 @@
 package com.vaulka.kit.redis.autoconfigure;
 
 import com.vaulka.kit.redis.manager.RedisAutoCacheManager;
-import com.vaulka.kit.redis.properties.RedisCacheProperties;
 import com.vaulka.kit.redis.properties.RedisCacheableProperties;
 import com.vaulka.kit.redis.serializer.RegexRedisSerializer;
 import lombok.RequiredArgsConstructor;
@@ -42,15 +41,13 @@ public class RedisCacheManagerAutoConfiguration {
     /**
      * 配置 RedisCacheConfiguration
      *
-     * @param cacheProperties     cacheProperties
      * @param cacheableProperties cacheableProperties
      * @param keySerializer       keySerializer
      * @param valueSerializer     valueSerializer
      * @return RedisCacheConfiguration
      */
     @Bean
-    public RedisCacheConfiguration redisCacheConfiguration(RedisCacheProperties cacheProperties,
-                                                           RedisCacheableProperties cacheableProperties,
+    public RedisCacheConfiguration redisCacheConfiguration(RedisCacheableProperties cacheableProperties,
                                                            RegexRedisSerializer keySerializer,
                                                            GenericJackson2JsonRedisSerializer valueSerializer) {
         RedisCacheConfiguration configuration = RedisCacheConfiguration.defaultCacheConfig()

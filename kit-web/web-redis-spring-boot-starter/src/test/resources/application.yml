@@ -1,10 +1,4 @@
 kit:
-  web:
-    log:
-      types:
-        - delete
-        - post
-        - get
   redis:
     prefix: vaulka
 spring:

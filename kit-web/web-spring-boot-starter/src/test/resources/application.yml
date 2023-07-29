@@ -1,10 +1,3 @@
-kit:
-  web:
-    log:
-      types:
-        - delete
-        - post
-        - get
 spring:
   web:
     locale: zh_CN # 简体中文语言

@@ -35,7 +35,6 @@ public class RateLimitAspect {
     private final RedisTemplate<String, String> redisTemplate;
 
     public RateLimitAspect(RedisCacheProperties cacheProperties,
-
                            RateLimitProperties rateLimitProperties,
                            RedisTemplate<String, String> redisTemplate,
                            ApplicationContext applicationContext) {

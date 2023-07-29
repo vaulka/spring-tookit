@@ -25,8 +25,7 @@ public class DynamicDatasourceController {
 
     @GetMapping("/yyy")
     public List<User> yyy() {
-        List<User> users = service.yyy();
-        return users;
+        return service.yyy();
     }
 
     @GetMapping("/zzz")
