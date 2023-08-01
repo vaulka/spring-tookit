@@ -1,3 +1,5 @@
+copyJars.dependsOn(":kit-validation:validation-utils:copyJars")
+
 dependencies {
     api project(":kit-validation:validation-utils")
 

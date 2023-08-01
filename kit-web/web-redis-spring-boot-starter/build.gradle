@@ -1,3 +1,6 @@
+copyJars.dependsOn(":kit-web:web-spring-boot-starter:copyJars")
+copyJars.dependsOn(":kit-redis:redis-spring-boot-starter:copyJars")
+
 dependencies {
     api project(":kit-web:web-spring-boot-starter")
     api project(":kit-redis:redis-spring-boot-starter")
