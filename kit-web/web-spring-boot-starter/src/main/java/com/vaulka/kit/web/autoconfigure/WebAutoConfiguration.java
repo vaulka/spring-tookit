@@ -34,6 +34,7 @@ import com.vaulka.kit.web.response.processor.fail.UpdateExceptionFailProcessor;
 import com.vaulka.kit.web.response.processor.fail.ValidationExceptionFailProcessor;
 import com.vaulka.kit.web.response.processor.success.DefaultSuccessProcessor;
 import com.vaulka.kit.web.response.processor.supports.actuator.ActuatorReturnTypeProcessor;
+import com.vaulka.kit.web.response.processor.supports.springdoc.MultipleOpenApiWebMvcResourceSupportsReturnTypeProcessor;
 import com.vaulka.kit.web.response.processor.supports.springdoc.OpenApiWebMvcResourceSupportsReturnTypeProcessor;
 import com.vaulka.kit.web.utils.SpringUtils;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -74,7 +75,8 @@ import java.util.Collections;
         HttpMessageNotReadableExceptionFailProcessor.class, BindExceptionFailProcessor.class,
         MissingServletRequestParameterExceptionFailProcessor.class, TypeMismatchExceptionFailProcessor.class,
         // 是否执行全局响应处理器
-        ActuatorReturnTypeProcessor.class, OpenApiWebMvcResourceSupportsReturnTypeProcessor.class
+        ActuatorReturnTypeProcessor.class,
+        OpenApiWebMvcResourceSupportsReturnTypeProcessor.class, MultipleOpenApiWebMvcResourceSupportsReturnTypeProcessor.class
 })
 public class WebAutoConfiguration {
 
