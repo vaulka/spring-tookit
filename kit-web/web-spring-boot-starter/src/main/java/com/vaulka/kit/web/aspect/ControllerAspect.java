@@ -11,16 +11,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 
+import java.io.IOException;
 import java.util.Optional;
 
 /**
@@ -54,7 +50,7 @@ public class ControllerAspect {
      * Controller 请求日志打印
      */
     @Before("com.vaulka.kit.web.aspect.ControllerAspect.point()")
-    public void exec() {
+    public void exec() throws IOException {
         HttpServletRequest request = SpringUtils.getHttpServletRequest();
         long reqId = RandomUtils.nextLong();
         request.setAttribute(SpringUtils.REQ_ID, reqId);

@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequestWrapper;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 
@@ -25,7 +26,7 @@ public class RepeatedlyReadRequestWrapper extends HttpServletRequestWrapper {
      */
     private final String requestBody;
 
-    public RepeatedlyReadRequestWrapper(HttpServletRequest request) {
+    public RepeatedlyReadRequestWrapper(HttpServletRequest request) throws IOException {
         super(request);
         requestBody = HttpServletRequestUtils.getBody(request);
     }

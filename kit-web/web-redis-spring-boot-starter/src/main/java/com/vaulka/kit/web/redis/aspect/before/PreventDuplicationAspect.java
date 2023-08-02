@@ -1,6 +1,5 @@
 package com.vaulka.kit.web.redis.aspect.before;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vaulka.kit.common.exception.FrequencyException;
 import com.vaulka.kit.web.redis.annotation.PreventDuplication;
@@ -24,6 +23,7 @@ import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DigestUtils;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.MessageFormat;
 import java.util.Optional;
@@ -69,7 +69,7 @@ public class PreventDuplicationAspect {
             "|| @annotation(org.springframework.web.bind.annotation.PutMapping) " +
             "|| @annotation(org.springframework.web.bind.annotation.PostMapping) " +
             "|| @annotation(org.springframework.web.bind.annotation.DeleteMapping)) ")
-    public void exec(JoinPoint point) throws JsonProcessingException {
+    public void exec(JoinPoint point) throws IOException {
         HttpServletRequest request = SpringUtils.getHttpServletRequest();
         MethodSignature signature = (MethodSignature) point.getSignature();
         Method method = ((MethodSignature) point.getSignature()).getMethod();
