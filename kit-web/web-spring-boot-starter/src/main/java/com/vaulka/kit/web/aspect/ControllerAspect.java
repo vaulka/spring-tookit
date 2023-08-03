@@ -2,6 +2,7 @@ package com.vaulka.kit.web.aspect;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vaulka.kit.web.filter.RepeatedlyReadRequestWrapper;
 import com.vaulka.kit.web.properties.LogProperties;
 import com.vaulka.kit.web.utils.HttpServletRequestUtils;
 import com.vaulka.kit.web.utils.IpUtils;
@@ -9,9 +10,13 @@ import com.vaulka.kit.web.utils.SpringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.RandomUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
@@ -52,8 +57,7 @@ public class ControllerAspect {
     @Before("com.vaulka.kit.web.aspect.ControllerAspect.point()")
     public void exec() throws IOException {
         HttpServletRequest request = SpringUtils.getHttpServletRequest();
-        long reqId = RandomUtils.nextLong();
-        request.setAttribute(SpringUtils.REQ_ID, reqId);
+        String reqId = SpringUtils.getReqId();
         boolean isLog = properties.getTypes().stream().anyMatch(m -> m.toString().equals(request.getMethod()));
         if (!isLog) {
             return;
@@ -65,7 +69,9 @@ public class ControllerAspect {
         log.info("req ID [{}] IP [{}] User-Agent [{}] Authorization [{}]", reqId, ip, userAgent, authorization);
         log.info("req ID [{}] method [{}] URI [{}]", reqId, request.getMethod(), request.getRequestURI());
         log.info("req ID [{}] query [{}]", reqId, Optional.ofNullable(request.getQueryString()).orElse(""));
-        log.info("req ID [{}] body [{}]", reqId, HttpServletRequestUtils.getBody(request));
+        log.info("req ID [{}] body [{}]", reqId, request instanceof RepeatedlyReadRequestWrapper
+                ? HttpServletRequestUtils.getBody(request)
+                : "");
     }
 
     /**
@@ -77,6 +83,11 @@ public class ControllerAspect {
      */
     @Around("com.vaulka.kit.web.aspect.ControllerAspect.point()")
     public Object exec(ProceedingJoinPoint point) throws Throwable {
+        HttpServletRequest request = SpringUtils.getHttpServletRequest();
+        boolean isLog = properties.getTypes().stream().anyMatch(m -> m.toString().equals(request.getMethod()));
+        if (!isLog) {
+            return point.proceed();
+        }
         String reqId = SpringUtils.getReqId();
         long start = System.currentTimeMillis();
         try {
@@ -93,6 +104,11 @@ public class ControllerAspect {
      */
     @AfterReturning(value = "com.vaulka.kit.web.aspect.ControllerAspect.point()", returning = "result")
     public void exec(Object result) {
+        HttpServletRequest request = SpringUtils.getHttpServletRequest();
+        boolean isLog = properties.getTypes().stream().anyMatch(m -> m.toString().equals(request.getMethod()));
+        if (!isLog) {
+            return;
+        }
         String reqId = SpringUtils.getReqId();
         try {
             log.info("resp ID [{}] success [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(result).orElse("")));

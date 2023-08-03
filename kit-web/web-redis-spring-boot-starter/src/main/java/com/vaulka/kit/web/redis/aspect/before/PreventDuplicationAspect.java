@@ -2,6 +2,7 @@ package com.vaulka.kit.web.redis.aspect.before;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vaulka.kit.common.exception.FrequencyException;
+import com.vaulka.kit.web.filter.RepeatedlyReadRequestWrapper;
 import com.vaulka.kit.web.redis.annotation.PreventDuplication;
 import com.vaulka.kit.web.redis.handler.PreventDuplicationHandler;
 import com.vaulka.kit.web.redis.properties.PreventDuplicationProperties;
@@ -90,7 +91,9 @@ public class PreventDuplicationAspect {
                 .method(request.getMethod())
                 .uri(request.getRequestURI())
                 .query(Optional.ofNullable(request.getQueryString()).orElse(""))
-                .requestBody(HttpServletRequestUtils.getBody(request))
+                .requestBody(request instanceof RepeatedlyReadRequestWrapper
+                        ? HttpServletRequestUtils.getBody(request)
+                        : "")
                 .build();
         String sign = DigestUtils.sha1DigestAsHex(jsonMapper.writeValueAsString(requestInfo));
         String key = MessageFormat.format(PREVENT_DUPLICATION_KEY, ip, sign);

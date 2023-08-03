@@ -13,7 +13,6 @@ import org.jsoup.safety.Safelist;
 import org.springframework.http.MediaType;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -34,7 +33,7 @@ public class XssRequestWrapper extends HttpServletRequestWrapper {
      */
     private final String requestBody;
 
-    public XssRequestWrapper(HttpServletRequest request) throws IOException {
+    public XssRequestWrapper(HttpServletRequest request) {
         super(request);
         requestBody = HttpServletRequestUtils.getBody(request);
     }

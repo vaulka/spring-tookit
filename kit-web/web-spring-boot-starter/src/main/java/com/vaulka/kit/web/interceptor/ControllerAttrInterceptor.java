@@ -1,8 +1,10 @@
 package com.vaulka.kit.web.interceptor;
 
+import com.vaulka.kit.web.utils.SpringUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.NonNull;
+import org.apache.commons.lang3.RandomUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -19,6 +21,8 @@ public class ControllerAttrInterceptor implements HandlerInterceptor {
     public boolean preHandle(@NonNull HttpServletRequest request,
                              @NonNull HttpServletResponse response,
                              @NonNull Object handler) {
+        long reqId = RandomUtils.nextLong();
+        request.setAttribute(SpringUtils.REQ_ID, reqId);
         if (handler instanceof HandlerMethod handlerMethod) {
             for (Annotation annotation : handlerMethod.getBeanType().getAnnotations()) {
                 request.setAttribute(annotation.annotationType().getName(), annotation);

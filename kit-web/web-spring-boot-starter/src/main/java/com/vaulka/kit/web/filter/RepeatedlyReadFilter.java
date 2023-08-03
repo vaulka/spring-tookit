@@ -23,9 +23,10 @@ public class RepeatedlyReadFilter implements Filter {
                          FilterChain chain) throws IOException, ServletException {
         String contentType = request.getContentType();
         ServletRequest servletRequest = request;
-        if (contentType == null
+        if (request instanceof HttpServletRequest
+                && (contentType == null
                 || contentType.contains(MediaType.APPLICATION_JSON_VALUE)
-                || contentType.contains(MediaType.APPLICATION_FORM_URLENCODED_VALUE)) {
+                || contentType.contains(MediaType.APPLICATION_FORM_URLENCODED_VALUE))) {
             servletRequest = new RepeatedlyReadRequestWrapper((HttpServletRequest) request);
         }
         chain.doFilter(servletRequest, response);

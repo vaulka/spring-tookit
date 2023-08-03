@@ -20,12 +20,8 @@ public class HttpServletRequestUtils {
      * @param request request
      * @return 获取 request body 数据
      */
-    public static String getBody(HttpServletRequest request) throws IOException {
+    public static String getBody(HttpServletRequest request) {
         StringBuilder body = new StringBuilder();
-        boolean ready = request.getInputStream().isReady();
-        if (!ready) {
-            return body.toString();
-        }
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(request.getInputStream(), StandardCharsets.UTF_8))) {
             String line;
             while ((line = reader.readLine()) != null) {
