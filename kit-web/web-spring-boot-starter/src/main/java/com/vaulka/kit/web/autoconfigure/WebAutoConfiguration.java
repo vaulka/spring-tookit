@@ -120,7 +120,7 @@ public class WebAutoConfiguration {
      * @return 配置跨域访问
      */
     @Bean
-    public FilterRegistrationBean<CorsFilter> corsFilter(UrlBasedCorsConfigurationSource source) {
+    public FilterRegistrationBean<CorsFilter> corsCfFilter(UrlBasedCorsConfigurationSource source) {
         FilterRegistrationBean<CorsFilter> registration = new FilterRegistrationBean<>();
         CorsFilter filter = new CorsFilter(source);
         registration.setFilter(filter);
