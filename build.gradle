@@ -2,29 +2,27 @@ ext {
     lombokVersion = "1.18.28"
 
     // Spring boot
-    springBootVersion = "3.1.1"
+    springBootVersion = "3.1.2"
     // Spring
-    springVersion = "6.0.10"
+    springVersion = "6.0.11"
     // Spring cloud
     springCloudVersion = "2022.0.3"
-    // Spring 相关依赖管理工具
-    springDependencyManagementVersion = "1.1.0"
 
     // 校验
     // 需要兼容 org.springframework.boot:spring-boot-starter-validation 下的版本
-    hibernateValidatorVersion = "8.0.0.Final"
+    hibernateValidatorVersion = "8.0.1.Final"
 
     // 需要兼容 org.springframework.boot:spring-boot-starter-tomcat 下的版本
     // org.apache.tomcat.embed:tomcat-embed-core
-    tomcatVersion = "10.1.10"
+    tomcatVersion = "10.1.11"
 
     // Jackson
     jacksonVersion = "2.15.2"
 
     // 接口文档
-    kinfe4jVersion = "4.1.0"
-    swaggerVersion = "2.2.12"
-    springdocVersion = "2.1.0"
+    knife4jVersion = "4.3.0"
+    swaggerVersion = "2.2.15"
+    springdocVersion = "2.2.0"
 
     // 系统资源监控
     oshiVersion = "6.4.3"
@@ -42,7 +40,7 @@ ext {
     commonsCodecVersion = "1.16.0"
 
     // Google 注解
-    googleAnnotationsVersion = "3.0.1"
+    googleAnnotationsVersion = "3.0.2"
 
     // Junit
     junitJupiterVersion = "5.9.3"
@@ -55,15 +53,15 @@ buildscript {
         }
     }
     dependencies {
-        classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:3.1.1"
+        classpath "io.spring.gradle:dependency-management-plugin:1.1.2"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:3.1.2"
     }
 }
 
 allprojects {
 
     group "com.vaulka.kit"
-    version "3.1.1.0-beta-1"
+    version "3.1.2-beta-1"
 
     repositories {
         mavenLocal()

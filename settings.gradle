@@ -1,46 +1,44 @@
-rootProject.name = 'spring-tookit'
-include 'kit-captcha'
-include 'kit-captcha:captcha-utils'
-findProject(':kit-captcha:captcha-utils')?.name = 'captcha-utils'
-include 'kit-captcha:captcha-utils'
-findProject(':kit-captcha:captcha-utils')?.name = 'captcha-utils'
-include 'kit-captcha:captcha-spring-boot-starter'
-findProject(':kit-captcha:captcha-spring-boot-starter')?.name = 'captcha-spring-boot-starter'
-include 'kit-doc'
-include 'kit-doc:doc-spring-boot-starter'
-findProject(':kit-doc:doc-spring-boot-starter')?.name = 'doc-spring-boot-starter'
-include 'kit-doc:doc-spring-boot-core'
-findProject(':kit-doc:doc-spring-boot-core')?.name = 'doc-spring-boot-core'
-include 'kit-doc:doc-spring-boot-starter-gateway'
-findProject(':kit-doc:doc-spring-boot-starter-gateway')?.name = 'doc-spring-boot-starter-gateway'
-include 'kit-ip'
-include 'kit-ip:ip-spring-boot-starter'
-findProject(':kit-ip:ip-spring-boot-starter')?.name = 'ip-spring-boot-starter'
-include 'kit-system'
-include 'kit-system:system-utils'
-findProject(':kit-system:system-utils')?.name = 'system-utils'
-include 'kit-tree'
-include 'kit-tree:tree-utils'
-findProject(':kit-tree:tree-utils')?.name = 'tree-utils'
-include 'kit-validation'
-include 'kit-validation:validation-utils'
-findProject(':kit-validation:validation-utils')?.name = 'validation-utils'
-include 'kit-desensitization'
-include 'kit-desensitization:desensitization-utils'
-findProject(':kit-desensitization:desensitization-utils')?.name = 'desensitization-utils'
-include 'kit-web'
-include 'kit-web:web-spring-boot-starter'
-findProject(':kit-web:web-spring-boot-starter')?.name = 'web-spring-boot-starter'
-include 'kit-web:web-redis-spring-boot-starter'
-findProject(':kit-web:web-redis-spring-boot-starter')?.name = 'web-redis-spring-boot-starter'
-include 'kit-redis:redis-spring-boot-starter'
-findProject(':kit-redis:redis-spring-boot-starter')?.name = 'redis-spring-boot-starter'
-include 'kit-dynamic-datasource:dynamic-datasource-spring-boot-starter'
-findProject(':kit-dynamic-datasource:dynamic-datasource-spring-boot-starter')?.name = 'dynamic-datasource-spring-boot-starter'
-include 'kit-minio'
-include 'kit-minio:minio-utils'
-findProject(':kit-minio:minio-utils')?.name = 'minio-utils'
-include 'kit-minio:minio-spring-boot-starter'
-findProject(':kit-minio:minio-spring-boot-starter')?.name = 'minio-spring-boot-starter'
-include 'kit-dynamic-datasource'
-include 'kit-redis'
+rootProject.name = "spring-tookit"
+include "kit-captcha"
+include "kit-captcha:captcha-utils"
+findProject(":kit-captcha:captcha-utils")?.name = "captcha-utils"
+include "kit-captcha:captcha-spring-boot-starter"
+findProject(":kit-captcha:captcha-spring-boot-starter")?.name = "captcha-spring-boot-starter"
+include "kit-doc"
+include "kit-doc:doc-spring-boot-starter"
+findProject(":kit-doc:doc-spring-boot-starter")?.name = "doc-spring-boot-starter"
+include "kit-doc:doc-spring-boot-core"
+findProject(":kit-doc:doc-spring-boot-core")?.name = "doc-spring-boot-core"
+include "kit-doc:doc-spring-boot-starter-gateway"
+findProject(":kit-doc:doc-spring-boot-starter-gateway")?.name = "doc-spring-boot-starter-gateway"
+include "kit-ip"
+include "kit-ip:ip-spring-boot-starter"
+findProject(":kit-ip:ip-spring-boot-starter")?.name = "ip-spring-boot-starter"
+include "kit-system"
+include "kit-system:system-utils"
+findProject(":kit-system:system-utils")?.name = "system-utils"
+include "kit-tree"
+include "kit-tree:tree-utils"
+findProject(":kit-tree:tree-utils")?.name = "tree-utils"
+include "kit-validation"
+include "kit-validation:validation-utils"
+findProject(":kit-validation:validation-utils")?.name = "validation-utils"
+include "kit-desensitization"
+include "kit-desensitization:desensitization-utils"
+findProject(":kit-desensitization:desensitization-utils")?.name = "desensitization-utils"
+include "kit-web"
+include "kit-web:web-spring-boot-starter"
+findProject(":kit-web:web-spring-boot-starter")?.name = "web-spring-boot-starter"
+include "kit-web:web-redis-spring-boot-starter"
+findProject(":kit-web:web-redis-spring-boot-starter")?.name = "web-redis-spring-boot-starter"
+include "kit-redis:redis-spring-boot-starter"
+findProject(":kit-redis:redis-spring-boot-starter")?.name = "redis-spring-boot-starter"
+include "kit-dynamic-datasource:dynamic-datasource-spring-boot-starter"
+findProject(":kit-dynamic-datasource:dynamic-datasource-spring-boot-starter")?.name = "dynamic-datasource-spring-boot-starter"
+include "kit-minio"
+include "kit-minio:minio-utils"
+findProject(":kit-minio:minio-utils")?.name = "minio-utils"
+include "kit-minio:minio-spring-boot-starter"
+findProject(":kit-minio:minio-spring-boot-starter")?.name = "minio-spring-boot-starter"
+include "kit-dynamic-datasource"
+include "kit-redis"
