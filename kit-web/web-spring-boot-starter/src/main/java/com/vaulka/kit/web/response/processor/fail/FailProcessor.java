@@ -17,6 +17,9 @@ import java.util.Optional;
  */
 public interface FailProcessor<T extends Throwable> {
 
+    /**
+     * log
+     */
     Logger LOG = LoggerFactory.getLogger(FailProcessor.class);
 
     /**

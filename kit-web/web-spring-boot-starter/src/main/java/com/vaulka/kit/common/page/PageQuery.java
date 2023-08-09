@@ -20,6 +20,12 @@ public class PageQuery implements Serializable {
     @Serial
     private static final long serialVersionUID = 7054779301680019390L;
 
+    /**
+     * 初始化分页请求参数
+     *
+     * @param pageNumber 当前页号
+     * @param pageSize   一页数量
+     */
     public PageQuery(Integer pageNumber, Integer pageSize) {
         this.pageNumber = pageNumber;
         this.pageSize = pageSize;

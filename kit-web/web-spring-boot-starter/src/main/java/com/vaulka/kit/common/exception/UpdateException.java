@@ -12,6 +12,11 @@ public class UpdateException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = 5688016478526820394L;
 
+    /**
+     * 修改异常
+     *
+     * @param message 异常信息
+     */
     public UpdateException(String message) {
         super(message);
     }

@@ -86,6 +86,9 @@ public @interface MinNumAndMaxNum {
      */
     Class<? extends Payload>[] payload() default {};
 
+    /**
+     * list
+     */
     @Documented
     @Retention(RUNTIME)
     @Target({ElementType.TYPE})

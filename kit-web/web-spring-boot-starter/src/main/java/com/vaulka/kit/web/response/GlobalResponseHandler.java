@@ -63,6 +63,12 @@ public class GlobalResponseHandler extends RequestResponseBodyMethodProcessor im
 
     private final ObjectMapper jsonMapper;
 
+    /**
+     * 初始化Spring MVC 全局响应处理器
+     *
+     * @param converter  converter
+     * @param jsonMapper jsonMapper
+     */
     public GlobalResponseHandler(MappingJackson2HttpMessageConverter converter, ObjectMapper jsonMapper) {
         super(Collections.singletonList(converter));
         this.jsonMapper = jsonMapper;

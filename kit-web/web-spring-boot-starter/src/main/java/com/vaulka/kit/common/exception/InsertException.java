@@ -12,6 +12,11 @@ public class InsertException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = -4776662733913410838L;
 
+    /**
+     * 保存异常
+     *
+     * @param message 异常信息
+     */
     public InsertException(String message) {
         super(message);
     }

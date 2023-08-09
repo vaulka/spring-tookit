@@ -26,6 +26,11 @@ public class RepeatedlyReadRequestWrapper extends HttpServletRequestWrapper {
      */
     private final String requestBody;
 
+    /**
+     * 初始化容器
+     *
+     * @param request request
+     */
     public RepeatedlyReadRequestWrapper(HttpServletRequest request) throws IOException {
         super(request);
         requestBody = HttpServletRequestUtils.getBody(request);

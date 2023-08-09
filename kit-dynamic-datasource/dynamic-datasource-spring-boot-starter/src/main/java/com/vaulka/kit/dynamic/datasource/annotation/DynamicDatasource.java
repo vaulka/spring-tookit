@@ -23,7 +23,7 @@ public @interface DynamicDatasource {
     /**
      * 数据源名称
      * <p>
-     * 可填写数据源名称或组名，填写规则详情见 {@link DynamicDatasourceProperties#dynamicDatasource}
+     * 可填写数据源名称或组名，填写规则详情见 {@link DynamicDatasourceProperties}
      * <p>
      * 未填写则使用默认数据源
      *

@@ -20,6 +20,13 @@ public class PageResponse<T> implements Serializable {
     @Serial
     private static final long serialVersionUID = 544302473094363807L;
 
+    /**
+     * 初始化分页响应数据
+     *
+     * @param content       数据集合
+     * @param pageQuery     分页请求参数
+     * @param totalElements 总数量
+     */
     public PageResponse(List<T> content, PageQuery pageQuery, long totalElements) {
         this.content = content;
         this.totalElements = totalElements;

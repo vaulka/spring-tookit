@@ -17,6 +17,13 @@ import java.util.stream.Collectors;
  */
 public class TreeUtils<T extends TreeNode<T, R>, R> {
 
+    /**
+     * 构建树形结构
+     *
+     * @param data   数据列表
+     * @param rootId 顶层节点 ID
+     * @return 树形结构数据
+     */
     public List<T> buildNode(List<T> data, R rootId) {
         return this.buildNode(data, rootId, null);
     }

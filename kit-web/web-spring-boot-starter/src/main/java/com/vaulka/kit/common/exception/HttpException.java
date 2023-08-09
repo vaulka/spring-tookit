@@ -12,6 +12,11 @@ public class HttpException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = -5701953556548839172L;
 
+    /**
+     * HTTP 请求异常
+     *
+     * @param message 异常信息
+     */
     public HttpException(String message, Exception e) {
         super(message, e);
     }

@@ -33,6 +33,11 @@ public class XssRequestWrapper extends HttpServletRequestWrapper {
      */
     private final String requestBody;
 
+    /**
+     * 初始化容器
+     *
+     * @param request request
+     */
     public XssRequestWrapper(HttpServletRequest request) {
         super(request);
         requestBody = HttpServletRequestUtils.getBody(request);

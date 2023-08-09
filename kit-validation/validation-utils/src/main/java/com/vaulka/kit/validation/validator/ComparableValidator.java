@@ -50,6 +50,13 @@ public class ComparableValidator {
      */
     private List<FieldType> fieldTypes;
 
+    /**
+     * 校验器
+     *
+     * @param obj     obj
+     * @param context context
+     * @return 校验结果
+     */
     protected boolean validation(Object obj, ConstraintValidatorContext context) {
         if (obj == null) {
             this.setErrorMessage(context, "校验对象不能为空");

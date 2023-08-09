@@ -12,6 +12,11 @@ public class DeleteException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = 8412329462247258183L;
 
+    /**
+     * 删除异常
+     *
+     * @param message 异常信息
+     */
     public DeleteException(String message) {
         super(message);
     }

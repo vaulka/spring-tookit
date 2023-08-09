@@ -24,6 +24,11 @@ public class XssFilter implements Filter {
      */
     private final List<Pattern> excludePatterns;
 
+    /**
+     * 初始化 XSS 防御
+     *
+     * @param excludes 排除列表
+     */
 
     public XssFilter(List<String> excludes) {
         this.excludePatterns = excludes.stream()

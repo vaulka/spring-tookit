@@ -19,6 +19,12 @@ public class TreeNode<T extends TreeNode<T, R>, R> implements Serializable {
     @Serial
     private static final long serialVersionUID = 5732775650276600108L;
 
+    /**
+     * 初始化树状结构
+     *
+     * @param id       ID
+     * @param parentId 父级 ID
+     */
     public TreeNode(R id, R parentId) {
         this.id = id;
         this.parentId = parentId;
