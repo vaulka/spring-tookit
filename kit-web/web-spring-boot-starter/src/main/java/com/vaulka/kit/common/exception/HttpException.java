@@ -16,6 +16,7 @@ public class HttpException extends RuntimeException {
      * HTTP 请求异常
      *
      * @param message 异常信息
+     * @param e       异常
      */
     public HttpException(String message, Exception e) {
         super(message, e);
