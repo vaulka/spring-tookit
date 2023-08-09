@@ -40,7 +40,7 @@ ext {
     commonsCodecVersion = "1.16.0"
 
     // Google 注解
-    googleAnnotationsVersion = "3.0.2"
+    googleAnnotationsVersion = "3.0.1"
 
     // Junit
     junitJupiterVersion = "5.9.3"
@@ -96,7 +96,7 @@ subprojects {
             archiveClassifier.set("sources")
         }
 
-        tasks.register('javadocJar', Jar) {
+        tasks.register("javadocJar", Jar) {
             from javadoc
             archiveClassifier.set("javadoc")
         }
@@ -158,6 +158,10 @@ subprojects {
                     }
                 }
             }
+        }
+
+        signing {
+            sign publishing.publications.mavenJava
         }
 
     }
