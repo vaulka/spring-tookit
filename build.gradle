@@ -55,15 +55,15 @@ buildscript {
         }
     }
     dependencies {
-        classpath "org.springframework.boot:spring-boot-gradle-plugin:3.1.1"
         classpath "io.spring.gradle:dependency-management-plugin:1.1.0"
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:3.1.1"
     }
 }
 
 allprojects {
 
     group "com.vaulka.kit"
-    version "3.1.1.0"
+    version "3.1.1.0-beta-1"
 
     repositories {
         mavenLocal()
@@ -75,11 +75,13 @@ allprojects {
 
 subprojects {
     if (!name.contains("kit")) {
+        apply plugin: "java"
+        apply plugin: "signing"
         apply plugin: "java-library"
+        apply plugin: "maven-publish"
 
-        java {
-            sourceCompatibility = "17"
-        }
+        sourceCompatibility = 17
+        targetCompatibility = 17
 
         jar {
             enabled = true
@@ -89,6 +91,16 @@ subprojects {
         tasks.register("copyJars", Copy) {
             from configurations.runtimeClasspath
             into "$buildDir/libs"
+        }
+
+        tasks.register("sourcesJar", Jar) {
+            from sourceSets.main.allSource
+            archiveClassifier.set("sources")
+        }
+
+        tasks.register('javadocJar', Jar) {
+            from javadoc
+            archiveClassifier.set("javadoc")
         }
 
         dependencies {
@@ -102,6 +114,52 @@ subprojects {
 
         test {
             useJUnitPlatform()
+        }
+
+        publishing {
+            publications {
+                mavenJava(MavenPublication) {
+                    groupId = "${group}"
+                    artifactId = "${project.name}"
+                    version = "${version}"
+
+                    from components.java
+                    artifact sourcesJar
+                    artifact javadocJar
+
+                    pom {
+                        name = "spring-tookit"
+                        description = "Spring 增强套件"
+                        url = "https://github.com/vaulka/spring-tookit"
+                        licenses {
+                            license {
+                                name = "GPL-v3.0 协议"
+                                url = "https://www.gnu.org/licenses/gpl-3.0-standalone.html"
+                            }
+                        }
+                        developers {
+                            developer {
+                                id = "Vaulka"
+                                name = "Vaulka"
+                                email = "vaulka7@gmail.com"
+                            }
+                        }
+                        scm {
+                            url = "https://github.com/vaulka/spring-tookit"
+                        }
+                    }
+                }
+            }
+
+            repositories {
+                maven {
+                    url "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2"
+                    credentials {
+                        username ""
+                        password ""
+                    }
+                }
+            }
         }
 
     }

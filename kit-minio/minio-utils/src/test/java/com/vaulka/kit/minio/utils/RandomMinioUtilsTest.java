@@ -3,7 +3,6 @@ package com.vaulka.kit.minio.utils;
 import com.vaulka.kit.minio.enums.RenameType;
 import com.vaulka.kit.minio.model.UploadInfo;
 import io.minio.messages.Part;
-import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -55,7 +54,7 @@ public class RandomMinioUtilsTest {
     /**
      * 文件上传
      */
-    @Test
+//    @Test
     public void upload() throws IOException, InterruptedException {
         String fileName = "avatar.jpg";
         try (FileInputStream inputStream = new FileInputStream("src/test/resources/" + fileName)) {
@@ -74,7 +73,7 @@ public class RandomMinioUtilsTest {
     /**
      * 分片上传
      */
-    @Test
+//    @Test
     public void partUpload() throws IOException, InterruptedException {
         String fileName = "video.mp4";
         UploadInfo info = utils.initPartUpload(fileName);

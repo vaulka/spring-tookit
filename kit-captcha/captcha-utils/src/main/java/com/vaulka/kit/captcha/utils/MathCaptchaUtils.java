@@ -49,6 +49,16 @@ MathCaptchaUtils implements CaptchaUtils {
      */
     private final int lineWidth;
 
+    /**
+     * 初始化算数验证码工具
+     *
+     * @param minCode     最小验证码数值
+     * @param maxCode     最大验证码数值
+     * @param imageWidth  图像宽度
+     * @param imageHeight 图像高度
+     * @param drawCount   干扰线数量
+     * @param lineWidth   干扰线的长度
+     */
     public MathCaptchaUtils(int minCode, int maxCode,
                             int imageWidth, int imageHeight,
                             int drawCount, int lineWidth) {

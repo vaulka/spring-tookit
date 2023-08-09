@@ -62,12 +62,27 @@ public class RedisCacheManagerAutoConfiguration {
         };
     }
 
+    /**
+     * 配置 cacheManagerCustomizers
+     *
+     * @param customizers customizers
+     * @return cacheManagerCustomizers
+     */
     @Bean
     @ConditionalOnMissingBean(CacheManagerCustomizers.class)
     public CacheManagerCustomizers cacheManagerCustomizers(ObjectProvider<List<CacheManagerCustomizer<?>>> customizers) {
         return new CacheManagerCustomizers(customizers.getIfAvailable());
     }
 
+    /**
+     * 配置 redisCacheManager
+     *
+     * @param cacheProperties         cacheProperties
+     * @param connectionFactory       connectionFactory
+     * @param customizerInvoker       customizerInvoker
+     * @param redisCacheConfiguration redisCacheConfiguration
+     * @return redisCacheManager
+     */
     @Bean
     @Primary
     public RedisCacheManager redisCacheManager(CacheProperties cacheProperties,

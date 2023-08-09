@@ -23,6 +23,14 @@ import java.util.Map;
  */
 public class RedisAutoCacheManager extends RedisCacheManager {
 
+    /**
+     * 初始化缓存管理配置
+     *
+     * @param cacheWriter                cacheWriter
+     * @param defaultCacheConfiguration  defaultCacheConfiguration
+     * @param allowRuntimeCacheCreation  allowRuntimeCacheCreation
+     * @param initialCacheConfigurations initialCacheConfigurations
+     */
     public RedisAutoCacheManager(RedisCacheWriter cacheWriter,
                                  RedisCacheConfiguration defaultCacheConfiguration,
                                  boolean allowRuntimeCacheCreation,

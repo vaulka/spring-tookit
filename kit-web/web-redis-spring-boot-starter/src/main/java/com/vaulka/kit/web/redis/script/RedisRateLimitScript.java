@@ -25,6 +25,9 @@ public class RedisRateLimitScript implements RedisScript<String> {
 
     private final String script;
 
+    /**
+     * 初始化加载限流脚本
+     */
     public RedisRateLimitScript() {
         InputStream inputStream = RedisRateLimitScript.class.getResourceAsStream("/script/rateLimit.lua");
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();

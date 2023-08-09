@@ -81,6 +81,12 @@ public class DocProperties {
     @NoArgsConstructor
     public static class GroupOpenApi {
 
+        /**
+         * 初始化组别
+         *
+         * @param displayName The Display name.
+         * @param group       The Group.
+         */
         public GroupOpenApi(String displayName, String group) {
             this.displayName = displayName;
             this.group = group;

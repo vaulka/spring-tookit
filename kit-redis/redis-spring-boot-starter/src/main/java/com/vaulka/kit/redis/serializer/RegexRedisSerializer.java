@@ -18,6 +18,11 @@ public class RegexRedisSerializer implements RedisSerializer<String> {
 
     private final String regex;
 
+    /**
+     * 初始化 Redis 前缀序列化配置
+     *
+     * @param prefix 前缀信息
+     */
     public RegexRedisSerializer(String prefix) {
         if (StringUtils.isBlank(prefix)) {
             this.regex = "";

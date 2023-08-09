@@ -35,6 +35,13 @@ public class DistributedLockAspect {
      */
     private static final String HASHTAG = "#";
 
+    /**
+     * 分布式锁实现业务逻辑
+     *
+     * @param point point
+     * @return 业务信息
+     * @throws Throwable Throwable
+     */
     @Around("@within(com.vaulka.kit.web.redis.annotation.DistributedLock)" +
             "|| @annotation(com.vaulka.kit.web.redis.annotation.DistributedLock) ")
     public Object exec(ProceedingJoinPoint point) throws Throwable {

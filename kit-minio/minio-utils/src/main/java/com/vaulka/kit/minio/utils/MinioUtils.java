@@ -62,6 +62,16 @@ public class MinioUtils {
      */
     private final CustomMinioAsyncClient client;
 
+    /**
+     * 初始化 MinIO Client
+     *
+     * @param endpoint   endpoint
+     * @param bucket     bucket
+     * @param accessKey  accessKey
+     * @param secretKey  secretKey
+     * @param filePrefix 文件前缀
+     * @param renameType 重命名类型
+     */
     public MinioUtils(String endpoint, String bucket,
                       String accessKey, String secretKey,
                       String filePrefix, RenameType renameType) {
@@ -160,6 +170,13 @@ public class MinioUtils {
         }
     }
 
+    /**
+     * 文件上传
+     *
+     * @param fileName    文件名称
+     * @param inputStream input 流
+     * @return 文件信息
+     */
     public UploadInfo upload(String fileName, InputStream inputStream) {
         return this.upload(fileName, "application/octet-stream", inputStream);
     }
@@ -190,6 +207,12 @@ public class MinioUtils {
         return info;
     }
 
+    /**
+     * 获取分片上传事件ID
+     *
+     * @param fileName 文件名称
+     * @return 文件信息
+     */
     public UploadInfo initPartUpload(String fileName) {
         return this.initPartUpload(fileName, "application/octet-stream");
     }
@@ -219,6 +242,20 @@ public class MinioUtils {
         return info;
     }
 
+    /**
+     * 分片上传
+     * <p>
+     * 需要注意，最小分片大小需要 5MB，不然合并会报错，相关 <a href="https://github.com/minio/minio/issues/11076">issues</a>
+     * <p>
+     * 也就意味着，适用场景为文件 &gt;= 10MB，使用分片上传更合适。（10MB 以下也只能分一片，不如用简单上传，减少接口请求次数）
+     *
+     * @param uploadId    分片上传事件ID
+     * @param partNumber  当前分片数
+     * @param partSize    当前分片文件大小，单位为字节，譬如：10MB = 10 * 1024 * 1024L
+     * @param filePath    文件路径
+     * @param inputStream input 流
+     * @return 分片信息
+     */
     public Part partUpload(String uploadId, int partNumber, int partSize, String filePath, InputStream inputStream) {
         return this.partUpload(uploadId, partNumber, partSize, filePath, new BufferedInputStream(inputStream));
     }
@@ -264,6 +301,13 @@ public class MinioUtils {
         return response.result().partList();
     }
 
+    /**
+     * 合并分片上传
+     *
+     * @param uploadId 分片上传事件ID
+     * @param filePath 文件路径
+     * @param parts    分片信息列表
+     */
     public void completePartUpload(String uploadId, String filePath, List<Part> parts) {
         this.completePartUpload(uploadId, filePath, parts.toArray(new Part[0]));
     }

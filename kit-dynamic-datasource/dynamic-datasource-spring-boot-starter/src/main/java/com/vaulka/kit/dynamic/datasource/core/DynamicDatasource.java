@@ -11,6 +11,12 @@ import java.util.Map;
  **/
 public class DynamicDatasource extends AbstractRoutingDataSource {
 
+    /**
+     * 初始化动态数据源
+     *
+     * @param defaultDataSource 默认数据源
+     * @param multiDatasets     多数据源
+     */
     public DynamicDatasource(Object defaultDataSource, Map<Object, Object> multiDatasets) {
         // 设置默认数据源
         super.setDefaultTargetDataSource(defaultDataSource);

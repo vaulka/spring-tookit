@@ -34,6 +34,14 @@ public class RateLimitAspect {
     private final RateLimitProperties rateLimitProperties;
     private final RedisTemplate<String, String> redisTemplate;
 
+    /**
+     * 初始化令牌桶限流
+     *
+     * @param cacheProperties     cacheProperties
+     * @param rateLimitProperties cacheProperties
+     * @param redisTemplate       redisTemplate
+     * @param applicationContext  applicationContext
+     */
     public RateLimitAspect(RedisCacheProperties cacheProperties,
                            RateLimitProperties rateLimitProperties,
                            RedisTemplate<String, String> redisTemplate,
@@ -53,6 +61,11 @@ public class RateLimitAspect {
      */
     private static final String DEFAULT_RATE_LIMIT_KEY = "rate-limit:{0}:{1}:{2}";
 
+    /**
+     * 令牌桶限流业务逻辑
+     *
+     * @param point point
+     */
     @Before("(@within(org.springframework.stereotype.Controller) " +
             "|| @within(org.springframework.web.bind.annotation.RestController)) " +
             "&& (@annotation(org.springframework.web.bind.annotation.RequestMapping) " +

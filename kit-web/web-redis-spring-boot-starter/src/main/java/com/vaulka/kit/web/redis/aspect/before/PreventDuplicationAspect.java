@@ -44,6 +44,14 @@ public class PreventDuplicationAspect {
     private final PreventDuplicationProperties properties;
     private final RedisTemplate<String, Object> redisTemplate;
 
+    /**
+     * 初始化防重检测
+     *
+     * @param jsonMapper         jsonMapper
+     * @param properties         properties
+     * @param redisTemplate      properties
+     * @param applicationContext applicationContext
+     */
     public PreventDuplicationAspect(ObjectMapper jsonMapper,
                                     PreventDuplicationProperties properties,
                                     RedisTemplate<String, Object> redisTemplate,
@@ -63,6 +71,12 @@ public class PreventDuplicationAspect {
      */
     private static final String PREVENT_DUPLICATION_KEY = "prevent-duplication:{0}:{1}";
 
+    /**
+     * 防重检测业务逻辑
+     *
+     * @param point point
+     * @throws IOException IO 异常
+     */
     @Before("(@within(org.springframework.stereotype.Controller) " +
             "|| @within(org.springframework.web.bind.annotation.RestController)) " +
             "&& (@annotation(org.springframework.web.bind.annotation.RequestMapping) " +
@@ -103,6 +117,9 @@ public class PreventDuplicationAspect {
         redisTemplate.opsForValue().set(key, "", frequency, unit);
     }
 
+    /**
+     * 请求信息
+     */
     @Data
     @Builder
     @NoArgsConstructor

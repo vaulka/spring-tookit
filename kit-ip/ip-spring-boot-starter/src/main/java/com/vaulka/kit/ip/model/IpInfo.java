@@ -33,6 +33,11 @@ public class IpInfo implements Serializable {
      */
     private static final int SIZE = 5;
 
+    /**
+     * 初始化 IP 信息
+     *
+     * @param address IP 地址
+     */
     public IpInfo(String address) {
         if (address == null) {
             return;

@@ -24,6 +24,13 @@ import java.util.Optional;
 @Order(Ordered.HIGHEST_PRECEDENCE + 1)
 public class DynamicDatasourceAspect {
 
+    /**
+     * 切面切换数据源
+     *
+     * @param point point
+     * @return 业务信息
+     * @throws Throwable Throwable
+     */
     @Around("@within(com.vaulka.kit.dynamic.datasource.annotation.DynamicDatasource) " +
             "|| (@annotation(com.vaulka.kit.dynamic.datasource.annotation.DynamicDatasource)) ")
     public Object exec(ProceedingJoinPoint point) throws Throwable {

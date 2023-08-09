@@ -25,6 +25,11 @@ import java.util.concurrent.CompletableFuture;
  */
 public class CustomMinioAsyncClient extends MinioAsyncClient {
 
+    /**
+     * 初始化 MinIO Client
+     *
+     * @param client client
+     */
     public CustomMinioAsyncClient(MinioAsyncClient client) {
         super(client);
     }

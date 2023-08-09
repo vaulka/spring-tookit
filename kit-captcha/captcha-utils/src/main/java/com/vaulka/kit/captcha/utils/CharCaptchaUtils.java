@@ -37,6 +37,15 @@ public class CharCaptchaUtils implements CaptchaUtils {
      */
     private final int lineWidth;
 
+    /**
+     * 初始化字符验证码工具
+     *
+     * @param codeNum     验证码数量
+     * @param imageWidth  图像宽度
+     * @param imageHeight 图像高度
+     * @param drawCount   干扰线数量
+     * @param lineWidth   干扰线的长度
+     */
     public CharCaptchaUtils(int codeNum,
                             int imageWidth, int imageHeight,
                             int drawCount, int lineWidth) {
