@@ -1,5 +1,6 @@
 package com.vaulka.kit.doc.autoconfigure;
 
+import com.vaulka.kit.doc.configurer.Knife4jMvcConfigurer;
 import com.vaulka.kit.doc.properties.DocProperties;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -15,6 +16,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import java.text.MessageFormat;
 import java.util.Collection;
@@ -30,6 +32,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties({DocProperties.class})
+@Import({Knife4jMvcConfigurer.class})
 public class DocAutoConfiguration {
 
     private final DocProperties properties;
