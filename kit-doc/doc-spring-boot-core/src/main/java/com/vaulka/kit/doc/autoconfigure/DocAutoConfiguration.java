@@ -80,7 +80,7 @@ public class DocAutoConfiguration {
         if (properties.getGroups().size() == 0) {
             // 未填写组别则会有一个默认分组
             // 兼容 Knife4j 源码，没有分组则会报错
-            return DEFAULT_GROUPED_OPEN_API.build(properties.isEnabled());
+            return DEFAULT_GROUPED_OPEN_API.build(properties.getRequestParameters(), properties.isEnabled());
         }
         List<String> displayNames = properties.getGroups().stream()
                 .map(DocProperties.GroupOpenApi::getDisplayName)
@@ -106,7 +106,7 @@ public class DocAutoConfiguration {
                 ((ConfigurableApplicationContext) applicationContext).getBeanFactory();
         GroupedOpenApi defaultGroupedOpenApi = null;
         for (int i = 0; i < properties.getGroups().size(); i++) {
-            GroupedOpenApi groupedOpenApi = properties.getGroups().get(i).build(properties.isEnabled());
+            GroupedOpenApi groupedOpenApi = properties.getGroups().get(i).build(properties.getRequestParameters(), properties.isEnabled());
             if (i == 0) {
                 defaultGroupedOpenApi = groupedOpenApi;
                 continue;
