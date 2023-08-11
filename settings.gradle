@@ -42,3 +42,7 @@ include "kit-minio:minio-spring-boot-starter"
 findProject(":kit-minio:minio-spring-boot-starter")?.name = "minio-spring-boot-starter"
 include "kit-dynamic-datasource"
 include "kit-redis"
+include "kit-watermark"
+include "kit-watermark:watermark-utils"
+findProject(":kit-watermark:watermark-utils")?.name = "watermark-utils"
+
