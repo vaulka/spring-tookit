@@ -1,7 +1,7 @@
-package com.vaulka.kit.watermark.utils.impl;
+package com.vaulka.kit.watermark.utils.text.impl;
 
 import com.vaulka.kit.watermark.model.SingleTextRenderStyle;
-import com.vaulka.kit.watermark.utils.PhotoTextWatermarkUtils;
+import com.vaulka.kit.watermark.utils.text.PhotoTextWatermarkUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -40,6 +40,7 @@ public class PhotoSingleTextWatermarkUtils implements PhotoTextWatermarkUtils<Si
      * @return 图片字节数组
      * @throws IOException IO 异常
      */
+    @SuppressWarnings("Duplicates")
     @Override
     public BufferedImage mark(SingleTextRenderStyle style, File originFile, String text) throws IOException {
         BufferedImage image = ImageIO.read(originFile);

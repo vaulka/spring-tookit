@@ -1,6 +1,7 @@
-package com.vaulka.kit.watermark.utils;
+package com.vaulka.kit.watermark.utils.text;
 
 import com.vaulka.kit.watermark.model.TextRenderStyle;
+import com.vaulka.kit.watermark.utils.PhotoWatermarkUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -11,11 +12,11 @@ import java.io.OutputStream;
 import java.util.Base64;
 
 /**
- * 图片文字水印
+ * 图片文本水印
  *
  * @author Vaulka
  */
-public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> {
+public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> extends PhotoWatermarkUtils<S, String> {
 
     /**
      * 图片加文本水印
@@ -25,6 +26,7 @@ public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> {
      * @return 水印图片
      * @throws IOException IO 异常
      */
+    @Override
     BufferedImage mark(File originFile, String text) throws IOException;
 
     /**
@@ -36,6 +38,7 @@ public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> {
      * @return 水印图片
      * @throws IOException IO 异常
      */
+    @Override
     BufferedImage mark(S style, File originFile, String text) throws IOException;
 
     /**
@@ -46,6 +49,7 @@ public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> {
      * @param outputStream outputStream
      * @throws IOException IO 异常
      */
+    @Override
     default void markByStream(File originFile, String text, OutputStream outputStream) throws IOException {
         BufferedImage image = this.mark(originFile, text);
         try (outputStream) {
@@ -62,6 +66,7 @@ public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> {
      * @param outputStream outputStream
      * @throws IOException IO 异常
      */
+    @Override
     default void markByStream(S style, File originFile, String text, OutputStream outputStream) throws IOException {
         BufferedImage image = this.mark(style, originFile, text);
         try (outputStream) {
@@ -76,6 +81,7 @@ public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> {
      * @param text       水印内容
      * @throws IOException IO 异常
      */
+    @Override
     default ByteArrayOutputStream markByStream(File originFile, String text) throws IOException {
         BufferedImage image = this.mark(originFile, text);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -93,6 +99,7 @@ public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> {
      * @param text       水印内容
      * @throws IOException IO 异常
      */
+    @Override
     default ByteArrayOutputStream markByStream(S style, File originFile, String text) throws IOException {
         BufferedImage image = this.mark(style, originFile, text);
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -109,6 +116,7 @@ public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> {
      * @param text       水印内容
      * @throws IOException IO 异常
      */
+    @Override
     default String markByBase64(File originFile, String text) throws IOException {
         ByteArrayOutputStream outputStream = this.markByStream(originFile, text);
         return Base64.getEncoder().encodeToString(outputStream.toByteArray());
@@ -122,19 +130,10 @@ public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> {
      * @param text       水印内容
      * @throws IOException IO 异常
      */
+    @Override
     default String markByBase64(S style, File originFile, String text) throws IOException {
         ByteArrayOutputStream outputStream = this.markByStream(style, originFile, text);
         return Base64.getEncoder().encodeToString(outputStream.toByteArray());
-    }
-
-    /**
-     * 获取文件格式名称
-     *
-     * @param originFile 源文件
-     * @return 获取文件格式名称
-     */
-    default String getFormatName(File originFile) {
-        return originFile.getName().substring(originFile.getName().lastIndexOf(".") + 1);
     }
 
     /**

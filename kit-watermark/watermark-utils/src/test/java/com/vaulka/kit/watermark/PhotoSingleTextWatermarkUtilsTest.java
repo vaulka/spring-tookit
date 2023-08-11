@@ -1,6 +1,6 @@
 package com.vaulka.kit.watermark;
 
-import com.vaulka.kit.watermark.utils.impl.PhotoSingleTextWatermarkUtils;
+import com.vaulka.kit.watermark.utils.text.impl.PhotoSingleTextWatermarkUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
