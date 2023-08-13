@@ -1,6 +1,6 @@
 package com.vaulka.kit.watermark;
 
-import com.vaulka.kit.watermark.utils.text.impl.PhotoFullScreenTextWatermarkUtils;
+import com.vaulka.kit.watermark.utils.text.impl.ImageFullScreenTextWatermarkUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * @author Vaulka
  */
-public class PhotoFullScreenTextWatermarkUtilsTest {
+public class ImageFullScreenTextWatermarkUtilsTest {
 
     /**
      * 源文件
@@ -20,7 +20,7 @@ public class PhotoFullScreenTextWatermarkUtilsTest {
     /**
      * 全屏图片水印
      */
-    PhotoFullScreenTextWatermarkUtils utils = new PhotoFullScreenTextWatermarkUtils();
+    ImageFullScreenTextWatermarkUtils utils = new ImageFullScreenTextWatermarkUtils();
 
     /**
      * 图片打水印 Stream 流

@@ -1,8 +1,10 @@
-package com.vaulka.kit.watermark.model;
+package com.vaulka.kit.watermark.model.text;
 
 import lombok.Data;
 
-import java.awt.*;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Font;
 
 /**
  * 文本渲染样式
@@ -10,7 +12,7 @@ import java.awt.*;
  * @author Vaulka
  */
 @Data
-public class TextRenderStyle {
+public abstract class TextRenderStyle {
 
     /**
      * 水印颜色

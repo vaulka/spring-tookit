@@ -1,7 +1,7 @@
 package com.vaulka.kit.watermark.utils.text;
 
-import com.vaulka.kit.watermark.model.TextRenderStyle;
-import com.vaulka.kit.watermark.utils.PhotoWatermarkUtils;
+import com.vaulka.kit.watermark.model.text.TextRenderStyle;
+import com.vaulka.kit.watermark.utils.ImageWatermarkUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -16,7 +16,7 @@ import java.util.Base64;
  *
  * @author Vaulka
  */
-public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> extends PhotoWatermarkUtils<S, String> {
+public interface ImageTextWatermarkUtils<S extends TextRenderStyle> extends ImageWatermarkUtils<S, String> {
 
     /**
      * 图片加文本水印
@@ -32,7 +32,7 @@ public interface PhotoTextWatermarkUtils<S extends TextRenderStyle> extends Phot
     /**
      * 图片加文本水印
      *
-     * @param style      渲染样式findByGully?
+     * @param style      渲染样式
      * @param originFile 源文件
      * @param text       水印内容
      * @return 水印图片

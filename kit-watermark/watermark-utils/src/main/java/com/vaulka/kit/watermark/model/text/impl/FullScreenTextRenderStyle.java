@@ -1,5 +1,6 @@
-package com.vaulka.kit.watermark.model;
+package com.vaulka.kit.watermark.model.text.impl;
 
+import com.vaulka.kit.watermark.model.text.TextRenderStyle;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

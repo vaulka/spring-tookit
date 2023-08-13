@@ -1,10 +1,11 @@
 package com.vaulka.kit.watermark.utils.text.impl;
 
-import com.vaulka.kit.watermark.model.SingleTextRenderStyle;
-import com.vaulka.kit.watermark.utils.text.PhotoTextWatermarkUtils;
+import com.vaulka.kit.watermark.model.text.impl.SingleTextRenderStyle;
+import com.vaulka.kit.watermark.utils.text.ImageTextWatermarkUtils;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
@@ -16,7 +17,7 @@ import java.io.IOException;
  *
  * @author Vaulka
  */
-public class PhotoSingleTextWatermarkUtils implements PhotoTextWatermarkUtils<SingleTextRenderStyle> {
+public class ImageSingleTextWatermarkUtils implements ImageTextWatermarkUtils<SingleTextRenderStyle> {
 
     /**
      * 图片加文本水印
@@ -65,28 +66,27 @@ public class PhotoSingleTextWatermarkUtils implements PhotoTextWatermarkUtils<Si
         FontRenderContext frc = new FontRenderContext(null, true, true);
         // 计算字符串的宽度和高度
         Rectangle2D bounds = style.getFont().getStringBounds(text, frc);
-        // 字符宽度
-        int strWidth = (int) bounds.getWidth();
-        // 字符高度
-        int strHeight = (int) bounds.getHeight();
+        // 水印字符宽度
+        int watermarkWidth = (int) bounds.getWidth();
+        // 水印字符高度
+        int watermarkHeight = (int) bounds.getHeight();
         // 设置水印的位置
         switch (style.getPosition()) {
             case TOP_LEFT -> graphics.drawString(text,
-                    Math.max(0, (width - strWidth) / 100 * style.getX()),
-                    Math.max(0, height - strHeight) / 100 * style.getY());
+                    Math.max(0, (width - watermarkWidth) / 100 * style.getX()),
+                    Math.max(0, height - watermarkHeight) / 100 * style.getY());
             case TOP_RIGHT -> graphics.drawString(text,
-                    Math.max(0, (width - strWidth) / 100 * (100 - style.getX())),
-                    Math.max(0, height - strHeight) / 100 * style.getY());
+                    Math.max(0, (width - watermarkWidth) / 100 * (100 - style.getX())),
+                    Math.max(0, height - watermarkHeight) / 100 * style.getY());
             case BOTTOM_LEFT -> graphics.drawString(text,
-                    Math.max(0, (width - strWidth) / 100 * style.getX()),
-                    Math.max(0, height - strHeight) / 100 * (100 - style.getY()));
+                    Math.max(0, (width - watermarkWidth) / 100 * style.getX()),
+                    Math.max(0, height - watermarkHeight) / 100 * (100 - style.getY()));
             case BOTTOM_RIGHT -> graphics.drawString(text,
-                    Math.max(0, (width - strWidth) / 100 * (100 - style.getX())),
-                    Math.max(0, height - strHeight) / 100 * (100 - style.getY()));
+                    Math.max(0, (width - watermarkWidth) / 100 * (100 - style.getX())),
+                    Math.max(0, height - watermarkHeight) / 100 * (100 - style.getY()));
             default -> graphics.drawString(text,
-                    Math.max(0, width / 2 - strWidth / 2),
-                    Math.max(0, height / 2 - strHeight / 2));
-
+                    Math.max(0, (width - watermarkWidth) / 2),
+                    Math.max(0, (height - watermarkHeight) / 2));
         }
         // 释放画图工具
         graphics.dispose();

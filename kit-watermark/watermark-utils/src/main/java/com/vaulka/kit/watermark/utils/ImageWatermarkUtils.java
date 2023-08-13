@@ -13,7 +13,7 @@ import java.util.Base64;
  *
  * @author Vaulka
  */
-public interface PhotoWatermarkUtils<S, R> {
+public interface ImageWatermarkUtils<S, R> {
 
     /**
      * 图片加水印
@@ -28,7 +28,7 @@ public interface PhotoWatermarkUtils<S, R> {
     /**
      * 图片加水印
      *
-     * @param style      渲染样式findByGully?
+     * @param style      渲染样式
      * @param originFile 源文件
      * @param obj        水印内容
      * @return 水印图片

@@ -1,10 +1,11 @@
 package com.vaulka.kit.watermark.utils.text.impl;
 
-import com.vaulka.kit.watermark.model.FullScreenTextRenderStyle;
-import com.vaulka.kit.watermark.utils.text.PhotoTextWatermarkUtils;
+import com.vaulka.kit.watermark.model.text.impl.FullScreenTextRenderStyle;
+import com.vaulka.kit.watermark.utils.text.ImageTextWatermarkUtils;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +15,7 @@ import java.io.IOException;
  *
  * @author Vaulka
  */
-public class PhotoFullScreenTextWatermarkUtils implements PhotoTextWatermarkUtils<FullScreenTextRenderStyle> {
+public class ImageFullScreenTextWatermarkUtils implements ImageTextWatermarkUtils<FullScreenTextRenderStyle> {
 
     /**
      * 图片加文本水印
@@ -63,18 +64,18 @@ public class PhotoFullScreenTextWatermarkUtils implements PhotoTextWatermarkUtil
         graphics.rotate(Math.toRadians(-35), (double) bufImage.getWidth() / 2, (double) bufImage.getHeight() / 2);
         int x = -width / 2;
         int y;
-        // 字体长度
-        int markWidth = style.getFont().getSize() * this.getTextLength(text);
-        // 字体高度
-        int markHeight = style.getFont().getSize();
+        // 水印字体长度
+        int watermarkWidth = style.getFont().getSize() * this.getTextLength(text);
+        // 水印字体高度
+        int watermarkHeight = style.getFont().getSize();
         // 循环添加水印
         while (x < width * 1.5) {
             y = -height / 2;
             while (y < height * 1.5) {
                 graphics.drawString(text, x, y);
-                y += markHeight + style.getX();
+                y += watermarkHeight + style.getX();
             }
-            x += markWidth + style.getY();
+            x += watermarkWidth + style.getY();
         }
         // 释放画图工具
         graphics.dispose();
