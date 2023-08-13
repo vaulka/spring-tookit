@@ -2,6 +2,7 @@ package com.vaulka.kit.watermark.model.image.impl;
 
 import com.vaulka.kit.watermark.enums.WatermarkPosition;
 import com.vaulka.kit.watermark.model.image.ImageRenderStyle;
+import com.vaulka.kit.watermark.model.text.impl.SingleTextRenderStyle;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,12 +21,21 @@ public class SingleImageRenderStyle extends ImageRenderStyle {
     private WatermarkPosition position = WatermarkPosition.CENTER;
 
     /**
-     * 水印之间 X 轴间隔百分比
+     * 是否固定坐标
+     * <p>
+     * 是的话，则 {@link SingleImageRenderStyle#x}、{@link SingleImageRenderStyle#y} 轴参数为固定数值
+     * <p>
+     * 否的话，则 {@link SingleImageRenderStyle#x}、{@link SingleImageRenderStyle#y} 轴参数则为百分比数值
+     */
+    private boolean isFixedCoordinates = false;
+
+    /**
+     * 水印 X 轴
      */
     private int x = 15;
 
     /**
-     * 水印之间 Y 轴间隔百分比
+     * 水印 Y 轴
      */
     private int y = 15;
 

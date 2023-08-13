@@ -58,28 +58,32 @@ public class ImageSingleImageWatermarkUtils implements ImageImageWatermarkUtils<
         int watermarkWidth = watermarkImage.getWidth();
         // 水印图片高度
         int watermarkHeight = watermarkImage.getHeight();
-        // 设置水印的位置
-        switch (style.getPosition()) {
-            case TOP_LEFT -> graphics.drawImage(watermarkImage,
-                    Math.max(0, (width - watermarkWidth) / 100 * style.getX()),
-                    Math.max(0, height - watermarkHeight) / 100 * style.getY(),
-                    watermarkWidth, watermarkHeight, null);
-            case TOP_RIGHT -> graphics.drawImage(watermarkImage,
-                    Math.max(0, (width - watermarkWidth) / 100 * (100 - style.getX())),
-                    Math.max(0, height - watermarkHeight) / 100 * style.getY(),
-                    watermarkWidth, watermarkHeight, null);
-            case BOTTOM_LEFT -> graphics.drawImage(watermarkImage,
-                    Math.max(0, (width - watermarkWidth) / 100 * style.getX()),
-                    Math.max(0, height - watermarkHeight) / 100 * (100 - style.getY()),
-                    watermarkWidth, watermarkHeight, null);
-            case BOTTOM_RIGHT -> graphics.drawImage(watermarkImage,
-                    Math.max(0, (width - watermarkWidth) / 100 * (100 - style.getX())),
-                    Math.max(0, height - watermarkHeight) / 100 * (100 - style.getY()),
-                    watermarkWidth, watermarkHeight, null);
-            default -> graphics.drawImage(watermarkImage,
-                    Math.max(0, (width - watermarkWidth) / 2),
-                    Math.max(0, (height - watermarkHeight) / 2),
-                    watermarkWidth, watermarkHeight, null);
+        if (style.isFixedCoordinates()) {
+            graphics.drawImage(watermarkImage, style.getX(), style.getY(), watermarkWidth, watermarkHeight, null);
+        } else {
+            // 设置水印的位置
+            switch (style.getPosition()) {
+                case TOP_LEFT -> graphics.drawImage(watermarkImage,
+                        Math.max(0, (width - watermarkWidth) / 100 * style.getX()),
+                        Math.max(0, height - watermarkHeight) / 100 * style.getY(),
+                        watermarkWidth, watermarkHeight, null);
+                case TOP_RIGHT -> graphics.drawImage(watermarkImage,
+                        Math.max(0, (width - watermarkWidth) / 100 * (100 - style.getX())),
+                        Math.max(0, height - watermarkHeight) / 100 * style.getY(),
+                        watermarkWidth, watermarkHeight, null);
+                case BOTTOM_LEFT -> graphics.drawImage(watermarkImage,
+                        Math.max(0, (width - watermarkWidth) / 100 * style.getX()),
+                        Math.max(0, height - watermarkHeight) / 100 * (100 - style.getY()),
+                        watermarkWidth, watermarkHeight, null);
+                case BOTTOM_RIGHT -> graphics.drawImage(watermarkImage,
+                        Math.max(0, (width - watermarkWidth) / 100 * (100 - style.getX())),
+                        Math.max(0, height - watermarkHeight) / 100 * (100 - style.getY()),
+                        watermarkWidth, watermarkHeight, null);
+                default -> graphics.drawImage(watermarkImage,
+                        Math.max(0, (width - watermarkWidth) / 2),
+                        Math.max(0, (height - watermarkHeight) / 2),
+                        watermarkWidth, watermarkHeight, null);
+            }
         }
         // 释放画图工具
         graphics.dispose();

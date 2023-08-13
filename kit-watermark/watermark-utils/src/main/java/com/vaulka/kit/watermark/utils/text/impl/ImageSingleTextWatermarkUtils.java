@@ -70,23 +70,27 @@ public class ImageSingleTextWatermarkUtils implements ImageTextWatermarkUtils<Si
         int watermarkWidth = (int) bounds.getWidth();
         // 水印字符高度
         int watermarkHeight = (int) bounds.getHeight();
-        // 设置水印的位置
-        switch (style.getPosition()) {
-            case TOP_LEFT -> graphics.drawString(text,
-                    Math.max(0, (width - watermarkWidth) / 100 * style.getX()),
-                    Math.max(0, height - watermarkHeight) / 100 * style.getY());
-            case TOP_RIGHT -> graphics.drawString(text,
-                    Math.max(0, (width - watermarkWidth) / 100 * (100 - style.getX())),
-                    Math.max(0, height - watermarkHeight) / 100 * style.getY());
-            case BOTTOM_LEFT -> graphics.drawString(text,
-                    Math.max(0, (width - watermarkWidth) / 100 * style.getX()),
-                    Math.max(0, height - watermarkHeight) / 100 * (100 - style.getY()));
-            case BOTTOM_RIGHT -> graphics.drawString(text,
-                    Math.max(0, (width - watermarkWidth) / 100 * (100 - style.getX())),
-                    Math.max(0, height - watermarkHeight) / 100 * (100 - style.getY()));
-            default -> graphics.drawString(text,
-                    Math.max(0, (width - watermarkWidth) / 2),
-                    Math.max(0, (height - watermarkHeight) / 2));
+        if (style.isFixedCoordinates()) {
+            graphics.drawString(text, style.getX(), style.getY());
+        } else {
+            // 设置水印的位置
+            switch (style.getPosition()) {
+                case TOP_LEFT -> graphics.drawString(text,
+                        Math.max(0, (width - watermarkWidth) / 100 * style.getX()),
+                        Math.max(0, height - watermarkHeight) / 100 * style.getY());
+                case TOP_RIGHT -> graphics.drawString(text,
+                        Math.max(0, (width - watermarkWidth) / 100 * (100 - style.getX())),
+                        Math.max(0, height - watermarkHeight) / 100 * style.getY());
+                case BOTTOM_LEFT -> graphics.drawString(text,
+                        Math.max(0, (width - watermarkWidth) / 100 * style.getX()),
+                        Math.max(0, height - watermarkHeight) / 100 * (100 - style.getY()));
+                case BOTTOM_RIGHT -> graphics.drawString(text,
+                        Math.max(0, (width - watermarkWidth) / 100 * (100 - style.getX())),
+                        Math.max(0, height - watermarkHeight) / 100 * (100 - style.getY()));
+                default -> graphics.drawString(text,
+                        Math.max(0, (width - watermarkWidth) / 2),
+                        Math.max(0, (height - watermarkHeight) / 2));
+            }
         }
         // 释放画图工具
         graphics.dispose();
