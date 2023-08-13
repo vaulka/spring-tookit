@@ -34,8 +34,11 @@ ext {
     jsoupVersion = "1.16.1"
     // IP 地址解析
     ip2regionVersion = "2.7.0"
+    // Markdown 转 HTML
+    flexmarkAllVersion = "0.64.8"
 
     // Apache 工具包
+    pdfboxVersion = "2.0.29"
     commonsLang3Version = "3.12.0"
     commonsCodecVersion = "1.16.0"
 

@@ -1,0 +1,4 @@
+dependencies {
+    api "org.apache.pdfbox:pdfbox:$pdfboxVersion"
+    api "com.vladsch.flexmark:flexmark-all:$flexmarkAllVersion"
+}

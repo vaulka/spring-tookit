@@ -45,4 +45,7 @@ include "kit-redis"
 include "kit-watermark"
 include "kit-watermark:watermark-utils"
 findProject(":kit-watermark:watermark-utils")?.name = "watermark-utils"
+include "kit-format-conversion"
+include "kit-format-conversion:format-conversion-utils"
+findProject(":kit-format-conversion:format-conversion-utils")?.name = "format-conversion-utils"
 
