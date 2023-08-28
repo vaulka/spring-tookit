@@ -70,8 +70,8 @@ public class Md2HtmlUtils {
                         WikiLinkExtension.create()
                 ));
         Parser parser = Parser.builder(options).build();
-        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
         Document document = parser.parse(md);
+        HtmlRenderer renderer = HtmlRenderer.builder(options).build();
         return renderer.render(document);
     }
 
