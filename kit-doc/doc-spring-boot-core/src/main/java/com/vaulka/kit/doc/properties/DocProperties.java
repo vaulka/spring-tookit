@@ -14,7 +14,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -159,8 +158,8 @@ public class DocProperties {
             SecurityRequirement securityRequirement = new SecurityRequirement();
             requestParameters.values().stream()
                     .flatMap(Collection::stream)
-                    .forEach(p -> securityRequirement.addList(p));
-            List<SecurityRequirement> securityRequirements = Arrays.asList(securityRequirement);
+                    .forEach(securityRequirement::addList);
+            List<SecurityRequirement> securityRequirements = List.of(securityRequirement);
             return builder.pathsToMatch(pathsToMatch.toArray(new String[0]))
                     .packagesToScan(packagesToScan.toArray(new String[0]))
                     .packagesToExclude(packagesToExclude.toArray(new String[0]))
@@ -170,9 +169,7 @@ public class DocProperties {
                     .consumesToMatch(consumesToMatch.toArray(new String[0]))
                     .addOpenApiMethodFilter(method -> method.isAnnotationPresent(Operation.class))
                     // Knife4j Authorize 不生效，暂通过此方式实现
-                    .addOperationCustomizer((operation, handlerMethod) -> {
-                        return operation.security(securityRequirements);
-                    })
+                    .addOperationCustomizer((operation, handlerMethod) -> operation.security(securityRequirements))
                     .build();
         }
 
