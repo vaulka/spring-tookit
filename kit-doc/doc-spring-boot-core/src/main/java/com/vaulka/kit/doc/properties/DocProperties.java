@@ -28,13 +28,8 @@ import java.util.Map;
 @Getter
 @Setter
 @Validated
-@ConfigurationProperties(DocProperties.PREFIX)
+@ConfigurationProperties("kit.doc")
 public class DocProperties {
-
-    /**
-     * 前缀
-     */
-    public static final String PREFIX = "kit.doc";
 
     /**
      * 是否启用

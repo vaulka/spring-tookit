@@ -6,7 +6,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import java.util.Collections;
 import java.util.List;
 
-import static com.vaulka.kit.web.properties.XssProperties.PREFIX;
 
 /**
  * XSS 防御 参数配置
@@ -14,13 +13,8 @@ import static com.vaulka.kit.web.properties.XssProperties.PREFIX;
  * @author Vaulka
  **/
 @Data
-@ConfigurationProperties(PREFIX)
+@ConfigurationProperties("kit.web.xss")
 public class XssProperties {
-
-    /**
-     * 参数配置 前缀
-     */
-    public static final String PREFIX = "kit.web.xss";
 
     /**
      * URL 匹配规则列表

@@ -12,13 +12,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(CaptchaProperties.PREFIX)
+@ConfigurationProperties("kit.captcha")
 public class CaptchaProperties {
-
-    /**
-     * 前缀
-     */
-    public static final String PREFIX = "kit.captcha";
 
     /**
      * 验证码类型

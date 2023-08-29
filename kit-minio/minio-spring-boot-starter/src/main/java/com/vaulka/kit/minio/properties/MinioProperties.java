@@ -12,13 +12,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 @Getter
 @Setter
-@ConfigurationProperties(MinioProperties.PREFIX)
+@ConfigurationProperties("kit.minio")
 public class MinioProperties {
-
-    /**
-     * 前缀
-     */
-    public static final String PREFIX = "kit.minio";
 
     /**
      * endpoint

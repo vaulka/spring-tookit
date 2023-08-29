@@ -48,4 +48,7 @@ findProject(":kit-watermark:watermark-utils")?.name = "watermark-utils"
 include "kit-format-conversion"
 include "kit-format-conversion:format-conversion-utils"
 findProject(":kit-format-conversion:format-conversion-utils")?.name = "format-conversion-utils"
+include "kit-mqtt"
+include "kit-mqtt:mqtt-spring-boot-starter"
+findProject(":kit-mqtt:mqtt-spring-boot-starter")?.name = "mqtt-spring-boot-starter"
 
