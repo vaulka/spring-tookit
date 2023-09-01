@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 树形结构基础信息
+ * 树状结构基础信息
  *
  * @author Vaulka
  */
@@ -18,6 +18,18 @@ public class TreeNode<T extends TreeNode<T, R>, R> implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 5732775650276600108L;
+    /**
+     * ID
+     */
+    private R id;
+    /**
+     * 父节点 ID
+     */
+    private R parentId;
+    /**
+     * 子节点列表
+     */
+    private List<T> children;
 
     /**
      * 初始化树状结构
@@ -29,20 +41,5 @@ public class TreeNode<T extends TreeNode<T, R>, R> implements Serializable {
         this.id = id;
         this.parentId = parentId;
     }
-
-    /**
-     * ID
-     */
-    private R id;
-
-    /**
-     * 父节点 ID
-     */
-    private R parentId;
-
-    /**
-     * 子节点列表
-     */
-    private List<T> children;
 
 }

@@ -74,4 +74,28 @@ public class TreeUtilsTest {
         assert json.equals("[{\"id\":\"1\",\"parentId\":\"0\",\"children\":[{\"id\":\"3\",\"parentId\":\"1\",\"children\":[],\"name\":\"c\",\"sex\":3},{\"id\":\"4\",\"parentId\":\"1\",\"children\":[],\"name\":\"d\",\"sex\":4}],\"name\":\"a\",\"sex\":1},{\"id\":\"2\",\"parentId\":\"0\",\"children\":[{\"id\":\"5\",\"parentId\":\"2\",\"children\":[{\"id\":\"7\",\"parentId\":\"5\",\"children\":[],\"name\":\"g\",\"sex\":7}],\"name\":\"e\",\"sex\":5},{\"id\":\"6\",\"parentId\":\"2\",\"children\":[],\"name\":\"f\",\"sex\":6}],\"name\":\"b\",\"sex\":2}]");
     }
 
+    /**
+     * 测试 Long 树状结构 删除无效数据树状节点
+     *
+     * @throws JsonProcessingException JSON 处理异常
+     */
+    @Test
+    public void removeInvalidNode() throws JsonProcessingException {
+        List<StringUser> stringUsers = new ArrayList<>();
+        stringUsers.add(new StringUser("1", "0", "a", 1));
+        stringUsers.add(new StringUser("2", "0", "b", 2));
+        stringUsers.add(new StringUser("3", "1", "c", 3));
+        stringUsers.add(new StringUser("4", "1", "d", 4));
+        stringUsers.add(new StringUser("5", "2", "e", 5));
+        stringUsers.add(new StringUser("6", "2", "f", 6));
+        stringUsers.add(new StringUser("7", "5", "g", 7));
+        stringUsers.add(new StringUser("8", "9", "h", 8));
+        TreeUtils<StringUser, String> treeUtils = new TreeUtils<>();
+        List<StringUser> treeNodes = treeUtils.buildNode(stringUsers, "0");
+        treeUtils.removeInvalidNode(treeNodes, e -> e.getSex() % 2 == 1);
+        String json = MAPPER.writeValueAsString(treeNodes);
+        System.out.println(json);
+        assert json.equals("[{\"id\":\"1\",\"parentId\":\"0\",\"children\":[{\"id\":\"3\",\"parentId\":\"1\",\"children\":[],\"name\":\"c\",\"sex\":3}],\"name\":\"a\",\"sex\":1},{\"id\":\"2\",\"parentId\":\"0\",\"children\":[{\"id\":\"5\",\"parentId\":\"2\",\"children\":[{\"id\":\"7\",\"parentId\":\"5\",\"children\":[],\"name\":\"g\",\"sex\":7}],\"name\":\"e\",\"sex\":5}],\"name\":\"b\",\"sex\":2}]");
+    }
+
 }
