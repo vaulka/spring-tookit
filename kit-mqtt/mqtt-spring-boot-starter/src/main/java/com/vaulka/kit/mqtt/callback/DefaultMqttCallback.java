@@ -15,8 +15,8 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class DefaultMqttCallback implements MqttCallback {
 
     @Override
-    public void connectionLost(Throwable throwable) {
-        log.error("MQTT connection lost [{}]", throwable.getLocalizedMessage());
+    public void connectionLost(Throwable cause) {
+        log.error("MQTT connection lost [{}]", cause.getLocalizedMessage());
     }
 
     @Override
