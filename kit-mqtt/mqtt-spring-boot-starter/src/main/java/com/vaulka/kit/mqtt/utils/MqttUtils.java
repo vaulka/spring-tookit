@@ -21,6 +21,7 @@ public class MqttUtils {
      *
      * @param topic   发布 topic
      * @param message 消息内容
+     * @throws MqttException MQTT 异常
      */
     public void publish(String topic, String message) throws MqttException {
         this.publish(topic, message, 0, false);
@@ -33,6 +34,7 @@ public class MqttUtils {
      * @param message  消息内容
      * @param qos      发布 QoS
      * @param retained 是否保留标志
+     * @throws MqttException MQTT 异常
      */
     public void publish(String topic, String message, int qos, boolean retained) throws MqttException {
         client.publish(topic, message.getBytes(StandardCharsets.UTF_8), qos, retained);

@@ -19,6 +19,9 @@ public class InstancePropertySource extends PropertySource<Instance> {
      */
     private static final String BROKER_ID_PROPERTY_NAME = "brokerId";
 
+    /**
+     * 初始化属性资源
+     */
     public InstancePropertySource() {
         super(BROKER_ID_PROPERTY_NAME, new Instance());
     }

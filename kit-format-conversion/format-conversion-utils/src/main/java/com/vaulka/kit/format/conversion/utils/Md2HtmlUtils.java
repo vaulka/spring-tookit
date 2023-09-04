@@ -35,6 +35,7 @@ public class Md2HtmlUtils {
      *
      * @param file markdown 文件
      * @return HTML 内容
+     * @throws IOException IO 异常
      */
     public static String conversion(File file) throws IOException {
         try (FileInputStream fileInputStream = new FileInputStream(file);

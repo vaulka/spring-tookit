@@ -18,6 +18,8 @@ public class Instance {
      * 根据 hostName、hostAddress 生成，保证重复获取时，都是同一个实例 ID
      *
      * @return 实例 ID
+     * @throws UnknownHostException     未知主机异常
+     * @throws NoSuchAlgorithmException 无搜索算法异常
      */
     public String getId() throws UnknownHostException, NoSuchAlgorithmException {
         InetAddress address = InetAddress.getLocalHost();

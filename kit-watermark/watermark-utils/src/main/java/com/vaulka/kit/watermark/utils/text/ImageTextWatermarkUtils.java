@@ -138,8 +138,10 @@ public interface ImageTextWatermarkUtils<S extends TextRenderStyle> extends Imag
 
     /**
      * 计算水印内容长度
-     * <li>中文长度即文本长度</li>
-     * <li>英文长度为文本长度二分之一</li>
+     * <ul>
+     * <li>中文长度即文本长度
+     * <li>英文长度为文本长度二分之一
+     * </ul>
      *
      * @param text 水印内容
      * @return 水印内容长度

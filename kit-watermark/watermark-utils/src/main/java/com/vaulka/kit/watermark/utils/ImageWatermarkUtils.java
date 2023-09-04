@@ -72,6 +72,7 @@ public interface ImageWatermarkUtils<S, R> {
      *
      * @param originFile 源文件
      * @param obj        水印内容
+     * @return 字节数组 outputStream
      * @throws IOException IO 异常
      */
     default ByteArrayOutputStream markByStream(File originFile, R obj) throws IOException {
@@ -89,6 +90,7 @@ public interface ImageWatermarkUtils<S, R> {
      * @param style      渲染样式
      * @param originFile 源文件
      * @param obj        水印内容
+     * @return 字节数组 outputStream
      * @throws IOException IO 异常
      */
     default ByteArrayOutputStream markByStream(S style, File originFile, R obj) throws IOException {
@@ -105,6 +107,7 @@ public interface ImageWatermarkUtils<S, R> {
      *
      * @param originFile 源文件
      * @param obj        水印内容
+     * @return base64 字符串
      * @throws IOException IO 异常
      */
     default String markByBase64(File originFile, R obj) throws IOException {
@@ -118,6 +121,7 @@ public interface ImageWatermarkUtils<S, R> {
      * @param style      渲染样式
      * @param originFile 源文件
      * @param obj        水印内容
+     * @return base64 字符串
      * @throws IOException IO 异常
      */
     default String markByBase64(S style, File originFile, R obj) throws IOException {
