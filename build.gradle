@@ -149,6 +149,15 @@ subprojects {
                             url = "https://github.com/vaulka/spring-tookit"
                         }
                     }
+
+                    versionMapping {
+                        usage("java-api") {
+                            fromResolutionOf("runtimeClasspath")
+                        }
+                        usage("java-runtime") {
+                            fromResolutionResult()
+                        }
+                    }
                 }
             }
 
