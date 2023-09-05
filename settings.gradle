@@ -51,7 +51,6 @@ findProject(":kit-format-conversion:format-conversion-utils")?.name = "format-co
 include "kit-mqtt"
 include "kit-mqtt:mqtt-spring-boot-starter"
 findProject(":kit-mqtt:mqtt-spring-boot-starter")?.name = "mqtt-spring-boot-starter"
-include 'kit-property'
-include 'kit-property:property-spring-boot-starter'
-findProject(':kit-property:property-spring-boot-starter')?.name = 'property-spring-boot-starter'
-
+include "kit-instance"
+include "kit-instance:instance-spring-boot-starter"
+findProject(":kit-instance:instance-spring-boot-starter")?.name = "instance-spring-boot-starter"

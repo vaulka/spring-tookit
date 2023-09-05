@@ -1,4 +1,4 @@
-package com.vaulka.property;
+package com.vaulka.kit.instance;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Value;

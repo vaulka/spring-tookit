@@ -1,4 +1,4 @@
-package com.vaulka.property;
+package com.vaulka.kit.instance;
 
 import lombok.NonNull;
 import org.springframework.core.env.PropertySource;

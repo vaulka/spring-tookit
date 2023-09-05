@@ -1,4 +1,4 @@
-package com.vaulka.property;
+package com.vaulka.kit.instance;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

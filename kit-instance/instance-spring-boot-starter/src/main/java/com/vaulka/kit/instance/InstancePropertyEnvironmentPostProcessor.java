@@ -1,4 +1,4 @@
-package com.vaulka.property;
+package com.vaulka.kit.instance;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.env.EnvironmentPostProcessor;

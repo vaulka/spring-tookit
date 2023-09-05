@@ -2,11 +2,11 @@ ext {
     lombokVersion = "1.18.28"
 
     // Spring boot
-    springBootVersion = "3.1.2"
+    springBootVersion = "3.1.3"
     // Spring
     springVersion = "6.0.11"
     // Spring cloud
-    springCloudVersion = "2022.0.3"
+    springCloudVersion = "2022.0.4"
 
     // 校验
     // 需要兼容 org.springframework.boot:spring-boot-starter-validation 下的版本
@@ -14,7 +14,7 @@ ext {
 
     // 需要兼容 org.springframework.boot:spring-boot-starter-tomcat 下的版本
     // org.apache.tomcat.embed:tomcat-embed-core
-    tomcatVersion = "10.1.11"
+    tomcatVersion = "10.1.12"
 
     // Jackson
     jacksonVersion = "2.15.2"
@@ -64,7 +64,7 @@ buildscript {
 allprojects {
 
     group "com.vaulka.kit"
-    version "3.1.2-beta-2"
+    version "3.1.3.1"
 
     repositories {
         mavenLocal()
