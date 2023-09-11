@@ -1,25 +1,41 @@
 package com.vaulka.kit.tree.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author Vaulka
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-public class StringUser extends TreeNode<StringUser, String> {
+public class StringUser implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 6575309502023938960L;
 
     public StringUser(String id, String parentId, String name, Integer sex) {
-        super(id, parentId);
+        this.id = id;
+        this.parentId = parentId;
         this.name = name;
         this.sex = sex;
     }
+
+    /**
+     * ID
+     */
+    private String id;
+
+    /**
+     * 父节点 ID
+     */
+    private String parentId;
+
+    /**
+     * 子节点列表
+     */
+    private List<StringUser> children;
 
     /**
      * 名称
