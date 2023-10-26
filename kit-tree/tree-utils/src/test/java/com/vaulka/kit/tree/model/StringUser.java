@@ -38,6 +38,11 @@ public class StringUser implements Serializable {
     private List<StringUser> children;
 
     /**
+     * 节点ID列表
+     */
+    private List<String> rootIds;
+
+    /**
      * 名称
      */
     private String name;

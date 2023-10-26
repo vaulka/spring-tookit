@@ -47,7 +47,7 @@ public class FilterTreeUtilsTest {
         stringUsers.add(new StringUser("7", "5", "g", 7));
         stringUsers.add(new StringUser("8", "9", "h", 8));
         BuildTreeUtils<StringUser, String> buildTreeUtils = new BuildTreeUtils<>(StringUser::getId, StringUser::getParentId, StringUser::setChildren);
-        FilterTreeUtils<StringUser, String> filterTreeUtils = new FilterTreeUtils<>(StringUser::getChildren);
+        FilterTreeUtils<StringUser> filterTreeUtils = new FilterTreeUtils<>(StringUser::getChildren);
         List<StringUser> treeNodes = buildTreeUtils.buildNode(stringUsers, "0");
         filterTreeUtils.removeInvalidNode(treeNodes, e -> e.getSex() % 2 == 1);
         String json = MAPPER.writeValueAsString(treeNodes);

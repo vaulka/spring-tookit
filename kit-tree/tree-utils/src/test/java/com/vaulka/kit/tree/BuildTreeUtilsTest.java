@@ -46,7 +46,8 @@ public class BuildTreeUtilsTest {
         longUsers.add(new LongUser(6L, 2L, "f", 6));
         longUsers.add(new LongUser(7L, 5L, "g", 7));
         longUsers.add(new LongUser(8L, 9L, "h", 8));
-        List<LongUser> treeNodes = new BuildTreeUtils<>(LongUser::getId, LongUser::getParentId, LongUser::setChildren)
+        List<LongUser> treeNodes = new BuildTreeUtils<>(LongUser::getId, LongUser::getParentId, LongUser::setChildren,
+                LongUser::getRootIds, LongUser::setRootIds)
                 .buildNode(longUsers, 0L);
         String json = MAPPER.writeValueAsString(treeNodes);
         System.out.println(json);
@@ -69,7 +70,8 @@ public class BuildTreeUtilsTest {
         stringUsers.add(new StringUser("6", "2", "f", 6));
         stringUsers.add(new StringUser("7", "5", "g", 7));
         stringUsers.add(new StringUser("8", "9", "h", 8));
-        List<StringUser> treeNodes = new BuildTreeUtils<>(StringUser::getId, StringUser::getParentId, StringUser::setChildren)
+        List<StringUser> treeNodes = new BuildTreeUtils<>(StringUser::getId, StringUser::getParentId, StringUser::setChildren,
+                StringUser::getRootIds, StringUser::setRootIds)
                 .buildNode(stringUsers, "0");
         String json = MAPPER.writeValueAsString(treeNodes);
         System.out.println(json);

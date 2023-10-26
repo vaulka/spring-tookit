@@ -121,4 +121,18 @@ public class MinioSpringTest {
         inputStream.transferTo(new FileOutputStream("build/" + path));
     }
 
+    /**
+     * 获取文件列表
+     */
+//    @Test
+    public void list() throws Exception {
+        String content = mockMvc.perform(MockMvcRequestBuilders.get("/api/list")
+                        .queryParam("prefix", "prefix")
+                )
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString();
+        // TODO
+    }
+
 }

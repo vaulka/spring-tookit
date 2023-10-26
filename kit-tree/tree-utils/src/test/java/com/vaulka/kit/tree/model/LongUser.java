@@ -38,6 +38,11 @@ public class LongUser implements Serializable {
     private List<LongUser> children;
 
     /**
+     * 节点ID列表
+     */
+    private List<Long> rootIds;
+
+    /**
      * 名称
      */
     private String name;

@@ -3,6 +3,7 @@ package com.vaulka.kit.tree.utils;
 
 import lombok.AllArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -36,6 +37,16 @@ public class BuildTreeUtils<T, F> {
     private final BiConsumer<T, List<T>> childrenFun;
 
     /**
+     * get 节点ID列表
+     */
+    private final Function<T, List<F>> getRootIdsFun;
+
+    /**
+     * set 节点ID列表
+     */
+    private final BiConsumer<T, List<F>> setRootIdsFun;
+
+    /**
      * 构建树状结构
      *
      * @return 树状结构数据
@@ -51,7 +62,7 @@ public class BuildTreeUtils<T, F> {
      * @return 树状结构数据
      */
     public List<T> buildNode(List<T> data, F rootId, Comparator<? super T> comparator) {
-        if (data == null || data.size() == 0) {
+        if (data == null || data.isEmpty()) {
             return Collections.emptyList();
         }
         Map<F, List<T>> nodeGroup = data.stream()
@@ -76,7 +87,12 @@ public class BuildTreeUtils<T, F> {
         for (T result : results) {
             // 获取子节点列表
             List<T> children = Optional.ofNullable(nodeGroup.remove(idFun.apply(result))).orElse(Collections.emptyList());
+            // 设置子节点列表
             childrenFun.accept(result, children);
+            // 设置节点ID列表
+            ArrayList<F> rootIds = new ArrayList<>(Optional.ofNullable(getRootIdsFun.apply(result)).orElse(Collections.emptyList()));
+            rootIds.add(idFun.apply(result));
+            setRootIdsFun.accept(result, rootIds);
             // 递归构建子孙节点树状结构
             this.buildChildNode(children, nodeGroup, comparator);
             // 排序

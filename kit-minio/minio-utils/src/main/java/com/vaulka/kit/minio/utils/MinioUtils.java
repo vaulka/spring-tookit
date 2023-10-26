@@ -8,16 +8,20 @@ import com.vaulka.kit.minio.model.UploadInfo;
 import io.minio.BucketExistsArgs;
 import io.minio.CreateMultipartUploadResponse;
 import io.minio.GetObjectArgs;
+import io.minio.ListObjectsArgs;
 import io.minio.ListPartsResponse;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioAsyncClient;
 import io.minio.PutObjectArgs;
+import io.minio.Result;
 import io.minio.SetBucketPolicyArgs;
 import io.minio.UploadPartResponse;
+import io.minio.messages.Item;
 import io.minio.messages.Part;
 
 import java.io.BufferedInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -343,6 +347,32 @@ public class MinioUtils {
         } catch (Exception e) {
             throw new MinioException(e.getLocalizedMessage(), e);
         }
+    }
+
+
+    /**
+     * 获取文件列表
+     *
+     * @param prefix 文件夹前缀
+     * @return 文件列表
+     */
+    public List<String> list(String prefix) {
+        Iterable<Result<Item>> iterable = client.listObjects(ListObjectsArgs.builder()
+                .bucket(bucket)
+                .prefix(prefix)
+                .recursive(true)
+                .build());
+        List<String> fileNames = new ArrayList<>();
+        for (Result<Item> result : iterable) {
+            Item item;
+            try {
+                item = result.get();
+            } catch (Exception e) {
+                throw new MinioException(e.getLocalizedMessage(), e);
+            }
+            fileNames.add(item.objectName());
+        }
+        return fileNames;
     }
 
 }

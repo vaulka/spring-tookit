@@ -62,4 +62,9 @@ public class Controller {
         }
     }
 
+    @GetMapping("list")
+    public List<String> list(String prefix) {
+        return minioUtils.list(prefix);
+    }
+
 }

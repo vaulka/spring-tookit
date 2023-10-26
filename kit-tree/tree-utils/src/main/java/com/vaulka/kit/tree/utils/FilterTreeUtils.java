@@ -14,7 +14,7 @@ import java.util.function.Predicate;
  * @author Vaulka
  */
 @AllArgsConstructor
-public class FilterTreeUtils<T, F> {
+public class FilterTreeUtils<T> {
 
     /**
      * 子节点列表
