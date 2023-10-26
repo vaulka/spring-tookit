@@ -51,7 +51,7 @@ public class BuildTreeUtilsTest {
                 .buildNode(longUsers, 0L);
         String json = MAPPER.writeValueAsString(treeNodes);
         System.out.println(json);
-        assert json.equals("[{\"id\":1,\"parentId\":0,\"children\":[{\"id\":3,\"parentId\":1,\"children\":[],\"name\":\"c\",\"sex\":3},{\"id\":4,\"parentId\":1,\"children\":[],\"name\":\"d\",\"sex\":4}],\"name\":\"a\",\"sex\":1},{\"id\":2,\"parentId\":0,\"children\":[{\"id\":5,\"parentId\":2,\"children\":[{\"id\":7,\"parentId\":5,\"children\":[],\"name\":\"g\",\"sex\":7}],\"name\":\"e\",\"sex\":5},{\"id\":6,\"parentId\":2,\"children\":[],\"name\":\"f\",\"sex\":6}],\"name\":\"b\",\"sex\":2}]");
+        assert json.equals("[{\"id\":1,\"parentId\":0,\"children\":[{\"id\":3,\"parentId\":1,\"children\":[],\"rootIds\":[1,3],\"name\":\"c\",\"sex\":3},{\"id\":4,\"parentId\":1,\"children\":[],\"rootIds\":[1,4],\"name\":\"d\",\"sex\":4}],\"rootIds\":[1],\"name\":\"a\",\"sex\":1},{\"id\":2,\"parentId\":0,\"children\":[{\"id\":5,\"parentId\":2,\"children\":[{\"id\":7,\"parentId\":5,\"children\":[],\"rootIds\":[2,5,7],\"name\":\"g\",\"sex\":7}],\"rootIds\":[2,5],\"name\":\"e\",\"sex\":5},{\"id\":6,\"parentId\":2,\"children\":[],\"rootIds\":[2,6],\"name\":\"f\",\"sex\":6}],\"rootIds\":[2],\"name\":\"b\",\"sex\":2}]");
     }
 
     /**
@@ -75,7 +75,7 @@ public class BuildTreeUtilsTest {
                 .buildNode(stringUsers, "0");
         String json = MAPPER.writeValueAsString(treeNodes);
         System.out.println(json);
-        assert json.equals("[{\"id\":\"1\",\"parentId\":\"0\",\"children\":[{\"id\":\"3\",\"parentId\":\"1\",\"children\":[],\"name\":\"c\",\"sex\":3},{\"id\":\"4\",\"parentId\":\"1\",\"children\":[],\"name\":\"d\",\"sex\":4}],\"name\":\"a\",\"sex\":1},{\"id\":\"2\",\"parentId\":\"0\",\"children\":[{\"id\":\"5\",\"parentId\":\"2\",\"children\":[{\"id\":\"7\",\"parentId\":\"5\",\"children\":[],\"name\":\"g\",\"sex\":7}],\"name\":\"e\",\"sex\":5},{\"id\":\"6\",\"parentId\":\"2\",\"children\":[],\"name\":\"f\",\"sex\":6}],\"name\":\"b\",\"sex\":2}]");
+        assert json.equals("[{\"id\":\"1\",\"parentId\":\"0\",\"children\":[{\"id\":\"3\",\"parentId\":\"1\",\"children\":[],\"rootIds\":[\"1\",\"3\"],\"name\":\"c\",\"sex\":3},{\"id\":\"4\",\"parentId\":\"1\",\"children\":[],\"rootIds\":[\"1\",\"4\"],\"name\":\"d\",\"sex\":4}],\"rootIds\":[\"1\"],\"name\":\"a\",\"sex\":1},{\"id\":\"2\",\"parentId\":\"0\",\"children\":[{\"id\":\"5\",\"parentId\":\"2\",\"children\":[{\"id\":\"7\",\"parentId\":\"5\",\"children\":[],\"rootIds\":[\"2\",\"5\",\"7\"],\"name\":\"g\",\"sex\":7}],\"rootIds\":[\"2\",\"5\"],\"name\":\"e\",\"sex\":5},{\"id\":\"6\",\"parentId\":\"2\",\"children\":[],\"rootIds\":[\"2\",\"6\"],\"name\":\"f\",\"sex\":6}],\"rootIds\":[\"2\"],\"name\":\"b\",\"sex\":2}]");
     }
 
 }

@@ -46,13 +46,14 @@ public class FilterTreeUtilsTest {
         stringUsers.add(new StringUser("6", "2", "f", 6));
         stringUsers.add(new StringUser("7", "5", "g", 7));
         stringUsers.add(new StringUser("8", "9", "h", 8));
-        BuildTreeUtils<StringUser, String> buildTreeUtils = new BuildTreeUtils<>(StringUser::getId, StringUser::getParentId, StringUser::setChildren);
+        BuildTreeUtils<StringUser, String> buildTreeUtils = new BuildTreeUtils<>(StringUser::getId, StringUser::getParentId, StringUser::setChildren,
+                StringUser::getRootIds, StringUser::setRootIds);
         FilterTreeUtils<StringUser> filterTreeUtils = new FilterTreeUtils<>(StringUser::getChildren);
         List<StringUser> treeNodes = buildTreeUtils.buildNode(stringUsers, "0");
         filterTreeUtils.removeInvalidNode(treeNodes, e -> e.getSex() % 2 == 1);
         String json = MAPPER.writeValueAsString(treeNodes);
         System.out.println(json);
-        assert json.equals("[{\"id\":\"1\",\"parentId\":\"0\",\"children\":[{\"id\":\"3\",\"parentId\":\"1\",\"children\":[],\"name\":\"c\",\"sex\":3}],\"name\":\"a\",\"sex\":1},{\"id\":\"2\",\"parentId\":\"0\",\"children\":[{\"id\":\"5\",\"parentId\":\"2\",\"children\":[{\"id\":\"7\",\"parentId\":\"5\",\"children\":[],\"name\":\"g\",\"sex\":7}],\"name\":\"e\",\"sex\":5}],\"name\":\"b\",\"sex\":2}]");
+        assert json.equals("[{\"id\":\"1\",\"parentId\":\"0\",\"children\":[{\"id\":\"3\",\"parentId\":\"1\",\"children\":[],\"rootIds\":[\"1\",\"3\"],\"name\":\"c\",\"sex\":3}],\"rootIds\":[\"1\"],\"name\":\"a\",\"sex\":1},{\"id\":\"2\",\"parentId\":\"0\",\"children\":[{\"id\":\"5\",\"parentId\":\"2\",\"children\":[{\"id\":\"7\",\"parentId\":\"5\",\"children\":[],\"rootIds\":[\"2\",\"5\",\"7\"],\"name\":\"g\",\"sex\":7}],\"rootIds\":[\"2\",\"5\"],\"name\":\"e\",\"sex\":5}],\"rootIds\":[\"2\"],\"name\":\"b\",\"sex\":2}]");
     }
 
 }

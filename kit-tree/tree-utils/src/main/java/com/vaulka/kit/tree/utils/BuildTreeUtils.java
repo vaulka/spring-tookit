@@ -72,29 +72,32 @@ public class BuildTreeUtils<T, F> {
         // 排序
         Optional.ofNullable(comparator).ifPresent(results::sort);
         // 递归构建子节点
-        this.buildChildNode(results, nodeGroup, comparator);
+        this.buildChildNode(null, results, nodeGroup, comparator);
         return results;
     }
 
     /**
      * 构建子节点树状结构
      *
-     * @param results    顶层树状结构数据
-     * @param nodeGroup  树状结构结构
-     * @param comparator 排序规则
+     * @param parentResult 父级节点
+     * @param results      顶层树状结构数据
+     * @param nodeGroup    树状结构结构
+     * @param comparator   排序规则
      */
-    private void buildChildNode(List<T> results, Map<F, List<T>> nodeGroup, Comparator<? super T> comparator) {
+    private void buildChildNode(T parentResult, List<T> results, Map<F, List<T>> nodeGroup, Comparator<? super T> comparator) {
         for (T result : results) {
             // 获取子节点列表
             List<T> children = Optional.ofNullable(nodeGroup.remove(idFun.apply(result))).orElse(Collections.emptyList());
             // 设置子节点列表
             childrenFun.accept(result, children);
             // 设置节点ID列表
-            ArrayList<F> rootIds = new ArrayList<>(Optional.ofNullable(getRootIdsFun.apply(result)).orElse(Collections.emptyList()));
+            ArrayList<F> rootIds = parentResult == null
+                    ? new ArrayList<>()
+                    : new ArrayList<>(getRootIdsFun.apply(parentResult));
             rootIds.add(idFun.apply(result));
             setRootIdsFun.accept(result, rootIds);
             // 递归构建子孙节点树状结构
-            this.buildChildNode(children, nodeGroup, comparator);
+            this.buildChildNode(result, children, nodeGroup, comparator);
             // 排序
             Optional.ofNullable(comparator).ifPresent(children::sort);
         }
