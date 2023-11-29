@@ -17,12 +17,14 @@ public class ReflectUtils {
      * @return 获取属性值
      */
     public static Object getValue(Object obj, Field field) {
-        field.setAccessible(true);
         Object result;
         try {
+            field.setAccessible(true);
             result = field.get(obj);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e.getLocalizedMessage(), e);
+        } finally {
+            field.setAccessible(false);
         }
         return result;
     }
@@ -35,11 +37,13 @@ public class ReflectUtils {
      * @param value 值
      */
     public static void setValue(Object obj, Field field, Object value) {
-        field.setAccessible(true);
         try {
+            field.setAccessible(true);
             field.set(obj, value);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e.getLocalizedMessage(), e);
+        } finally {
+            field.setAccessible(false);
         }
     }
 
