@@ -1,0 +1,9 @@
+dependencies {
+    api project(":kit-watermark:watermark-utils")
+    api project(":kit-desensitization:desensitization-utils")
+
+    api "com.alibaba:fastjson:1.2.83"
+    api "commons-codec:commons-codec:$commonsCodecVersion"
+    api "org.apache.commons:commons-lang3:$commonsLang3Version"
+    api "org.apache.commons:commons-collections4:4.4"
+}

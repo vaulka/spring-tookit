@@ -54,3 +54,7 @@ findProject(":kit-mqtt:mqtt-spring-boot-starter")?.name = "mqtt-spring-boot-star
 include "kit-instance"
 include "kit-instance:instance-spring-boot-starter"
 findProject(":kit-instance:instance-spring-boot-starter")?.name = "instance-spring-boot-starter"
+include 'kit-sushi'
+include 'kit-sushi:sushi-utils'
+findProject(':kit-sushi:sushi-utils')?.name = 'sushi-utils'
+
