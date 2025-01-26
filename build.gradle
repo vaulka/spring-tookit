@@ -9,6 +9,8 @@ ext {
     springCloudVersion = "2022.0.4"
 
     // 校验
+    // validation 需要引入这个包
+    classmateVersion = "1.7.0"
     // 需要兼容 org.springframework.boot:spring-boot-starter-validation 下的版本
     hibernateValidatorVersion = "8.0.1.Final"
 

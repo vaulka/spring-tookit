@@ -4,6 +4,7 @@ dependencies {
     api project(":kit-validation:validation-utils")
 
     api "org.jsoup:jsoup:$jsoupVersion"
+    api "com.fasterxml:classmate:$classmateVersion"
     api "org.apache.commons:commons-lang3:$commonsLang3Version"
     api "io.swagger.core.v3:swagger-annotations:$swaggerVersion"
 

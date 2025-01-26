@@ -47,6 +47,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Web 自动装配
@@ -142,7 +143,7 @@ public class WebAutoConfiguration {
         // 允许客户端发送 Cookie 等凭证信息
         cors.setAllowCredentials(true);
         // 允许所有原始域进行跨域访问
-        cors.setAllowedOrigins(Collections.singletonList("*"));
+        cors.setAllowedOriginPatterns(List.of("*"));
         // 允许所所有请求头携带访问
         cors.setAllowedHeaders(Collections.singletonList("*"));
         // 允许所有请求方式访问
