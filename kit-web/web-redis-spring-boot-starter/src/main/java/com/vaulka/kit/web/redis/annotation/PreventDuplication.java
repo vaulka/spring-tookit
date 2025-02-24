@@ -18,6 +18,11 @@ import java.util.concurrent.TimeUnit;
 public @interface PreventDuplication {
 
     /**
+     * 是否放行
+     */
+    boolean release() default false;
+
+    /**
      * 默认访问频率
      */
     int DEFAULT_FREQUENCY = 100;

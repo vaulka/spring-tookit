@@ -97,6 +97,9 @@ public class PreventDuplicationAspect {
         PreventDuplication preventDuplication = Optional.ofNullable(AnnotationUtils.findAnnotation(method, PreventDuplication.class))
                 // 方法上没有的话，则再类上寻找该注解
                 .orElse(AnnotationUtils.findAnnotation(signature.getDeclaringType(), PreventDuplication.class));
+        if (preventDuplication != null && preventDuplication.release()) {
+            return;
+        }
         // 没有设置防重频率则默认为 100ms 间隔
         int frequency = preventDuplication != null ? preventDuplication.frequency() : PreventDuplication.DEFAULT_FREQUENCY;
         TimeUnit unit = preventDuplication != null ? preventDuplication.unit() : PreventDuplication.DEFAULT_UNIT;
