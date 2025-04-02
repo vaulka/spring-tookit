@@ -17,6 +17,11 @@ import java.util.List;
 public class LogProperties {
 
     /**
+     * 是否启用
+     */
+    private boolean enabled = true;
+
+    /**
      * URL 匹配规则列表
      */
     private List<HttpMethod> types = Arrays.asList(HttpMethod.values());
