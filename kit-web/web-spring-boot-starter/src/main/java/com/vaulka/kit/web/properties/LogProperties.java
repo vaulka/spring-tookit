@@ -17,13 +17,23 @@ import java.util.List;
 public class LogProperties {
 
     /**
-     * 是否启用
+     * 控制层日志是否启用
      */
-    private boolean enabled = true;
+    private boolean controllerLogEnabled = true;
 
     /**
      * URL 匹配规则列表
      */
     private List<HttpMethod> types = Arrays.asList(HttpMethod.values());
+
+    /**
+     * 请求成功日志是否启用
+     */
+    private boolean successLogEnabled = true;
+
+    /**
+     * 请求失败日志是否启用
+     */
+    private boolean failLogEnabled = true;
 
 }

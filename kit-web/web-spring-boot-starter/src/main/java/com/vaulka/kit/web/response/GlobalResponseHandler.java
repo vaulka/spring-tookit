@@ -2,6 +2,7 @@ package com.vaulka.kit.web.response;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vaulka.kit.web.properties.LogProperties;
 import com.vaulka.kit.web.response.processor.fail.FailAroundProcessor;
 import com.vaulka.kit.web.response.processor.fail.FailProcessor;
 import com.vaulka.kit.web.response.processor.success.SuccessAroundProcessor;
@@ -63,15 +64,18 @@ public class GlobalResponseHandler extends RequestResponseBodyMethodProcessor im
 
     private final ObjectMapper jsonMapper;
 
+    private final LogProperties logProperties;
+
     /**
      * 初始化Spring MVC 全局响应处理器
      *
      * @param converter  converter
      * @param jsonMapper jsonMapper
      */
-    public GlobalResponseHandler(MappingJackson2HttpMessageConverter converter, ObjectMapper jsonMapper) {
+    public GlobalResponseHandler(MappingJackson2HttpMessageConverter converter, ObjectMapper jsonMapper, LogProperties logProperties) {
         super(Collections.singletonList(converter));
         this.jsonMapper = jsonMapper;
+        this.logProperties = logProperties;
     }
 
     @Override
@@ -216,18 +220,22 @@ public class GlobalResponseHandler extends RequestResponseBodyMethodProcessor im
         Object body = ((ResponseEntity<?>) responseEntity).getBody();
         String reqId = SpringUtils.getReqId();
         if (isSuccess) {
-            try {
-                log.info("resp ID [{}] success result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(body).orElse("")));
-            } catch (JsonProcessingException e) {
-                log.error(e.getLocalizedMessage());
-                log.info("resp ID [{}] success result [{}]", reqId, Optional.ofNullable(body).orElse(""));
+            if (logProperties.isSuccessLogEnabled()) {
+                try {
+                    log.info("resp ID [{}] success result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(body).orElse("")));
+                } catch (JsonProcessingException e) {
+                    log.error(e.getLocalizedMessage());
+                    log.info("resp ID [{}] success result [{}]", reqId, Optional.ofNullable(body).orElse(""));
+                }
             }
         } else {
-            try {
-                log.error("resp ID [{}] fail result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(body).orElse("")));
-            } catch (JsonProcessingException e) {
-                log.error(e.getLocalizedMessage());
-                log.error("resp ID [{}] fail result [{}]", reqId, Optional.ofNullable(body).orElse(""));
+            if (logProperties.isFailLogEnabled()) {
+                try {
+                    log.error("resp ID [{}] fail result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(body).orElse("")));
+                } catch (JsonProcessingException e) {
+                    log.error(e.getLocalizedMessage());
+                    log.error("resp ID [{}] fail result [{}]", reqId, Optional.ofNullable(body).orElse(""));
+                }
             }
         }
         return body;
@@ -267,12 +275,14 @@ public class GlobalResponseHandler extends RequestResponseBodyMethodProcessor im
                 response.setStatus(processor.httpStatus().value());
             }
         }
-        String reqId = SpringUtils.getReqId();
-        try {
-            log.error("resp ID [{}] fail result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(result).orElse("")));
-        } catch (JsonProcessingException e) {
-            log.error(e.getLocalizedMessage());
-            log.error("resp ID [{}] fail result [{}]", reqId, Optional.ofNullable(result).orElse(""));
+        if (logProperties.isFailLogEnabled()) {
+            String reqId = SpringUtils.getReqId();
+            try {
+                log.error("resp ID [{}] fail result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(result).orElse("")));
+            } catch (JsonProcessingException e) {
+                log.error(e.getLocalizedMessage());
+                log.error("resp ID [{}] fail result [{}]", reqId, Optional.ofNullable(result).orElse(""));
+            }
         }
         return result;
     }
@@ -309,12 +319,14 @@ public class GlobalResponseHandler extends RequestResponseBodyMethodProcessor im
                 response.setStatus(processor.httpStatus().value());
             }
         }
-        String reqId = SpringUtils.getReqId();
-        try {
-            log.info("resp ID [{}] success result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(result).orElse("")));
-        } catch (JsonProcessingException e) {
-            log.info(e.getLocalizedMessage());
-            log.info("resp ID [{}] success result [{}]", reqId, Optional.ofNullable(result).orElse(""));
+        if (logProperties.isSuccessLogEnabled()) {
+            String reqId = SpringUtils.getReqId();
+            try {
+                log.info("resp ID [{}] success result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(result).orElse("")));
+            } catch (JsonProcessingException e) {
+                log.info(e.getLocalizedMessage());
+                log.info("resp ID [{}] success result [{}]", reqId, Optional.ofNullable(result).orElse(""));
+            }
         }
         return result;
     }

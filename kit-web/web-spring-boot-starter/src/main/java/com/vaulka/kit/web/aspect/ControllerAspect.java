@@ -34,7 +34,7 @@ import java.util.Optional;
 @Aspect
 @RequiredArgsConstructor
 @Order(Ordered.HIGHEST_PRECEDENCE + 1)
-@ConditionalOnProperty(name = "kit.web.log.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(name = "kit.web.log.controllerLogEnabled", havingValue = "true", matchIfMissing = true)
 public class ControllerAspect {
 
     private final ObjectMapper jsonMapper;
