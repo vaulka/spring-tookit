@@ -21,7 +21,7 @@ public class DefaultMqttCallback implements MqttCallback {
 
     @Override
     public void messageArrived(String topic, MqttMessage message) {
-        log.info("MQTT msg received success topic [{}] payload [{}] QoS [{}] retained [{}]",
+        log.debug("MQTT msg received success topic [{}] payload [{}] QoS [{}] retained [{}]",
                 topic, new String(message.getPayload()), message.getQos(), message.isRetained());
     }
 
@@ -29,7 +29,7 @@ public class DefaultMqttCallback implements MqttCallback {
     @Override
     public void deliveryComplete(IMqttDeliveryToken token) {
         MqttMessage message = token.getMessage();
-        log.info("MQTT msg sent success topic [{}] payload [{}] QoS [{}] retained [{}]",
+        log.debug("MQTT msg sent success topic [{}] payload [{}] QoS [{}] retained [{}]",
                 token.getTopics()[0], new String(message.getPayload()), message.getQos(), message.isRetained());
     }
 }

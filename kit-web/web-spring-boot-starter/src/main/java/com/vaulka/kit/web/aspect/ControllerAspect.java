@@ -69,11 +69,11 @@ public class ControllerAspect {
         String ip = IpUtils.getIp(request);
         String userAgent = Optional.ofNullable(request.getHeader(HttpHeaders.USER_AGENT)).orElse("");
         String authorization = Optional.ofNullable(request.getHeader(HttpHeaders.AUTHORIZATION)).orElse("");
-        log.info("");
-        log.info("req ID [{}] IP [{}] User-Agent [{}] Authorization [{}]", reqId, ip, userAgent, authorization);
-        log.info("req ID [{}] method [{}] URI [{}]", reqId, request.getMethod(), request.getRequestURI());
-        log.info("req ID [{}] query [{}]", reqId, Optional.ofNullable(request.getQueryString()).orElse(""));
-        log.info("req ID [{}] body [{}]", reqId, request instanceof RepeatedlyReadRequestWrapper
+        log.debug("");
+        log.debug("req ID [{}] IP [{}] User-Agent [{}] Authorization [{}]", reqId, ip, userAgent, authorization);
+        log.debug("req ID [{}] method [{}] URI [{}]", reqId, request.getMethod(), request.getRequestURI());
+        log.debug("req ID [{}] query [{}]", reqId, Optional.ofNullable(request.getQueryString()).orElse(""));
+        log.debug("req ID [{}] body [{}]", reqId, request instanceof RepeatedlyReadRequestWrapper
                 ? HttpServletRequestUtils.getBody(request)
                 : "");
     }
@@ -97,7 +97,7 @@ public class ControllerAspect {
         try {
             return point.proceed();
         } finally {
-            log.info("req ID [{}] cost [{}] ms", reqId, System.currentTimeMillis() - start);
+            log.debug("req ID [{}] cost [{}] ms", reqId, System.currentTimeMillis() - start);
         }
     }
 
@@ -115,10 +115,10 @@ public class ControllerAspect {
         }
         String reqId = SpringUtils.getReqId();
         try {
-            log.info("resp ID [{}] success [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(result).orElse("")));
+            log.debug("resp ID [{}] success [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(result).orElse("")));
         } catch (JsonProcessingException e) {
             log.error(e.getLocalizedMessage());
-            log.info("resp ID [{}] success [{}]", reqId, Optional.ofNullable(result).orElse(""));
+            log.debug("resp ID [{}] success [{}]", reqId, Optional.ofNullable(result).orElse(""));
         }
     }
 

@@ -222,10 +222,10 @@ public class GlobalResponseHandler extends RequestResponseBodyMethodProcessor im
         if (isSuccess) {
             if (logProperties.isSuccessLogEnabled()) {
                 try {
-                    log.info("resp ID [{}] success result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(body).orElse("")));
+                    log.debug("resp ID [{}] success result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(body).orElse("")));
                 } catch (JsonProcessingException e) {
                     log.error(e.getLocalizedMessage());
-                    log.info("resp ID [{}] success result [{}]", reqId, Optional.ofNullable(body).orElse(""));
+                    log.debug("resp ID [{}] success result [{}]", reqId, Optional.ofNullable(body).orElse(""));
                 }
             }
         } else {
@@ -322,10 +322,10 @@ public class GlobalResponseHandler extends RequestResponseBodyMethodProcessor im
         if (logProperties.isSuccessLogEnabled()) {
             String reqId = SpringUtils.getReqId();
             try {
-                log.info("resp ID [{}] success result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(result).orElse("")));
+                log.debug("resp ID [{}] success result [{}]", reqId, jsonMapper.writeValueAsString(Optional.ofNullable(result).orElse("")));
             } catch (JsonProcessingException e) {
-                log.info(e.getLocalizedMessage());
-                log.info("resp ID [{}] success result [{}]", reqId, Optional.ofNullable(result).orElse(""));
+                log.error(e.getLocalizedMessage());
+                log.debug("resp ID [{}] success result [{}]", reqId, Optional.ofNullable(result).orElse(""));
             }
         }
         return result;
